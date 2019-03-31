@@ -217,13 +217,16 @@
 				TargetAttributes = {
 					DBFB211E21F6E6CB004ED785 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					DBFB213221F6E6CD004ED785 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = DBFB211E21F6E6CB004ED785;
 					};
 					DBFB213D21F6E6CD004ED785 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = DBFB211E21F6E6CB004ED785;
 					};
 				};
@@ -470,7 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xcodeyang.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -488,7 +491,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xcodeyang.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -508,7 +511,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xcodeyang.DemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 			};
@@ -529,7 +532,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xcodeyang.DemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 			};
@@ -549,7 +552,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xcodeyang.DemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Demo;
 			};
@@ -569,7 +572,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xcodeyang.DemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Demo;
 			};

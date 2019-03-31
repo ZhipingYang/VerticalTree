@@ -13,13 +13,11 @@ import ObjectiveC
 private var TreeNodeDeepConst = 0
 
 extension UIView: TreeNode {
-    typealias NodeValue = UIView
-    
-    var parent: UIView? {
+    var parent: TreeNode? {
         return self.superview
     }
     
-    var childs: [UIView] {
+    var childs: [TreeNode] {
         return self.subviews
     }
     
@@ -52,9 +50,9 @@ extension UIView: TreeNode {
 
 extension UIView {
     var rootView: UIView {
-        return getRootNode(self)
+        return self.getRootNode()
     }
     var allSubviews: [UIView] {
-        return allSubnodes(self)
+        return self.allSubnodes()
     }
 }

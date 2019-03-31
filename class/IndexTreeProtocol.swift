@@ -25,9 +25,9 @@ protocol Infomation {
 
 /// Node protocol
 protocol TreeNode {
-    associatedtype NodeValue: TreeNode where Self.NodeValue == Self
-    var parent: Self? {get}
-    var childs: [Self] {get}
+//    associatedtype NodeValue: TreeNode
+    var parent: TreeNode? {get}
+    var childs: [TreeNode] {get}
     
     /// current node deep
     /// note: deep start from 1
@@ -48,8 +48,8 @@ protocol TreeNode {
 // MARK: - helper
 extension NSObject: Infomation {
     var title: String {
-        return String(describing: self.self)
-//        return String(describing: type(of: self))
+//        return String(describing: self.self)
+        return String(describing: type(of: self))
     }
     var description: String {
         return self.debugDescription
@@ -58,21 +58,21 @@ extension NSObject: Infomation {
 
 extension TreeNode {
     
-    func getRootNode<T: TreeNode>(_ currentNode: T) -> T {
-        var node: T = currentNode
+    func getRootNode() -> Self {
+        var node = self
         while let parent = node.parent {
-            node = parent
+            node = parent as! Self
         }
         return node
     }
     
-    func allSubnodes<T: TreeNode>(_ currentNode: T) -> [T] {
-        var subnodes = [T]()
-        func subnodesBlock(_ node: T) {
+    func allSubnodes() -> [Self] {
+        var subnodes = [Self]()
+        func subnodesBlock(_ node: Self) {
             subnodes.append(node)
-            node.childs.forEach { subnodesBlock($0) }
+            node.childs.forEach { subnodesBlock($0 as! Self) }
         }
-        subnodesBlock(currentNode)
+        subnodesBlock(self)
         return subnodes
     }
 }

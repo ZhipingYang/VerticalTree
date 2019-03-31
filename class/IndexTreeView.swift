@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IndexTreeView<T: TreeNode>: UIView {
+class IndexTreeView: UIView {
     
     lazy var label: UILabel = {
         let label = UILabel()
@@ -25,7 +25,7 @@ class IndexTreeView<T: TreeNode>: UIView {
     
     var verticalLines = [CALayer]()
     
-    var node: T? = nil {
+    var node: TreeNode? = nil {
         didSet {
             guard let node = node else { return }
             label.text = node.info.title
@@ -37,8 +37,21 @@ class IndexTreeView<T: TreeNode>: UIView {
                 layer.backgroundColor = UIColor.gray.cgColor
                 return layer
             }
+            verticalLines.forEach {
+                layer.addSublayer($0)
+            }
             self.setNeedsLayout()
         }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(label)
+        layer.addSublayer(horizonLine)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func layoutSubviews() {
@@ -65,5 +78,7 @@ class IndexTreeView<T: TreeNode>: UIView {
             verticalLines[p.currentDeep-1].isHidden = p.parent == nil
             parent = p.parent
         }
+        
+        label.frame = CGRect.init(x: horizonLine.frame.width + horizonLine.frame.origin.x, y: 0, width: width, height: height)
     }
 }
