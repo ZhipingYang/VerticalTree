@@ -8,8 +8,10 @@
 
 import UIKit
 
-class IndexTreeCell: UITableViewCell {
-    lazy var indexView: IndexTreeView = IndexTreeView<UIView>()
+class IndexTreeCell<T: TreeNode>: UITableViewCell {
+    
+    var indexView: IndexTreeView = IndexTreeView<T>()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(indexView)
@@ -26,32 +28,21 @@ class IndexTreeCell: UITableViewCell {
     }
 }
 
-class IndexTreeTableController: UITableViewController {
+class IndexTreeTableController<T: TreeNode>: UITableViewController {
     
-    var source: UIView?
-    var dataSource = [UIView]()
-    
-    init(_ view: UIView) {
-        self.source = view
-        if let arr = source?.allSubnodes {
-            self.dataSource += arr
+    var dataSource = [T]()
+
+    var source: T? {
+        didSet {
+            guard let source = source else { return }
+            dataSource = source.allSubnodes(source)
+            tableView.reloadData()
         }
-        super.init(style: UITableView.Style.plain)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        source = nil;
-        super.init(coder: aDecoder)
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        source = nil;
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(IndexTreeCell.self, forCellReuseIdentifier: "IndexTreeCell")
+        tableView.register(IndexTreeCell<T>.self, forCellReuseIdentifier: "IndexTreeCell")
     }
     
     // MARK: - Table view data source
@@ -61,7 +52,7 @@ class IndexTreeTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: IndexTreeCell = tableView.dequeueReusableCell(withIdentifier: "IndexTreeCell") as! IndexTreeCell
+        let cell: IndexTreeCell = tableView.dequeueReusableCell(withIdentifier: "IndexTreeCell") as! IndexTreeCell<T>
         cell.indexView.node = dataSource[indexPath.row]
         return cell
     }

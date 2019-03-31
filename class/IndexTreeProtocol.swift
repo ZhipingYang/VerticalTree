@@ -25,9 +25,9 @@ protocol Infomation {
 
 /// Node protocol
 protocol TreeNode {
-    associatedtype NodeValue: TreeNode
-    var parent: NodeValue? {get}
-    var childs: [NodeValue] {get}
+    associatedtype NodeValue: TreeNode where Self.NodeValue == Self
+    var parent: Self? {get}
+    var childs: [Self] {get}
     
     /// current node deep
     /// note: deep start from 1
@@ -41,7 +41,7 @@ protocol TreeNode {
     var length: TreeNodeLength {get}
     
     /// info description
-    var source: Infomation {get}
+    var info: Infomation {get}
 }
 
 
@@ -58,7 +58,7 @@ extension NSObject: Infomation {
 
 extension TreeNode {
     
-    func GetRootNode<T: TreeNode>(_ currentNode: T) -> T where T.NodeValue == T {
+    func getRootNode<T: TreeNode>(_ currentNode: T) -> T {
         var node: T = currentNode
         while let parent = node.parent {
             node = parent
@@ -66,7 +66,7 @@ extension TreeNode {
         return node
     }
     
-    func AllSubnodes<T: TreeNode>(_ currentNode: T) -> [T] where T.NodeValue == T {
+    func allSubnodes<T: TreeNode>(_ currentNode: T) -> [T] {
         var subnodes = [T]()
         func subnodesBlock(_ node: T) {
             subnodes.append(node)

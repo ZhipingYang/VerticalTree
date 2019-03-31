@@ -12,16 +12,8 @@ import ObjectiveC
 
 private var TreeNodeDeepConst = 0
 
-extension UIView {
-    var rootNode: UIView {
-        return GetRootNode(self)
-    }
-    var allSubnodes: [UIView] {
-        return AllSubnodes(self)
-    }
-}
-
 extension UIView: TreeNode {
+    typealias NodeValue = UIView
     
     var parent: UIView? {
         return self.superview
@@ -41,10 +33,10 @@ extension UIView: TreeNode {
     // todo: name space
     var treeDeep: Int {
         set {
-            objc_setAssociatedObject(self.rootNode, &TreeNodeDeepConst, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self.rootView, &TreeNodeDeepConst, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
         get {
-            guard let number = objc_getAssociatedObject(self.rootNode, &TreeNodeDeepConst) as? NSNumber else { return 1 }
+            guard let number = objc_getAssociatedObject(self.rootView, &TreeNodeDeepConst) as? NSNumber else { return 1 }
             return number.intValue
         }
     }
@@ -53,7 +45,16 @@ extension UIView: TreeNode {
         return .eachLength(10)
     }
 
-    var source: Infomation {
+    var info: Infomation {
         return self
+    }
+}
+
+extension UIView {
+    var rootView: UIView {
+        return getRootNode(self)
+    }
+    var allSubviews: [UIView] {
+        return allSubnodes(self)
     }
 }

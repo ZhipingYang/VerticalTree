@@ -28,7 +28,7 @@ class IndexTreeView<T: TreeNode>: UIView {
     var node: T? = nil {
         didSet {
             guard let node = node else { return }
-            label.text = node.source.title
+            label.text = node.info.title
             
             verticalLines.forEach{ $0.removeFromSuperlayer() }
             verticalLines.removeAll()
@@ -63,7 +63,7 @@ class IndexTreeView<T: TreeNode>: UIView {
             guard let p = parent else { break }
             verticalLines[p.currentDeep-1].frame = CGRect(x: eachW*CGFloat(p.currentDeep-1), y: 0, width: 1, height: height)
             verticalLines[p.currentDeep-1].isHidden = p.parent == nil
-            parent = p.parent as? T.NodeValue
+            parent = p.parent
         }
     }
 }

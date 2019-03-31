@@ -11,9 +11,9 @@ import UIKit
 class ViewController: UITableViewController {
 
     @IBAction func actionSelector(_ sender: Any) {
-        let tvc = IndexTreeTableController(view.window ?? tableView)
+        let tvc = IndexTreeTableController<UIView>()
+        tvc.source = view.window ?? navigationController?.view ?? view
         navigationController?.pushViewController(tvc, animated: true)
     }
-    
 }
 
