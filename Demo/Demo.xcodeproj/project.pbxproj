@@ -137,9 +137,9 @@
 		DBFB215021F6E73E004ED785 /* class */ = {
 			isa = PBXGroup;
 			children = (
+				DBFB215321F6E73E004ED785 /* IndexTreeProtocol.swift */,
 				DBFB215121F6E73E004ED785 /* IndexTreeExtension.swift */,
 				DBFB215221F6E73E004ED785 /* IndexTreeTableController.swift */,
-				DBFB215321F6E73E004ED785 /* IndexTreeProtocol.swift */,
 				DBFB215421F6E73E004ED785 /* IndexTreeView.swift */,
 			);
 			name = class;

@@ -56,6 +56,7 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Vertical Tree"
         tableView.separatorStyle = .none
         tableView.register(IndexTreeCell.self, forCellReuseIdentifier: "IndexTreeCell")
 

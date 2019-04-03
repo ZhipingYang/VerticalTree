@@ -47,18 +47,32 @@ protocol TreeNode {
 
 
 // MARK: - helper
-extension NSObject: Infomation {
+extension Infomation where Self: NSObject {
     var title: String {
-//        return String(describing: self.self)
         return String(describing: type(of: self))
     }
     var description: String {
-        return self.debugDescription
+        return String(describing: self.self)
+//        return self.debugDescription
     }
 }
 
 extension TreeNode {
     
+    var currentDeep: Int {
+        var deep = 1
+        var node: TreeNode = self
+        while let p = node.parent {
+            deep += 1
+            node = p
+        }
+        return deep
+    }
+    
+    var treeDeep: Int {
+        return getRootNode().allSubnodes().max {$0.currentDeep < $1.currentDeep }?.currentDeep ?? 1
+    }
+
     func getRootNode() -> Self {
         var node = self
         while let parent = node.parent {

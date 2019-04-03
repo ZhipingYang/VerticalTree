@@ -7,12 +7,8 @@
 //
 
 import UIKit
-import ObjectiveC
 
-
-private var TreeNodeDeepConst = 0
-
-extension UIView: TreeNode {
+extension UIView: TreeNode, Infomation {
     
     var parent: TreeNode? {
         return self.superview
@@ -22,27 +18,8 @@ extension UIView: TreeNode {
         return self.subviews
     }
     
-    var currentDeep: Int {
-        let sequ = sequence(first: self) { $0.superview }
-        return sequ.reduce(0, { (deep, view) -> Int in
-            return deep+1
-        })
-    }
-    
-    // todo: name space
-    var treeDeep: Int {
-        return rootView.allSubnodes().map { $0.currentDeep }.max() ?? 1
-//        set {
-//            objc_setAssociatedObject(self.rootView, &TreeNodeDeepConst, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-//        }
-//        get {
-//            guard let number = objc_getAssociatedObject(self.rootView, &TreeNodeDeepConst) as? NSNumber else { return 1 }
-//            return number.intValue
-//        }
-    }
-    
     var length: TreeNodeLength {
-        return .eachLength(10)
+        return .eachLength(8)
     }
 
     var info: Infomation {
@@ -52,16 +29,11 @@ extension UIView: TreeNode {
     var index: Int {
         return superview?.subviews.firstIndex(of: self) ?? 0
     }
-
 }
 
-extension UIView {
-    
-    var rootView: UIView {
-        return self.getRootNode()
-    }
-    
-    var allSubviews: [UIView] {
-        return self.allSubnodes()
+extension UIColor {
+    static let colors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple, UIColor.black]
+    static func int(_ num: Int) -> UIColor {
+        return colors[num%(colors.count)]
     }
 }

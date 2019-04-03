@@ -46,14 +46,19 @@ class IndexTreeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(label)
-        layer.addSublayer(horizonLine)
+        _init()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        _init()
+    }
+    
+    private func _init() {
         addSubview(label)
         layer.addSublayer(horizonLine)
+        let longG = UILongPressGestureRecognizer(target: self, action: #selector(longPressToShowCopyMenu(_:)))
+        addGestureRecognizer(longG)
     }
     
     override func layoutSubviews() {
@@ -89,14 +94,44 @@ class IndexTreeView: UIView {
             verticalLines[p.currentDeep-1].isHidden = !p.haveNext
             parent = p.parent
         }
-        
-        label.frame = CGRect.init(x: horizonLine.frame.width + horizonLine.frame.origin.x, y: 0, width: width, height: height)
+        let right = horizonLine.frame.width + horizonLine.frame.origin.x
+        label.frame = CGRect(x: right, y: 0, width: width-right, height: height)
     }
 }
 
-private extension UIColor {
-    static let colors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple, UIColor.black]
-    static func int(_ num: Int) -> UIColor {
-        return colors[num%(colors.count)]
+extension IndexTreeView {
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(copyText(_:))
+            || action == #selector(showMoreInfo(_:))
+            || action == #selector(showDebugInfo(_:)) {
+            return true
+        }
+        return super.canPerformAction(action, withSender: sender)
+    }
+    
+    @objc private func longPressToShowCopyMenu(_ sender: UILongPressGestureRecognizer) {
+        let menu = UIMenuController.shared
+        if sender.state != .began, menu.isMenuVisible { return }
+        becomeFirstResponder()
+        menu.menuItems = [UIMenuItem(title: "Copy", action: #selector(copyText(_:)))]
+        menu.setTargetRect(bounds, in: self)
+        menu.setMenuVisible(true, animated: true)
+    }
+    
+    @objc private func copyText(_ sender: Any?) {
+        UIPasteboard.general.string = label.text
+    }
+    
+    @objc private func showMoreInfo(_ sender: Any?) {
+        
+    }
+    
+    @objc private func showDebugInfo(_ sender: Any?) {
+        
     }
 }
