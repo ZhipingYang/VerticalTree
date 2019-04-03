@@ -24,7 +24,7 @@ class IndexTreeCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        indexView.frame = bounds
+        indexView.frame = bounds.insetBy(dx: 10, dy: 0)
     }
 }
 
@@ -56,8 +56,9 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
         tableView.register(IndexTreeCell.self, forCellReuseIdentifier: "IndexTreeCell")
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target:self, action: #selector(dismissWindows))
     }
     
@@ -81,5 +82,9 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
         let cell: IndexTreeCell = tableView.dequeueReusableCell(withIdentifier: "IndexTreeCell") as! IndexTreeCell
         cell.indexView.node = dataSource[indexPath.row]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 18
     }
 }

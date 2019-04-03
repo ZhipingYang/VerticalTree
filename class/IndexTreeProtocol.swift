@@ -36,6 +36,7 @@ protocol TreeNode {
     /// the deepest of node tree
     /// note: minimum deep start from 1
     var treeDeep: Int {get}
+    var index: Int {get}
     
     /// indexViewLegnth
     var length: TreeNodeLength {get}
@@ -75,5 +76,16 @@ extension TreeNode {
         subnodesBlock(self)
         return subnodes
     }
+    
+    var haveChild: Bool {
+        return self.childs.count > 0
+    }
+    
+    var haveParent: Bool {
+        return self.parent != nil
+    }
+    
+    var haveNext: Bool {
+        return self.index < (self.parent?.childs.count ?? 1) - 1
+    }
 }
-
