@@ -43,17 +43,20 @@ protocol TreeNode {
     
     /// info description
     var info: Infomation {get}
+    
+    var isFold: Bool {set get}
 }
 
 
 // MARK: - helper
 extension Infomation where Self: NSObject {
+    
     var title: String {
         return String(describing: type(of: self))
     }
+    
     var description: String {
         return String(describing: self.self)
-//        return self.debugDescription
     }
 }
 
@@ -72,6 +75,9 @@ extension TreeNode {
     var treeDeep: Int {
         return getRootNode().allSubnodes().max {$0.currentDeep < $1.currentDeep }?.currentDeep ?? 1
     }
+}
+
+extension TreeNode {
 
     func getRootNode() -> Self {
         var node = self
@@ -81,13 +87,17 @@ extension TreeNode {
         return node
     }
     
-    func allSubnodes() -> [Self] {
+    func allSubnodes(_ includeSelf: Bool = true) -> [Self] {
         var subnodes = [Self]()
         func subnodesBlock(_ node: Self) {
             subnodes.append(node)
             node.childs.forEach { subnodesBlock($0 as! Self) }
         }
-        subnodesBlock(self)
+        if includeSelf {
+            subnodesBlock(self)
+        } else {
+            childs.forEach { subnodesBlock($0 as! Self) }
+        }
         return subnodes
     }
     

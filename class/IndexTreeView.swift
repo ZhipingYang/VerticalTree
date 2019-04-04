@@ -10,10 +10,13 @@ import UIKit
 
 class IndexTreeView: UIView {
     
+    var labelLeading: NSLayoutConstraint?
+    
     lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.darkGray
         label.font = UIFont.systemFont(ofSize: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -30,18 +33,28 @@ class IndexTreeView: UIView {
             guard let node = node else { return }
             label.text = node.info.title
             
-            verticalLines.forEach{ $0.removeFromSuperlayer() }
-            verticalLines.removeAll()
-            verticalLines = (0...node.currentDeep).map { _ in
+            verticalLines.getNewArray(needSpace: node.currentDeep+1, map: { () -> CALayer in
                 let layer = CALayer()
                 layer.backgroundColor = UIColor.gray.cgColor
+                self.layer.addSublayer(layer)
                 return layer
-            }
-            verticalLines.forEach {
-                layer.addSublayer($0)
-            }
+            }) { $0.removeFromSuperlayer() }
+            labelLeading?.constant = indexWidth
+            label.updateConstraintsIfNeeded()
             self.setNeedsLayout()
         }
+    }
+    
+    var indexWidth: CGFloat {
+        guard let node = node else { return -40 }
+        let width =  self.frame.width
+        var eachW: CGFloat = 0;
+        if case .eachLength(let lengthValue) = node.length {
+            eachW = lengthValue
+        } else if case .indexLength(let lengthValue) = node.length {
+            eachW = lengthValue / CGFloat(max(node.treeDeep, 1))
+        }
+        return eachW * CGFloat(node.currentDeep-1) + min(2*eachW, width-(eachW * CGFloat(node.currentDeep-1)))
     }
     
     override init(frame: CGRect) {
@@ -57,6 +70,16 @@ class IndexTreeView: UIView {
     private func _init() {
         addSubview(label)
         layer.addSublayer(horizonLine)
+        
+        let leading = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100)
+        labelLeading = leading
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor),
+            leading,
+            label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor)
+        ])
+        
         let longG = UILongPressGestureRecognizer(target: self, action: #selector(longPressToShowCopyMenu(_:)))
         addGestureRecognizer(longG)
     }
@@ -73,7 +96,6 @@ class IndexTreeView: UIView {
         } else if case .indexLength(let lengthValue) = node.length {
             eachW = lengthValue / CGFloat(max(node.treeDeep, 1))
         }
-//        horizonLine.backgroundColor = UIColor.int(node.currentDeep-1).cgColor
         horizonLine.backgroundColor = UIColor.gray.cgColor
         horizonLine.frame = CGRect(x: eachW * CGFloat(node.currentDeep-1),
                                    y: height/2.0,
@@ -94,8 +116,6 @@ class IndexTreeView: UIView {
             verticalLines[p.currentDeep-1].isHidden = !p.haveNext
             parent = p.parent
         }
-        let right = horizonLine.frame.width + horizonLine.frame.origin.x
-        label.frame = CGRect(x: right, y: 0, width: width-right, height: height)
     }
 }
 
@@ -106,9 +126,7 @@ extension IndexTreeView {
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(copyText(_:))
-            || action == #selector(showMoreInfo(_:))
-            || action == #selector(showDebugInfo(_:)) {
+        if action == #selector(copyText(_:)) {
             return true
         }
         return super.canPerformAction(action, withSender: sender)
@@ -117,21 +135,26 @@ extension IndexTreeView {
     @objc private func longPressToShowCopyMenu(_ sender: UILongPressGestureRecognizer) {
         let menu = UIMenuController.shared
         if sender.state != .began, menu.isMenuVisible { return }
-        becomeFirstResponder()
-        menu.menuItems = [UIMenuItem(title: "Copy", action: #selector(copyText(_:)))]
-        menu.setTargetRect(bounds, in: self)
+        menu.menuItems = [UIMenuItem(title: "copy", action: #selector(copyText(_:)))]
+        menu.setTargetRect(label.bounds, in: self.label)
         menu.setMenuVisible(true, animated: true)
+        becomeFirstResponder()
     }
     
     @objc private func copyText(_ sender: Any?) {
-        UIPasteboard.general.string = label.text
+        UIPasteboard.general.string = node?.info.description ?? node?.info.title
     }
-    
-    @objc private func showMoreInfo(_ sender: Any?) {
-        
-    }
-    
-    @objc private func showDebugInfo(_ sender: Any?) {
-        
+}
+
+extension Array {
+    mutating func getNewArray(needSpace: Int, map: () -> Element, handle: ((Element) -> Void)?) -> Void {
+        if needSpace > count {
+            let new = (0 ..< needSpace-count).map { _ in map() }
+            self.append(contentsOf: new)
+        } else if needSpace < count {
+            let removeArr = self.prefix(count-needSpace)
+            removeArr.forEach { handle?($0) }
+            self.removeSubrange(0..<(count-needSpace))
+        }
     }
 }

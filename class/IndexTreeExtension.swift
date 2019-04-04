@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import ObjectiveC
+
+private struct UIViewTreeAssociateKey {
+    static var isFold = 0
+}
 
 extension UIView: TreeNode, Infomation {
     
@@ -29,11 +34,17 @@ extension UIView: TreeNode, Infomation {
     var index: Int {
         return superview?.subviews.firstIndex(of: self) ?? 0
     }
-}
-
-extension UIColor {
-    static let colors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple, UIColor.black]
-    static func int(_ num: Int) -> UIColor {
-        return colors[num%(colors.count)]
+    
+    var isFold: Bool {
+        get {
+            guard let number = objc_getAssociatedObject(self, &UIViewTreeAssociateKey.isFold) as? NSNumber else {
+                objc_setAssociatedObject(self, &UIViewTreeAssociateKey.isFold, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return self.isFold
+            }
+            return number.boolValue
+        }
+        set {
+            objc_setAssociatedObject(self, &UIViewTreeAssociateKey.isFold, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
 }

@@ -12,30 +12,77 @@ class IndexTreeCell: UITableViewCell {
     
     var indexView: IndexTreeView = IndexTreeView()
     
+    var fold: Bool = true {
+        didSet {
+            descriptionHeightConstraint?.isActive = fold
+            self.updateConstraintsIfNeeded()
+        }
+    }
+
+    var descriptionHeightConstraint: NSLayoutConstraint?
+    
+    var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = UIColor.lightGray
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    var node: TreeNode? {
+        didSet {
+            indexView.node = node
+            descriptionLabel.text = node?.info.description
+            fold = node?.isFold ?? true
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(indexView)
+        _init()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        contentView.addSubview(indexView)
+        _init()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        indexView.frame = bounds.insetBy(dx: 10, dy: 0)
+    func _init() {
+        self.clipsToBounds = true
+        
+        contentView.addSubview(indexView)
+        contentView.addSubview(descriptionLabel)
+        indexView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let height = descriptionLabel.heightAnchor.constraint(equalToConstant: 0)
+        height.priority = UILayoutPriority.required
+        descriptionHeightConstraint = height
+        NSLayoutConstraint.activate([
+            indexView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            indexView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            indexView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            indexView.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: indexView.bottomAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            height
+        ])
+        
+        descriptionHeightConstraint?.isActive = fold
     }
 }
 
 class IndexTreeTableController<T: TreeNode>: UITableViewController {
     
     var dataSource = [T]()
-    
+
     convenience init(source: T) {
         self.init(style: .plain)
         self.source = source
-        self.dataSource = source.allSubnodes()
     }
     
     override init(style: UITableView.Style) {
@@ -58,6 +105,8 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
         super.viewDidLoad()
         title = "Vertical Tree"
         tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 10
         tableView.register(IndexTreeCell.self, forCellReuseIdentifier: "IndexTreeCell")
 
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target:self, action: #selector(dismissWindows))
@@ -81,11 +130,20 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: IndexTreeCell = tableView.dequeueReusableCell(withIdentifier: "IndexTreeCell") as! IndexTreeCell
-        cell.indexView.node = dataSource[indexPath.row]
+        let node = dataSource[indexPath.row]
+        cell.node = node
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 18
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? IndexTreeCell else { return }
+        var node = dataSource[indexPath.row]
+        node.isFold = !node.isFold
+        dataSource[indexPath.row] = node
+        
+        tableView.beginUpdates()
+        cell.fold = node.isFold
+        tableView.endUpdates()
     }
 }
