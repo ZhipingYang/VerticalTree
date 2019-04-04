@@ -8,9 +8,9 @@
 
 import UIKit
 
-class IndexTreeCell: UITableViewCell {
+class IndexTreeCell<T: TreeNode>: UITableViewCell {
     
-    var indexView: IndexTreeView = IndexTreeView()
+    var indexView: IndexTreeView<T> = IndexTreeView<T>()
     
     var fold: Bool = true {
         didSet {
@@ -31,7 +31,7 @@ class IndexTreeCell: UITableViewCell {
         return label
     }()
     
-    var node: TreeNode? {
+    var node: T? {
         didSet {
             indexView.node = node
             descriptionLabel.text = node?.info.description
@@ -107,7 +107,7 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 10
-        tableView.register(IndexTreeCell.self, forCellReuseIdentifier: "IndexTreeCell")
+        tableView.register(IndexTreeCell<T>.self, forCellReuseIdentifier: "IndexTreeCell")
 
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target:self, action: #selector(dismissWindows))
     }
@@ -129,7 +129,7 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: IndexTreeCell = tableView.dequeueReusableCell(withIdentifier: "IndexTreeCell") as! IndexTreeCell
+        let cell: IndexTreeCell = tableView.dequeueReusableCell(withIdentifier: "IndexTreeCell") as! IndexTreeCell<T>
         let node = dataSource[indexPath.row]
         cell.node = node
         return cell
@@ -137,7 +137,7 @@ class IndexTreeTableController<T: TreeNode>: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath) as? IndexTreeCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? IndexTreeCell<T> else { return }
         var node = dataSource[indexPath.row]
         node.isFold = !node.isFold
         dataSource[indexPath.row] = node

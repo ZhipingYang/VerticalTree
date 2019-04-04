@@ -18,11 +18,11 @@ class ViewController: UITableViewController {
         return window
     }()
     
-    var tvc = IndexTreeTableController<UIView>(style: UITableView.Style.plain)
+    var tvc = IndexTreeTableController<ViewTreeNode>(style: UITableView.Style.plain)
 
     @IBAction func actionSelector(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view
-        tvc.source = _view
+        tvc.source = ViewTreeNode(_view)
         windows.isHidden = false
         windows.makeKeyAndVisible()
     }

@@ -11,31 +11,25 @@ import ObjectiveC
 
 private struct UIViewTreeAssociateKey {
     static var isFold = 0
+    static var treeNodeObj = 0
 }
 
-extension UIView: TreeNode, Infomation {
+extension UIView: Infomation {
     
-    var parent: TreeNode? {
-        return self.superview
+    fileprivate var treeNode: ViewTreeNode {
+        get {
+            guard let node = objc_getAssociatedObject(self, &UIViewTreeAssociateKey.treeNodeObj) as? ViewTreeNode else {
+                self.treeNode = ViewTreeNode(view: self)
+                return self.treeNode
+            }
+            return node
+        }
+        set {
+            objc_setAssociatedObject(self, &UIViewTreeAssociateKey.treeNodeObj, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
     
-    var childs: [TreeNode] {
-        return self.subviews
-    }
-    
-    var length: TreeNodeLength {
-        return .eachLength(8)
-    }
-
-    var info: Infomation {
-        return self
-    }
-    
-    var index: Int {
-        return superview?.subviews.firstIndex(of: self) ?? 0
-    }
-    
-    var isFold: Bool {
+    fileprivate var isFold: Bool {
         get {
             guard let number = objc_getAssociatedObject(self, &UIViewTreeAssociateKey.isFold) as? NSNumber else {
                 self.isFold = true
@@ -46,5 +40,39 @@ extension UIView: TreeNode, Infomation {
         set {
             objc_setAssociatedObject(self, &UIViewTreeAssociateKey.isFold, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
+    }
+}
+
+final class ViewTreeNode: TreeNode {
+    
+    typealias NodeValue = ViewTreeNode
+
+    weak var view: UIView?
+
+    var parent: ViewTreeNode?
+    
+    var childs: [ViewTreeNode]
+    
+    var isFold: Bool
+ 
+    var index: Int
+    
+    var info: Infomation
+
+    var length: TreeNodeLength
+    
+    convenience init(view: UIView) {
+        self.init(view)!
+    }
+    
+    required init?(_ view: UIView?) {
+        guard let view = view else { return nil }
+        self.view = view
+        self.childs = view.subviews.compactMap{ ViewTreeNode($0) }
+        self.isFold = view.isFold
+        self.index = view.superview?.subviews.firstIndex(of: view) ?? 0
+        self.info = view
+        self.length = .eachLength(10)
+        self.childs.forEach { $0.parent = self }
     }
 }

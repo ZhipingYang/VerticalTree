@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IndexTreeView: UIView {
+class IndexTreeView<T: TreeNode>: UIView {
     
     var labelLeading: NSLayoutConstraint?
     
@@ -28,7 +28,7 @@ class IndexTreeView: UIView {
     
     var verticalLines = [CALayer]()
     
-    var node: TreeNode? = nil {
+    var node: T? {
         didSet {
             guard let node = node else { return }
             label.text = node.info.title
@@ -117,9 +117,6 @@ class IndexTreeView: UIView {
             parent = p.parent
         }
     }
-}
-
-extension IndexTreeView {
     
     override var canBecomeFirstResponder: Bool {
         return true

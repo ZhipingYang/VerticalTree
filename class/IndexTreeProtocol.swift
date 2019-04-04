@@ -25,9 +25,9 @@ protocol Infomation {
 
 /// Node protocol
 protocol TreeNode {
-//    associatedtype NodeValue: TreeNode
-    var parent: TreeNode? {get}
-    var childs: [TreeNode] {get}
+    associatedtype NodeValue: TreeNode where Self.NodeValue == Self
+    var parent: NodeValue? {get}
+    var childs: [NodeValue] {get}
     
     /// current node deep
     /// note: deep start from 1
@@ -64,7 +64,7 @@ extension TreeNode {
     
     var currentDeep: Int {
         var deep = 1
-        var node: TreeNode = self
+        var node = self
         while let p = node.parent {
             deep += 1
             node = p
@@ -82,7 +82,7 @@ extension TreeNode {
     func getRootNode() -> Self {
         var node = self
         while let parent = node.parent {
-            node = parent as! Self
+            node = parent
         }
         return node
     }
@@ -91,12 +91,12 @@ extension TreeNode {
         var subnodes = [Self]()
         func subnodesBlock(_ node: Self) {
             subnodes.append(node)
-            node.childs.forEach { subnodesBlock($0 as! Self) }
+            node.childs.forEach { subnodesBlock($0) }
         }
         if includeSelf {
             subnodesBlock(self)
         } else {
-            childs.forEach { subnodesBlock($0 as! Self) }
+            childs.forEach { subnodesBlock($0) }
         }
         return subnodes
     }
