@@ -38,7 +38,7 @@ extension UIView: TreeNode, Infomation {
     var isFold: Bool {
         get {
             guard let number = objc_getAssociatedObject(self, &UIViewTreeAssociateKey.isFold) as? NSNumber else {
-                objc_setAssociatedObject(self, &UIViewTreeAssociateKey.isFold, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                self.isFold = true
                 return self.isFold
             }
             return number.boolValue
