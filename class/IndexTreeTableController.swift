@@ -34,7 +34,7 @@ class IndexTreeCell<T: TreeNode>: UITableViewCell {
     var node: T? {
         didSet {
             indexView.node = node
-            descriptionLabel.text = node?.info.description
+            descriptionLabel.text = node?.info.nodeDescription
             fold = node?.isFold ?? true
         }
     }
@@ -65,7 +65,7 @@ class IndexTreeCell<T: TreeNode>: UITableViewCell {
             indexView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             indexView.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
             
-            descriptionLabel.topAnchor.constraint(equalTo: indexView.bottomAnchor),
+            descriptionLabel.topAnchor.constraint(greaterThanOrEqualTo: indexView.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

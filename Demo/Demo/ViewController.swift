@@ -18,7 +18,7 @@ class ViewController: UITableViewController {
         return window
     }()
     
-    var tvc = IndexTreeTableController<ViewTreeNode>(style: UITableView.Style.plain)
+    let tvc = IndexTreeTableController<ViewTreeNode>(style: .plain)
 
     @IBAction func actionSelector(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view

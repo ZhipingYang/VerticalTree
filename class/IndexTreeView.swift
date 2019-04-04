@@ -14,7 +14,7 @@ class IndexTreeView<T: TreeNode>: UIView {
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -22,7 +22,6 @@ class IndexTreeView<T: TreeNode>: UIView {
     
     lazy var horizonLine: CALayer = {
         let horizonLine = CALayer()
-        horizonLine.backgroundColor = UIColor.gray.cgColor
         return horizonLine
     }()
     
@@ -31,14 +30,19 @@ class IndexTreeView<T: TreeNode>: UIView {
     var node: T? {
         didSet {
             guard let node = node else { return }
-            label.text = node.info.title
+            
+            let treeDeep = node.treeDeep
+            let nodeDeep = node.currentDeep
+            label.text = node.info.nodeTitle
+            label.textColor = (node.info.nodeDescription ?? "").isEmpty ? UIColor.red : UIColor.treeDeep(nodeDeep, treeDeep)
+            horizonLine.backgroundColor = UIColor.treeDeep(nodeDeep, treeDeep).cgColor
             
             verticalLines.getNewArray(needSpace: node.currentDeep+1, map: { () -> CALayer in
                 let layer = CALayer()
-                layer.backgroundColor = UIColor.gray.cgColor
                 self.layer.addSublayer(layer)
                 return layer
             }) { $0.removeFromSuperlayer() }
+            verticalLines.enumerated().forEach { $1.backgroundColor = UIColor.treeDeep($0, treeDeep).cgColor }
             labelLeading?.constant = indexWidth
             label.updateConstraintsIfNeeded()
             self.setNeedsLayout()
@@ -96,7 +100,6 @@ class IndexTreeView<T: TreeNode>: UIView {
         } else if case .indexLength(let lengthValue) = node.length {
             eachW = lengthValue / CGFloat(max(node.treeDeep, 1))
         }
-        horizonLine.backgroundColor = UIColor.gray.cgColor
         horizonLine.frame = CGRect(x: eachW * CGFloat(node.currentDeep-1),
                                    y: height/2.0,
                                    width: min(2*eachW, width-(eachW * CGFloat(node.currentDeep-1))),
@@ -139,12 +142,12 @@ class IndexTreeView<T: TreeNode>: UIView {
     }
     
     @objc private func copyText(_ sender: Any?) {
-        UIPasteboard.general.string = node?.info.description ?? node?.info.title
+        UIPasteboard.general.string = node?.info.nodeDescription ?? node?.info.nodeTitle
     }
 }
 
 extension Array {
-    mutating func getNewArray(needSpace: Int, map: () -> Element, handle: ((Element) -> Void)?) -> Void {
+    fileprivate mutating func getNewArray(needSpace: Int, map: () -> Element, handle: ((Element) -> Void)?) -> Void {
         if needSpace > count {
             let new = (0 ..< needSpace-count).map { _ in map() }
             self.append(contentsOf: new)
@@ -153,5 +156,13 @@ extension Array {
             removeArr.forEach { handle?($0) }
             self.removeSubrange(0..<(count-needSpace))
         }
+    }
+}
+
+extension UIColor {
+    fileprivate static func treeDeep(_ nodeDeep: Int, _ treeDeep: Int) -> UIColor {
+        let deepest: CGFloat = 0.8
+        if nodeDeep >= treeDeep { return UIColor.black.withAlphaComponent(deepest) }
+        return UIColor.black.withAlphaComponent(0.5 + (deepest-0.5)*CGFloat(nodeDeep)/CGFloat(treeDeep))
     }
 }

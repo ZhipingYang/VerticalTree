@@ -11,24 +11,9 @@ import ObjectiveC
 
 private struct UIViewTreeAssociateKey {
     static var isFold = 0
-    static var treeNodeObj = 0
 }
 
 extension UIView: Infomation {
-    
-    fileprivate var treeNode: ViewTreeNode {
-        get {
-            guard let node = objc_getAssociatedObject(self, &UIViewTreeAssociateKey.treeNodeObj) as? ViewTreeNode else {
-                self.treeNode = ViewTreeNode(view: self)
-                return self.treeNode
-            }
-            return node
-        }
-        set {
-            objc_setAssociatedObject(self, &UIViewTreeAssociateKey.treeNodeObj, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
     fileprivate var isFold: Bool {
         get {
             guard let number = objc_getAssociatedObject(self, &UIViewTreeAssociateKey.isFold) as? NSNumber else {
@@ -43,19 +28,29 @@ extension UIView: Infomation {
     }
 }
 
-final class ViewTreeNode: TreeNode {
+final class ViewTreeNode: TreeNode, Infomation {
+    
     typealias NodeValue = ViewTreeNode
     
     weak var view: UIView?
     var parent: ViewTreeNode?
     var childs: [ViewTreeNode]
-    var isFold: Bool
+    var isFold: Bool {
+        get {
+            return view?.isFold ?? true
+        }
+        set {
+            view?.isFold = newValue
+        }
+    }
     var index: Int
     var length: TreeNodeLength
-    var info: Infomation {
-        return view ?? self
+    var info: Infomation { return self }
+    var nodeTitle: String
+    var nodeDescription: String? {
+        return view?.nodeDescription
     }
-    
+
     convenience init(view: UIView) {
         self.init(view)!
     }
@@ -64,20 +59,11 @@ final class ViewTreeNode: TreeNode {
         guard let view = view else { return nil }
         self.view = view
         self.childs = view.subviews.compactMap{ ViewTreeNode($0) }
-        self.isFold = view.isFold
+//        self.isFold = view.isFold
         self.index = view.superview?.subviews.firstIndex(of: view) ?? 0
         self.length = .eachLength(10)
+        self.nodeTitle = view.nodeTitle
+        
         self.childs.forEach { $0.parent = self }
-    }
-}
-
-extension ViewTreeNode: Infomation {
-    
-    var title: String {
-        return view?.title ?? ""
-    }
-    
-    var description: String {
-        return view?.description ?? ""
     }
 }

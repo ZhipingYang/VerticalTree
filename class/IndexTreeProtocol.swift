@@ -19,8 +19,8 @@ enum TreeNodeLength {
 
 /// Node info
 protocol Infomation {
-    var title: String {get}
-    var description: String {get}
+    var nodeTitle: String {get}
+    var nodeDescription: String? {get}
 }
 
 /// Node protocol
@@ -51,11 +51,11 @@ protocol TreeNode {
 // MARK: - helper
 extension Infomation where Self: NSObject {
     
-    var title: String {
+    var nodeTitle: String {
         return String(describing: type(of: self))
     }
     
-    var description: String {
+    var nodeDescription: String? {
         return String(describing: self.self)
     }
 }
