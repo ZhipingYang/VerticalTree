@@ -44,22 +44,17 @@ extension UIView: Infomation {
 }
 
 final class ViewTreeNode: TreeNode {
-    
     typealias NodeValue = ViewTreeNode
-
+    
     weak var view: UIView?
-
     var parent: ViewTreeNode?
-    
     var childs: [ViewTreeNode]
-    
     var isFold: Bool
- 
     var index: Int
-    
-    var info: Infomation
-
     var length: TreeNodeLength
+    var info: Infomation {
+        return view ?? self
+    }
     
     convenience init(view: UIView) {
         self.init(view)!
@@ -71,8 +66,18 @@ final class ViewTreeNode: TreeNode {
         self.childs = view.subviews.compactMap{ ViewTreeNode($0) }
         self.isFold = view.isFold
         self.index = view.superview?.subviews.firstIndex(of: view) ?? 0
-        self.info = view
         self.length = .eachLength(10)
         self.childs.forEach { $0.parent = self }
+    }
+}
+
+extension ViewTreeNode: Infomation {
+    
+    var title: String {
+        return view?.title ?? ""
+    }
+    
+    var description: String {
+        return view?.description ?? ""
     }
 }
