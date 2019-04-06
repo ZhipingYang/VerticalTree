@@ -1,6 +1,6 @@
 //
-//  IndexTreeView.swift
-//  IndexTreeView
+//  VerticalTreeIndexView.swift
+//  VerticalTreeIndexView
 //
 //  Created by Daniel Yang on 2019/1/18.
 //  Copyright © 2019 Daniel Yang. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IndexTreeView<T: TreeNode>: UIView {
+class VerticalTreeIndexView<T: TreeNode>: UIView {
     
     var labelLeading: NSLayoutConstraint?
     

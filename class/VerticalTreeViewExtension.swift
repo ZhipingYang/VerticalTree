@@ -1,6 +1,6 @@
 //
 //  IndexTreeExtension.swift
-//  IndexTreeView
+//  VerticalTreeIndexView
 //
 //  Created by Daniel Yang on 2019/1/22.
 //  Copyright © 2019 Daniel Yang. All rights reserved.
@@ -59,9 +59,8 @@ final class ViewTreeNode: TreeNode, Infomation {
         guard let view = view else { return nil }
         self.view = view
         self.childs = view.subviews.compactMap{ ViewTreeNode($0) }
-//        self.isFold = view.isFold
         self.index = view.superview?.subviews.firstIndex(of: view) ?? 0
-        self.length = .eachLength(10)
+        self.length = .indexLength(80)
         self.nodeTitle = view.nodeTitle
         
         self.childs.forEach { $0.parent = self }

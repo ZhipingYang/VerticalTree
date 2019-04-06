@@ -17,14 +17,25 @@ class ViewController: UITableViewController {
         window.rootViewController = nav
         return window
     }()
+
+    lazy var tvc: VerticalTreeListController<ViewTreeNode> = {
+        let tvc = VerticalTreeListController<ViewTreeNode>(style: .plain)
+        tvc.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target:self, action: #selector(dismissWindows))
+        return tvc
+    }()
     
-    let tvc = IndexTreeTableController<ViewTreeNode>(style: .plain)
+//    let tvc = DemoVerticalTreeController<ViewTreeNode>()
 
     @IBAction func actionSelector(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view
-        tvc.source = ViewTreeNode(_view)
+        tvc.rootNodes = [ViewTreeNode(view: tableView.visibleCells.first!), ViewTreeNode(view: _view)]
         windows.isHidden = false
         windows.makeKeyAndVisible()
+    }
+    
+    @objc func dismissWindows() {
+        windows.isHidden = true
+        UIApplication.shared.delegate?.window??.makeKeyAndVisible()
     }
 }
 

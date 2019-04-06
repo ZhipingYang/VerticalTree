@@ -1,6 +1,6 @@
 //
 //  IndexTreeProtocol.swift
-//  IndexTreeView
+//  VerticalTreeIndexView
 //
 //  Created by Daniel Yang on 2019/1/21.
 //  Copyright © 2019 Daniel Yang. All rights reserved.
