@@ -14,7 +14,7 @@
 		DB4D5039225891E300FD58B6 /* VerticalTreeNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */; };
 		DB4D503A225891E300FD58B6 /* VerticalTreeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */; };
 		DB4D503B225891E300FD58B6 /* VerticalTreeIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */; };
-		DB4D503C225891E300FD58B6 /* VerticalTreeViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5036225891E300FD58B6 /* VerticalTreeViewExtension.swift */; };
+		DB4D503C225891E300FD58B6 /* VerticalTreeNodeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5036225891E300FD58B6 /* VerticalTreeNodeWrapper.swift */; };
 		DBFB212321F6E6CB004ED785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212221F6E6CB004ED785 /* AppDelegate.swift */; };
 		DBFB212521F6E6CB004ED785 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212421F6E6CB004ED785 /* ViewController1.swift */; };
 		DBFB212821F6E6CB004ED785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFB212621F6E6CB004ED785 /* Main.storyboard */; };
@@ -49,7 +49,7 @@
 		DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeNodeProtocol.swift; sourceTree = "<group>"; };
 		DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeListController.swift; sourceTree = "<group>"; };
 		DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeIndexView.swift; sourceTree = "<group>"; };
-		DB4D5036225891E300FD58B6 /* VerticalTreeViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeViewExtension.swift; sourceTree = "<group>"; };
+		DB4D5036225891E300FD58B6 /* VerticalTreeNodeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeNodeWrapper.swift; sourceTree = "<group>"; };
 		DBFB211F21F6E6CB004ED785 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFB212221F6E6CB004ED785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBFB212421F6E6CB004ED785 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */,
-				DB4D5036225891E300FD58B6 /* VerticalTreeViewExtension.swift */,
+				DB4D5036225891E300FD58B6 /* VerticalTreeNodeWrapper.swift */,
 				DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */,
 				DB4D5032225891E300FD58B6 /* VerticalTreeCell.swift */,
 				DB4D5031225891E300FD58B6 /* VerticalTreeListView.swift */,
@@ -300,7 +300,7 @@
 				DB4D5039225891E300FD58B6 /* VerticalTreeNodeProtocol.swift in Sources */,
 				DB4D5037225891E300FD58B6 /* VerticalTreeListView.swift in Sources */,
 				DBFB212321F6E6CB004ED785 /* AppDelegate.swift in Sources */,
-				DB4D503C225891E300FD58B6 /* VerticalTreeViewExtension.swift in Sources */,
+				DB4D503C225891E300FD58B6 /* VerticalTreeNodeWrapper.swift in Sources */,
 				DB4D503A225891E300FD58B6 /* VerticalTreeListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
