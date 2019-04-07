@@ -1,6 +1,6 @@
 //
 //  IndexTreeProtocol.swift
-//  IndexTreeView
+//  VerticalTreeIndexView
 //
 //  Created by Daniel Yang on 2019/1/21.
 //  Copyright © 2019 Daniel Yang. All rights reserved.
@@ -19,15 +19,21 @@ enum TreeNodeLength {
 
 /// Node info
 protocol Infomation {
-    var title: String {get}
-    var description: String {get}
+    var nodeTitle: String {get}
+    var nodeDescription: String? {get}
+}
+
+protocol BaseTree {
+    associatedtype T: BaseTree
+    var parent: T? {get}
+    var childs: [T] {get}
 }
 
 /// Node protocol
-protocol TreeNode {
-//    associatedtype NodeValue: TreeNode
-    var parent: TreeNode? {get}
-    var childs: [TreeNode] {get}
+protocol TreeNode: BaseTree {
+    associatedtype U: TreeNode where Self.U == Self
+    var parent: U? {get}
+    var childs: [U] {get}
     
     /// current node deep
     /// note: deep start from 1
@@ -49,13 +55,13 @@ protocol TreeNode {
 
 
 // MARK: - helper
-extension Infomation where Self: NSObject {
+extension Infomation where Self: NSObjectProtocol {
     
-    var title: String {
+    var nodeTitle: String {
         return String(describing: type(of: self))
     }
     
-    var description: String {
+    var nodeDescription: String? {
         return String(describing: self.self)
     }
 }
@@ -64,7 +70,7 @@ extension TreeNode {
     
     var currentDeep: Int {
         var deep = 1
-        var node: TreeNode = self
+        var node = self
         while let p = node.parent {
             deep += 1
             node = p
@@ -82,7 +88,7 @@ extension TreeNode {
     func getRootNode() -> Self {
         var node = self
         while let parent = node.parent {
-            node = parent as! Self
+            node = parent
         }
         return node
     }
@@ -91,12 +97,12 @@ extension TreeNode {
         var subnodes = [Self]()
         func subnodesBlock(_ node: Self) {
             subnodes.append(node)
-            node.childs.forEach { subnodesBlock($0 as! Self) }
+            node.childs.forEach { subnodesBlock($0) }
         }
         if includeSelf {
             subnodesBlock(self)
         } else {
-            childs.forEach { subnodesBlock($0 as! Self) }
+            childs.forEach { subnodesBlock($0) }
         }
         return subnodes
     }
