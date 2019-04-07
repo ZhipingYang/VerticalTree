@@ -23,11 +23,17 @@ protocol Infomation {
     var nodeDescription: String? {get}
 }
 
+protocol BaseTree {
+    associatedtype T: BaseTree
+    var parent: T? {get}
+    var childs: [T] {get}
+}
+
 /// Node protocol
-protocol TreeNode {
-    associatedtype NodeValue: TreeNode where Self.NodeValue == Self
-    var parent: NodeValue? {get}
-    var childs: [NodeValue] {get}
+protocol TreeNode: BaseTree {
+    associatedtype U: TreeNode where Self.U == Self
+    var parent: U? {get}
+    var childs: [U] {get}
     
     /// current node deep
     /// note: deep start from 1
@@ -49,7 +55,7 @@ protocol TreeNode {
 
 
 // MARK: - helper
-extension Infomation where Self: NSObject {
+extension Infomation where Self: NSObjectProtocol {
     
     var nodeTitle: String {
         return String(describing: type(of: self))

@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB39F33F225A52AF0004D2FA /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F33E225A52AF0004D2FA /* ViewController2.swift */; };
+		DB39F341225A52BA0004D2FA /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F340225A52BA0004D2FA /* ViewController3.swift */; };
 		DB4D5037225891E300FD58B6 /* VerticalTreeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5031225891E300FD58B6 /* VerticalTreeListView.swift */; };
 		DB4D5038225891E300FD58B6 /* VerticalTreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5032225891E300FD58B6 /* VerticalTreeCell.swift */; };
 		DB4D5039225891E300FD58B6 /* VerticalTreeNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */; };
 		DB4D503A225891E300FD58B6 /* VerticalTreeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */; };
 		DB4D503B225891E300FD58B6 /* VerticalTreeIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */; };
 		DB4D503C225891E300FD58B6 /* VerticalTreeViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5036225891E300FD58B6 /* VerticalTreeViewExtension.swift */; };
-		DB9EA17B225677B200715B21 /* DemoVerticalTreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9EA179225677B200715B21 /* DemoVerticalTreeController.swift */; };
 		DBFB212321F6E6CB004ED785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212221F6E6CB004ED785 /* AppDelegate.swift */; };
-		DBFB212521F6E6CB004ED785 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212421F6E6CB004ED785 /* ViewController.swift */; };
+		DBFB212521F6E6CB004ED785 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212421F6E6CB004ED785 /* ViewController1.swift */; };
 		DBFB212821F6E6CB004ED785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFB212621F6E6CB004ED785 /* Main.storyboard */; };
 		DBFB212A21F6E6CD004ED785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBFB212921F6E6CD004ED785 /* Assets.xcassets */; };
 		DBFB212D21F6E6CD004ED785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFB212B21F6E6CD004ED785 /* LaunchScreen.storyboard */; };
@@ -41,16 +42,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB39F33E225A52AF0004D2FA /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		DB39F340225A52BA0004D2FA /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		DB4D5031225891E300FD58B6 /* VerticalTreeListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeListView.swift; sourceTree = "<group>"; };
 		DB4D5032225891E300FD58B6 /* VerticalTreeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeCell.swift; sourceTree = "<group>"; };
 		DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeNodeProtocol.swift; sourceTree = "<group>"; };
 		DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeListController.swift; sourceTree = "<group>"; };
 		DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeIndexView.swift; sourceTree = "<group>"; };
 		DB4D5036225891E300FD58B6 /* VerticalTreeViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeViewExtension.swift; sourceTree = "<group>"; };
-		DB9EA179225677B200715B21 /* DemoVerticalTreeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoVerticalTreeController.swift; sourceTree = "<group>"; };
 		DBFB211F21F6E6CB004ED785 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFB212221F6E6CB004ED785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DBFB212421F6E6CB004ED785 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DBFB212421F6E6CB004ED785 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		DBFB212721F6E6CB004ED785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBFB212921F6E6CD004ED785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBFB212C21F6E6CD004ED785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,8 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				DBFB212221F6E6CB004ED785 /* AppDelegate.swift */,
-				DBFB212421F6E6CB004ED785 /* ViewController.swift */,
-				DB9EA179225677B200715B21 /* DemoVerticalTreeController.swift */,
+				DBFB212421F6E6CB004ED785 /* ViewController1.swift */,
+				DB39F33E225A52AF0004D2FA /* ViewController2.swift */,
+				DB39F340225A52BA0004D2FA /* ViewController3.swift */,
 				DBFB212621F6E6CB004ED785 /* Main.storyboard */,
 				DBFB212921F6E6CD004ED785 /* Assets.xcassets */,
 				DBFB212B21F6E6CD004ED785 /* LaunchScreen.storyboard */,
@@ -144,12 +147,12 @@
 		DBFB215021F6E73E004ED785 /* class */ = {
 			isa = PBXGroup;
 			children = (
-				DB4D5032225891E300FD58B6 /* VerticalTreeCell.swift */,
-				DB4D5036225891E300FD58B6 /* VerticalTreeViewExtension.swift */,
 				DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */,
-				DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */,
+				DB4D5036225891E300FD58B6 /* VerticalTreeViewExtension.swift */,
 				DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */,
+				DB4D5032225891E300FD58B6 /* VerticalTreeCell.swift */,
 				DB4D5031225891E300FD58B6 /* VerticalTreeListView.swift */,
+				DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */,
 			);
 			name = class;
 			path = ../class;
@@ -289,11 +292,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB39F341225A52BA0004D2FA /* ViewController3.swift in Sources */,
 				DB4D5038225891E300FD58B6 /* VerticalTreeCell.swift in Sources */,
 				DB4D503B225891E300FD58B6 /* VerticalTreeIndexView.swift in Sources */,
-				DBFB212521F6E6CB004ED785 /* ViewController.swift in Sources */,
+				DB39F33F225A52AF0004D2FA /* ViewController2.swift in Sources */,
+				DBFB212521F6E6CB004ED785 /* ViewController1.swift in Sources */,
 				DB4D5039225891E300FD58B6 /* VerticalTreeNodeProtocol.swift in Sources */,
-				DB9EA17B225677B200715B21 /* DemoVerticalTreeController.swift in Sources */,
 				DB4D5037225891E300FD58B6 /* VerticalTreeListView.swift in Sources */,
 				DBFB212321F6E6CB004ED785 /* AppDelegate.swift in Sources */,
 				DB4D503C225891E300FD58B6 /* VerticalTreeViewExtension.swift in Sources */,
