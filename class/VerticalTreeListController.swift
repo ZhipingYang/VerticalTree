@@ -15,6 +15,7 @@ class VerticalTreeListController<T: TreeNode>: UITableViewController {
     convenience init(source: T) {
         self.init(style: .plain)
         self.rootNodes = [source]
+        self.rootNodeDataList = [source].map { $0.allSubnodes() }
     }
     
     override init(style: UITableView.Style) {

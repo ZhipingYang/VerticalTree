@@ -10,21 +10,10 @@ import UIKit
 
 class ViewController1: UITableViewController {
     
-    lazy var tvc: VerticalTreeListController<NodeWrapper<UIView>> = {
-        let tvc = VerticalTreeListController<NodeWrapper<UIView>>(style: .plain)
-        tvc.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target:self, action: #selector(dismissWindows))
-        return tvc
-    }()
-    
     @IBAction func actionSelector(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view
-        let rootNode = NodeWrapper(obj: _view)
-        tvc.rootNodes = [rootNode]
+        let tvc = VerticalTreeListController(source: NodeWrapper(obj: _view))
         tvc.startViewTree()
-    }
-    
-    @objc func dismissWindows() {
-        tvc.endViewTree()
     }
 }
 

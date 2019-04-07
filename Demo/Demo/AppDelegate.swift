@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var treeWindows: UIWindow = {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.windowLevel = .statusBar - 0.1
-        window.rootViewController = UINavigationController()
         return window
     }()
     
@@ -34,12 +33,13 @@ extension UIViewController {
         w.rootViewController = UINavigationController(rootViewController: self)
         w.isHidden = false
         w.makeKeyAndVisible()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target:self, action: #selector(endViewTree))
     }
     
-    func endViewTree() {
+    @objc func endViewTree() {
         guard let w = (UIApplication.shared.delegate as? AppDelegate)?.treeWindows else { return }
         w.isHidden = true
         UIApplication.shared.delegate?.window??.makeKeyAndVisible()
     }
-
 }
