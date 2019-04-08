@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ViewTreeVC.swift
 //  Demo
 //
 //  Created by Daniel Yang on 2019/1/22.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController1: UITableViewController {
+class ViewTreeVC: UITableViewController {
     
     @IBAction func actionSelector(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view

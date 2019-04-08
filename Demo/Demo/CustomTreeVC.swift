@@ -1,5 +1,5 @@
 //
-//  ViewController3.swift
+//  CustomTreeVC.swift
 //  Demo
 //
 //  Created by Daniel Yang on 2019/4/7.
@@ -24,10 +24,10 @@ final class CustomNode: TreeNode, Infomation {
     }
 
     init() {
-        if deep > 20 { return }
+        if deep > 30 { return }
         deep += 1
         
-        childs = (0..<Int.random(in: 0...4)).map { num in
+        childs = (0..<Int.random(in: 0...3)).map { num in
             let node = CustomNode()
             node.index = num
             node.parent = self
@@ -36,7 +36,7 @@ final class CustomNode: TreeNode, Infomation {
     }
 }
 
-class ViewController3: UIViewController {
+class CustomTreeVC: UIViewController {
 
     @IBAction func treeAction(_ sender: Any) {
         deep = 0

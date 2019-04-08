@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB39F33F225A52AF0004D2FA /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F33E225A52AF0004D2FA /* ViewController2.swift */; };
-		DB39F341225A52BA0004D2FA /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F340225A52BA0004D2FA /* ViewController3.swift */; };
+		DB39F33F225A52AF0004D2FA /* ControllerTreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F33E225A52AF0004D2FA /* ControllerTreeVC.swift */; };
+		DB39F341225A52BA0004D2FA /* CustomTreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F340225A52BA0004D2FA /* CustomTreeVC.swift */; };
 		DB4D5037225891E300FD58B6 /* VerticalTreeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5031225891E300FD58B6 /* VerticalTreeListView.swift */; };
 		DB4D5038225891E300FD58B6 /* VerticalTreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5032225891E300FD58B6 /* VerticalTreeCell.swift */; };
 		DB4D5039225891E300FD58B6 /* VerticalTreeNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */; };
 		DB4D503A225891E300FD58B6 /* VerticalTreeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */; };
 		DB4D503B225891E300FD58B6 /* VerticalTreeIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */; };
 		DB4D503C225891E300FD58B6 /* VerticalTreeNodeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4D5036225891E300FD58B6 /* VerticalTreeNodeWrapper.swift */; };
+		DBA85A34225AD07000581C94 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DBA85A33225AD07000581C94 /* README.md */; };
 		DBFB212321F6E6CB004ED785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212221F6E6CB004ED785 /* AppDelegate.swift */; };
-		DBFB212521F6E6CB004ED785 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212421F6E6CB004ED785 /* ViewController1.swift */; };
+		DBFB212521F6E6CB004ED785 /* ViewTreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212421F6E6CB004ED785 /* ViewTreeVC.swift */; };
 		DBFB212821F6E6CB004ED785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFB212621F6E6CB004ED785 /* Main.storyboard */; };
 		DBFB212A21F6E6CD004ED785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBFB212921F6E6CD004ED785 /* Assets.xcassets */; };
 		DBFB212D21F6E6CD004ED785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFB212B21F6E6CD004ED785 /* LaunchScreen.storyboard */; };
@@ -42,17 +43,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DB39F33E225A52AF0004D2FA /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
-		DB39F340225A52BA0004D2FA /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
+		DB39F33E225A52AF0004D2FA /* ControllerTreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerTreeVC.swift; sourceTree = "<group>"; };
+		DB39F340225A52BA0004D2FA /* CustomTreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTreeVC.swift; sourceTree = "<group>"; };
 		DB4D5031225891E300FD58B6 /* VerticalTreeListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeListView.swift; sourceTree = "<group>"; };
 		DB4D5032225891E300FD58B6 /* VerticalTreeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeCell.swift; sourceTree = "<group>"; };
 		DB4D5033225891E300FD58B6 /* VerticalTreeNodeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeNodeProtocol.swift; sourceTree = "<group>"; };
 		DB4D5034225891E300FD58B6 /* VerticalTreeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeListController.swift; sourceTree = "<group>"; };
 		DB4D5035225891E300FD58B6 /* VerticalTreeIndexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeIndexView.swift; sourceTree = "<group>"; };
 		DB4D5036225891E300FD58B6 /* VerticalTreeNodeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalTreeNodeWrapper.swift; sourceTree = "<group>"; };
+		DBA85A33225AD07000581C94 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DBFB211F21F6E6CB004ED785 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFB212221F6E6CB004ED785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DBFB212421F6E6CB004ED785 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
+		DBFB212421F6E6CB004ED785 /* ViewTreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTreeVC.swift; sourceTree = "<group>"; };
 		DBFB212721F6E6CB004ED785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBFB212921F6E6CD004ED785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBFB212C21F6E6CD004ED785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		DBFB211621F6E6CB004ED785 = {
 			isa = PBXGroup;
 			children = (
+				DBA85A33225AD07000581C94 /* README.md */,
 				DBFB215021F6E73E004ED785 /* class */,
 				DBFB212121F6E6CB004ED785 /* Demo */,
 				DBFB213621F6E6CD004ED785 /* DemoTests */,
@@ -115,9 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				DBFB212221F6E6CB004ED785 /* AppDelegate.swift */,
-				DBFB212421F6E6CB004ED785 /* ViewController1.swift */,
-				DB39F33E225A52AF0004D2FA /* ViewController2.swift */,
-				DB39F340225A52BA0004D2FA /* ViewController3.swift */,
+				DBFB212421F6E6CB004ED785 /* ViewTreeVC.swift */,
+				DB39F33E225A52AF0004D2FA /* ControllerTreeVC.swift */,
+				DB39F340225A52BA0004D2FA /* CustomTreeVC.swift */,
 				DBFB212621F6E6CB004ED785 /* Main.storyboard */,
 				DBFB212921F6E6CD004ED785 /* Assets.xcassets */,
 				DBFB212B21F6E6CD004ED785 /* LaunchScreen.storyboard */,
@@ -267,6 +270,7 @@
 			files = (
 				DBFB212D21F6E6CD004ED785 /* LaunchScreen.storyboard in Resources */,
 				DBFB212A21F6E6CD004ED785 /* Assets.xcassets in Resources */,
+				DBA85A34225AD07000581C94 /* README.md in Resources */,
 				DBFB212821F6E6CB004ED785 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,11 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB39F341225A52BA0004D2FA /* ViewController3.swift in Sources */,
+				DB39F341225A52BA0004D2FA /* CustomTreeVC.swift in Sources */,
 				DB4D5038225891E300FD58B6 /* VerticalTreeCell.swift in Sources */,
 				DB4D503B225891E300FD58B6 /* VerticalTreeIndexView.swift in Sources */,
-				DB39F33F225A52AF0004D2FA /* ViewController2.swift in Sources */,
-				DBFB212521F6E6CB004ED785 /* ViewController1.swift in Sources */,
+				DB39F33F225A52AF0004D2FA /* ControllerTreeVC.swift in Sources */,
+				DBFB212521F6E6CB004ED785 /* ViewTreeVC.swift in Sources */,
 				DB4D5039225891E300FD58B6 /* VerticalTreeNodeProtocol.swift in Sources */,
 				DB4D5037225891E300FD58B6 /* VerticalTreeListView.swift in Sources */,
 				DBFB212321F6E6CB004ED785 /* AppDelegate.swift in Sources */,
