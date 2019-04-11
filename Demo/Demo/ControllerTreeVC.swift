@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VerticalTreeView
 
 class ControllerTreeVC: UIViewController {
     
@@ -25,7 +26,7 @@ class ControllerTreeVC: UIViewController {
         view.addSubview(vc1.view)
         view.addSubview(vc2.view)
         
-        print(NodeWrapper(obj: self.tabBarController!).allSubnodes().map {
+        print(NodeWrapper<UIViewController>(obj: self.tabBarController!).allSubnodes().map {
             $0.info.nodeTitle
         })
     }
@@ -37,10 +38,10 @@ class ControllerTreeVC: UIViewController {
 }
 
 extension UIViewController: BaseTree {
-    var parent: UIViewController? {
+    public var parent: UIViewController? {
         return self.parentVC
     }
-    var childs: [UIViewController] {
+    public var childs: [UIViewController] {
         return children
     }
 }

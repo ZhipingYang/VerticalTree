@@ -12,25 +12,25 @@ import UIKit
 ///
 /// - eachWidth: eachWidth of the next node
 /// - IndexWidth: whole width of indexView
-enum TreeNodeLength {
+public enum TreeNodeLength {
     case eachLength(_ length: CGFloat)
     case indexLength(_ length: CGFloat)
 }
 
 /// Node info
-protocol Infomation {
+public protocol Infomation {
     var nodeTitle: String {get}
     var nodeDescription: String? {get}
 }
 
-protocol BaseTree {
+public protocol BaseTree {
     associatedtype T: BaseTree
     var parent: T? {get}
     var childs: [T] {get}
 }
 
 /// Node protocol
-protocol TreeNode: BaseTree {
+public protocol TreeNode: BaseTree {
     associatedtype U: TreeNode where Self.U == Self
     var parent: U? {get}
     var childs: [U] {get}
@@ -57,18 +57,18 @@ protocol TreeNode: BaseTree {
 // MARK: - helper
 extension Infomation where Self: NSObjectProtocol {
     
-    var nodeTitle: String {
+    public var nodeTitle: String {
         return String(describing: type(of: self))
     }
     
-    var nodeDescription: String? {
+    public var nodeDescription: String? {
         return String(describing: self.self)
     }
 }
 
 extension TreeNode {
     
-    var currentDeep: Int {
+    public var currentDeep: Int {
         var deep = 1
         var node = self
         while let p = node.parent {
@@ -77,15 +77,14 @@ extension TreeNode {
         }
         return deep
     }
-    
-    var treeDeep: Int {
+    public var treeDeep: Int {
         return getRootNode().allSubnodes().max {$0.currentDeep < $1.currentDeep }?.currentDeep ?? 1
     }
 }
 
 extension TreeNode {
 
-    func getRootNode() -> Self {
+    public func getRootNode() -> Self {
         var node = self
         while let parent = node.parent {
             node = parent
@@ -93,7 +92,7 @@ extension TreeNode {
         return node
     }
     
-    func allSubnodes(_ includeSelf: Bool = true) -> [Self] {
+    public func allSubnodes(_ includeSelf: Bool = true) -> [Self] {
         var subnodes = [Self]()
         func subnodesBlock(_ node: Self) {
             subnodes.append(node)
@@ -107,15 +106,15 @@ extension TreeNode {
         return subnodes
     }
     
-    var haveChild: Bool {
+    public var haveChild: Bool {
         return self.childs.count > 0
     }
     
-    var haveParent: Bool {
+    public var haveParent: Bool {
         return self.parent != nil
     }
     
-    var haveNext: Bool {
+    public var haveNext: Bool {
         return self.index < (self.parent?.childs.count ?? 1) - 1
     }
 }

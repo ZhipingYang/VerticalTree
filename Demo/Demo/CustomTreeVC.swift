@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VerticalTreeView
 
 var deep = 0
 
@@ -24,7 +25,7 @@ final class CustomNode: TreeNode, Infomation {
     }
 
     init() {
-        if deep > 30 { return }
+        if deep > 20 { return }
         deep += 1
         
         childs = (0..<Int.random(in: 0...3)).map { num in

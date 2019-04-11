@@ -25,19 +25,19 @@ class ViewTreeVC: UITableViewController {
 }
 
 extension CALayer: BaseTree {
-    var parent: CALayer? {
+    public var parent: CALayer? {
         return superlayer
     }
-    var childs: [CALayer] {
+    public var childs: [CALayer] {
         return sublayers ?? []
     }
 }
 
 extension UIView: BaseTree {
-    var parent: UIView? {
+    public var parent: UIView? {
         return superview
     }
-    var childs: [UIView] {
+    public var childs: [UIView] {
         return subviews
     }
 }

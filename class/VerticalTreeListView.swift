@@ -12,12 +12,12 @@ class VerticalTreeListView<T: TreeNode>: UITableView, UITableViewDelegate, UITab
     
     var rootNodeDataList = [[T]]()
     
-    convenience init(rootNodes: [T]) {
+    public convenience init(rootNodes: [T]) {
         self.init(frame: CGRect.zero, style: UITableView.Style.plain)
         self.rootNodes = rootNodes
     }
     
-    override init(frame: CGRect, style: UITableView.Style) {
+    public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         _init()
     }
@@ -37,7 +37,7 @@ class VerticalTreeListView<T: TreeNode>: UITableView, UITableViewDelegate, UITab
         dataSource = self
     }
     
-    var rootNodes: [T]? {
+    public var rootNodes: [T]? {
         didSet(newValue) {
             rootNodeDataList = newValue?.map { $0.allSubnodes() } ?? []
             reloadData()

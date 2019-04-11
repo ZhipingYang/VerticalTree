@@ -28,24 +28,24 @@ extension NSObject: Infomation {
     }
 }
 
-final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation where Obj.T == Obj {
+public final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation where Obj.T == Obj {
     
-    typealias U = NodeWrapper<Obj>
-    var parent: U?
-    var childs: [U]
-    var index: Int
-    var length: TreeNodeLength = .indexLength(80)
-    var isFold: Bool
-    var nodeTitle: String
-    var info: Infomation { return self }
-    var nodeDescription: String? { return obj?.nodeDescription }
+    public typealias U = NodeWrapper<Obj>
+    public var parent: U?
+    public var childs: [U]
+    public var index: Int
+    public var length: TreeNodeLength = .indexLength(80)
+    public var isFold: Bool
+    public var nodeTitle: String
+    public var info: Infomation { return self }
+    public var nodeDescription: String? { return obj?.nodeDescription }
     weak var obj: Obj?
 
-    convenience init(obj: Obj) {
+    public convenience init(obj: Obj) {
         self.init(obj)!
     }
     
-    required init?(_ obj: Obj?) {
+    public required init?(_ obj: Obj?) {
         guard let obj = obj else { return nil }
         self.obj = obj
         self.isFold = obj.isFold
