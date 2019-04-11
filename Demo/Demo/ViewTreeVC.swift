@@ -7,13 +7,29 @@
 //
 
 import UIKit
+import VerticalTreeView
 
 class ViewTreeVC: UITableViewController {
     
-    @IBAction func actionSelector(_ sender: Any) {
+    @IBAction func showViewTreeAction(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view
         let tvc = VerticalTreeListController(source: NodeWrapper(obj: _view))
         tvc.startViewTree()
+    }
+    
+    @IBAction func showLayerTreeAction(_ sender: Any) {
+        let _view: UIView = view.window ?? navigationController?.view ?? view
+        let tvc = VerticalTreeListController(source: NodeWrapper(obj: _view.layer))
+        tvc.startViewTree()
+    }
+}
+
+extension CALayer: BaseTree {
+    var parent: CALayer? {
+        return superlayer
+    }
+    var childs: [CALayer] {
+        return sublayers ?? []
     }
 }
 
