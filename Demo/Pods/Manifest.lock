@@ -1,0 +1,16 @@
+PODS:
+  - VerticalTreeView (0.1.0)
+
+DEPENDENCIES:
+  - VerticalTreeView (from `../`)
+
+EXTERNAL SOURCES:
+  VerticalTreeView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  VerticalTreeView: 28a443f1fd67a66d27e1e699eef5d1cb7f3b0993
+
+PODFILE CHECKSUM: caecc8f9e6efd1c159f46e7a7439feee896d8553
+
+COCOAPODS: 1.5.3

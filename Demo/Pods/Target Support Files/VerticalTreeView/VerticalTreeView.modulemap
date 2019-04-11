@@ -1,0 +1,6 @@
+framework module VerticalTreeView {
+  umbrella header "VerticalTreeView-umbrella.h"
+
+  export *
+  module * { export * }
+}
