@@ -48,7 +48,7 @@ public class VerticalTreeListController<T: TreeNode>: UITableViewController {
         tableView.reloadData()
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data source & delegate
     
     override public func numberOfSections(in tableView: UITableView) -> Int {
         return rootNodeDataList.count

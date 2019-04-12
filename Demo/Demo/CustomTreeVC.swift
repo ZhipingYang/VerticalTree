@@ -12,6 +12,7 @@ import VerticalTreeView
 var deep = 0
 
 final class CustomNode: TreeNode, Infomation {
+    
     typealias U = CustomNode
     var parent: CustomNode?
     var childs: [CustomNode] = []

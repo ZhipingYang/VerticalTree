@@ -22,18 +22,7 @@ class ControllerTreeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addChild(vc1)
-        addChild(vc2)
-        view.addSubview(vc1.view)
-        view.addSubview(vc2.view)
-        
-        print(NodeWrapper<UIViewController>(obj: self.tabBarController!).allSubnodes().map {
-            $0.info.nodeTitle
-        })
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+        addChild(vc2)        
     }
 }
 
@@ -48,13 +37,7 @@ extension UIViewController: BaseTree {
 
 extension UIResponder {
     var parentVC: UIViewController? {
-        var resp = self
-        while let next = resp.next {
-            resp = next
-            if next.isKind(of: UIViewController.self) {
-                return next as? UIViewController
-            }
-        }
-        return nil
+        let seq = sequence(first: self.next) { $0?.next }
+        return seq.first { $0 is UIViewController } as? UIViewController
     }
 }

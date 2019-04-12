@@ -22,6 +22,23 @@ class ViewTreeVC: UITableViewController {
         let tvc = VerticalTreeListController(source: NodeWrapper(obj: _view.layer))
         tvc.startViewTree()
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        let wrapper = NodeWrapper(obj: cell!)
+        let vc = VerticalTreeListController(source: wrapper)
+        vc.startViewTree()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NodeWrapper(obj: self.view).allSubnodes().forEach { node in
+            print(node.prettyPrint())
+        }
+    }
 }
 
 extension CALayer: BaseTree {
