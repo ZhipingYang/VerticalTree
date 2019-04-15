@@ -118,7 +118,7 @@ extension BaseTree where Self: NSObject, Self == Self.T {
 
 > `view.getRoot.prettyPrint()` 
 
-- 打印当前View树结构
+- 打印当前View树结构(查看更多debug信息)
 
 > `view.prettyPrint(true)`![image](https://user-images.githubusercontent.com/9360037/56130480-97168480-5fb7-11e9-932f-f127454845e3.png)
 
