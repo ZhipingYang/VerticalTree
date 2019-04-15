@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import VerticalTreeView
+import VerticalTree
 
 class ControllerTreeVC: UIViewController {
     

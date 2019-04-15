@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import VerticalTreeView
+import VerticalTree
 
 class ViewTreeVC: UITableViewController {
     
@@ -32,7 +32,7 @@ class ViewTreeVC: UITableViewController {
         let vc = VerticalTreeListController(source: wrapper)
         vc.startViewTree()
         
-        cell?.toView.getRoot.prettyPrint()
+        cell?.toView.prettyPrint(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {

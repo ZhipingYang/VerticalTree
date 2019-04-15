@@ -84,7 +84,7 @@ extension UIViewController: BaseTree {
 
 extension BaseTree where Self: NSObject, Self == Self.T {
     @discardableResult public func prettyPrint(_ inDebug: Bool = false) -> String {
-        return NodeWrapper(obj: self).currentTreePrettyPrintString().printIt()
+        return NodeWrapper(obj: self).currentTreePrettyPrintString(inDebug).printIt()
     }
     public var getRoot: Self {
         let seq = sequence(first: self) { $0.parent }

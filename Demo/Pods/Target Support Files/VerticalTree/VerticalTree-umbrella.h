@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double VerticalTreeViewVersionNumber;
-FOUNDATION_EXPORT const unsigned char VerticalTreeViewVersionString[];
+FOUNDATION_EXPORT double VerticalTreeVersionNumber;
+FOUNDATION_EXPORT const unsigned char VerticalTreeVersionString[];
 

@@ -6,7 +6,7 @@ target 'Demo' do
   use_frameworks!
 
   # Pods for Demo
-  pod 'VerticalTreeView', :path => '../'
+  pod 'VerticalTree', :path => '../'
 
 
   target 'DemoTests' do

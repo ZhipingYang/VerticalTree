@@ -143,10 +143,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/VerticalTreeView/VerticalTreeView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/VerticalTree/VerticalTree.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/VerticalTreeView/VerticalTreeView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/VerticalTree/VerticalTree.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -1,24 +1,24 @@
 PODS:
-  - VerticalTreeView (0.1.0):
-    - VerticalTreeView/Core (= 0.1.0)
-    - VerticalTreeView/Pretty (= 0.1.0)
-    - VerticalTreeView/UI (= 0.1.0)
-  - VerticalTreeView/Core (0.1.0)
-  - VerticalTreeView/Pretty (0.1.0):
-    - VerticalTreeView/Core
-  - VerticalTreeView/UI (0.1.0):
-    - VerticalTreeView/Core
+  - VerticalTree (0.1.0):
+    - VerticalTree/Core (= 0.1.0)
+    - VerticalTree/PrettyText (= 0.1.0)
+    - VerticalTree/UI (= 0.1.0)
+  - VerticalTree/Core (0.1.0)
+  - VerticalTree/PrettyText (0.1.0):
+    - VerticalTree/Core
+  - VerticalTree/UI (0.1.0):
+    - VerticalTree/Core
 
 DEPENDENCIES:
-  - VerticalTreeView (from `../`)
+  - VerticalTree (from `../`)
 
 EXTERNAL SOURCES:
-  VerticalTreeView:
+  VerticalTree:
     :path: "../"
 
 SPEC CHECKSUMS:
-  VerticalTreeView: c6b6eb039f46badefda06713d3c2be2a31fa550d
+  VerticalTree: e59930d40697efa81f08260db83ff868153acb0a
 
-PODFILE CHECKSUM: caecc8f9e6efd1c159f46e7a7439feee896d8553
+PODFILE CHECKSUM: 856d40aff1f52f003cdf63ae1cfd15d34f92ef08
 
 COCOAPODS: 1.5.3
