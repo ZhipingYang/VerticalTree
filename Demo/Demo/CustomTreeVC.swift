@@ -39,16 +39,31 @@ final class CustomNode: TreeNode, Infomation {
 }
 
 class CustomTreeVC: UIViewController {
-
-    @IBAction func treeAction(_ sender: Any) {
+    
+    var rootNodes = [CustomNode]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         deep = 0
         let node1 = CustomNode()
         deep = 0
         let node2 = CustomNode()
         deep = 0
         let node3 = CustomNode()
+        rootNodes = [node1, node2, node3]
+
+    }
+    @IBAction func treeAction(_ sender: Any) {
         let tvc = VerticalTreeListController<CustomNode>(style: UITableView.Style.plain)
-        tvc.rootNodes = [node1, node2, node3]
+        tvc.rootNodes = rootNodes
         tvc.startViewTree()
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        rootNodes.forEach { print($0.currentTreePrettyPrintString(true)) }
+    }
+
 }

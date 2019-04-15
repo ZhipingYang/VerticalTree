@@ -1,5 +1,13 @@
 PODS:
-  - VerticalTreeView (0.1.0)
+  - VerticalTreeView (0.1.0):
+    - VerticalTreeView/Core (= 0.1.0)
+    - VerticalTreeView/Pretty (= 0.1.0)
+    - VerticalTreeView/UI (= 0.1.0)
+  - VerticalTreeView/Core (0.1.0)
+  - VerticalTreeView/Pretty (0.1.0):
+    - VerticalTreeView/Core
+  - VerticalTreeView/UI (0.1.0):
+    - VerticalTreeView/Core
 
 DEPENDENCIES:
   - VerticalTreeView (from `../`)
@@ -9,7 +17,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  VerticalTreeView: 28a443f1fd67a66d27e1e699eef5d1cb7f3b0993
+  VerticalTreeView: c6b6eb039f46badefda06713d3c2be2a31fa550d
 
 PODFILE CHECKSUM: caecc8f9e6efd1c159f46e7a7439feee896d8553
 

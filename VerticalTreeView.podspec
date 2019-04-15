@@ -12,9 +12,20 @@ Pod::Spec.new do |s|
   s.platform         = :ios, '8.0'
   s.source           = { :git => 'https://github.com/ZhipingYang/VerticalTreeView.git', :tag => s.version.to_s }
   s.requires_arc     = true
-
   s.swift_version = '5.0'
   s.ios.deployment_target = '10.0'
-  s.source_files = 'class/*.swift'
   
+  s.default_subspecs = 'Core', 'UI', 'Pretty'
+  s.subspec 'Core' do |tree|
+      tree.source_files = 'class/main/*.swift'
+  end
+  s.subspec 'UI' do |tree|
+      tree.source_files = 'class/ui/*.swift'
+      tree.dependency 'VerticalTreeView/Core'
+  end
+  s.subspec 'Pretty' do |tree|
+      tree.source_files = 'class/pretty/*.swift'
+      tree.dependency 'VerticalTreeView/Core'
+  end
+
 end

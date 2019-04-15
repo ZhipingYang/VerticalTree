@@ -3,28 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0257E450ABC1F931B40D30EA8FBB8F33 /* VerticalTreeNodeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E940DD6A82102E665058C5BA0B72FF2 /* VerticalTreeNodeWrapper.swift */; };
 		09BAD5D061E6844E67FD2D31374E7493 /* Pods-Demo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EE7F4E1458F7255A9530ADBE12329DEC /* Pods-Demo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13FB24B3697F8E2E60AEDF36090EB450 /* VerticalTreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926D5DF27140EEB9E2DB7E642ADCD9E /* VerticalTreeCell.swift */; };
+		18C8EA3E232457DEA6F96046A565D19C /* VerticalTreeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E65C27DC2292EA6DFAF35F62DDFB87 /* VerticalTreeListController.swift */; };
 		1ED88F81785A981A82A374E7DB684B30 /* Pods-DemoTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BC7A288325666D148AD70B2D8CB0976 /* Pods-DemoTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E7DCEE8F3114D4D37690515E0AE94DC /* VerticalTreeView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BCFECE6664AB4633A5DF8325B01579 /* VerticalTreeView-dummy.m */; };
+		31211E64E75D025D7DAF330CA476EF31 /* VerticalTreeNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E35DF60111ED1A8046614BC975FE9 /* VerticalTreeNodeProtocol.swift */; };
+		32DBBE3F455F12E7AA3F0EC8EC1323A4 /* VerticalTreePrettyPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C8D77BE6836BA4157A53A4AB584AE9 /* VerticalTreePrettyPrint.swift */; };
 		36825AF93E64416A026BC5AD59E67916 /* Pods-Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6769A6750FB9D8CE749D8BF1A9B0890C /* Pods-Demo-dummy.m */; };
 		3D10C9A64556EDC881D5CB856399C90B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
 		52A5F7099901AE03E6B64474E3BBD5DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
-		64636D5B91356BCB1B18C47FE7F7A6DF /* VerticalTreeView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BE419EA76BB83411BC726625DAF4B36C /* VerticalTreeView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B2531A7A4987637F2AA7B424B7288FD1 /* VerticalTreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B559FC0E813F6C09FB53D67D0F029B /* VerticalTreeCell.swift */; };
-		B64B41B775A1A5824C5F755C0DF1F8E1 /* VerticalTreeNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD43DAC24FAA3267A7141ADD106AB78 /* VerticalTreeNodeProtocol.swift */; };
+		64636D5B91356BCB1B18C47FE7F7A6DF /* VerticalTreeView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 831C6CEBCAE63DE448431396B71B4435 /* VerticalTreeView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C53083BF1AC5A4504395CC174EB42055 /* VerticalTreeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6F4016456E80250BB85F39AD92BE4C /* VerticalTreeListView.swift */; };
 		D6D25E6B1D3E78F659D3EEB7894EB2C4 /* Pods-DemoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C16EAA86588BCE11DFA5022A231C13 /* Pods-DemoTests-dummy.m */; };
 		DBBFFC48DCD3ED9454F44CD3423F5036 /* Pods-DemoUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B0D2E72371648C6A971969F4E37CF66 /* Pods-DemoUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DD5042C87B3E708374B7DFA19C5EDDB6 /* VerticalTreeIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6792A7649E31B553D0851C834F3883F9 /* VerticalTreeIndexView.swift */; };
-		E50D1DCBD8A6EC9C137D866086BC2107 /* VerticalTreeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EEB3C6E12312D784AAA19A016BFD5 /* VerticalTreeListView.swift */; };
 		E7A6F46142A8651B2E2DD82247BAE41C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
 		E7FA5BBD6736616E1CD6FF9D8C5440D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */; };
-		E84BDDA39982331BDB901DA830169624 /* VerticalTreeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DBBA69B93FD329A434FD42130E422 /* VerticalTreeListController.swift */; };
+		EEA05651D819B1AC87FEDDE191F752C4 /* VerticalTreeNodeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0F17D3EB1E45D6C0F313B5D2407399 /* VerticalTreeNodeWrapper.swift */; };
 		EFD9E5FA641E9E4FDEBDC44A25D7040C /* Pods-DemoUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A80739A96D3A4F0243806AA56B9403C9 /* Pods-DemoUITests-dummy.m */; };
-		F7F63B1990E2A4A14C0569850A12745F /* VerticalTreeView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 241C40ADACD582237DECB380381D7115 /* VerticalTreeView-dummy.m */; };
+		F86C0357D516BDDD22A76D90669DF9A1 /* VerticalTreeIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597AAB48769720817D13DC46A956AE52 /* VerticalTreeIndexView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,56 +53,57 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1014DB9B3934B85AA00BB7ECCA3205FE /* VerticalTreeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VerticalTreeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00FF0F9F4F352DE11DD168A1B549DA32 /* VerticalTreeView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = VerticalTreeView.modulemap; sourceTree = "<group>"; };
+		01A61A3317744E9E570DE9FC284489D2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		01E65C27DC2292EA6DFAF35F62DDFB87 /* VerticalTreeListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeListController.swift; path = class/ui/VerticalTreeListController.swift; sourceTree = "<group>"; };
+		05BDA751A468A0D02AFEF4F37F5CD398 /* VerticalTreeView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VerticalTreeView.xcconfig; sourceTree = "<group>"; };
+		1014DB9B3934B85AA00BB7ECCA3205FE /* VerticalTreeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = VerticalTreeView.framework; path = VerticalTreeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1780C55CDD704CAE350552BA1ED9887E /* Pods-Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		18CE557C671580BDDA72E5E59BAF4898 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		1BFA4C3D51C86E61E444342690BAF642 /* Pods-DemoUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DemoUITests-frameworks.sh"; sourceTree = "<group>"; };
-		23B559FC0E813F6C09FB53D67D0F029B /* VerticalTreeCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeCell.swift; path = class/VerticalTreeCell.swift; sourceTree = "<group>"; };
-		241C40ADACD582237DECB380381D7115 /* VerticalTreeView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VerticalTreeView-dummy.m"; sourceTree = "<group>"; };
 		287D138BF5F91AD950B082523EC7FCC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2893809D01847C0478554AB3DD4E03F4 /* Pods_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		342EEB3C6E12312D784AAA19A016BFD5 /* VerticalTreeListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeListView.swift; path = class/VerticalTreeListView.swift; sourceTree = "<group>"; };
+		2893809D01847C0478554AB3DD4E03F4 /* Pods_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DemoTests.framework; path = "Pods-DemoTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		365064EEA347D114B72EE0F5AFE2EA23 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		39F869B974149EA10A54C8E92C6BC5E9 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39F869B974149EA10A54C8E92C6BC5E9 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Demo.framework; path = "Pods-Demo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		460661C39823C6D76A1EE3989A9EFA21 /* Pods-DemoTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DemoTests.modulemap"; sourceTree = "<group>"; };
 		47D55EAF6FD17097AD74A78E02711DD6 /* Pods-DemoUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DemoUITests-resources.sh"; sourceTree = "<group>"; };
-		4BD43DAC24FAA3267A7141ADD106AB78 /* VerticalTreeNodeProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeNodeProtocol.swift; path = class/VerticalTreeNodeProtocol.swift; sourceTree = "<group>"; };
-		5309A470A0D072B298EAEEC2B817A63E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4846F01D8A38C46691B3F01C5CCE593B /* VerticalTreeView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VerticalTreeView-prefix.pch"; sourceTree = "<group>"; };
 		5625B2556DE4889DAD338B17767FB2B5 /* Pods-DemoUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DemoUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5BAC82930AA000B2EEC0E4CDE1CD329B /* VerticalTreeView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = VerticalTreeView.modulemap; sourceTree = "<group>"; };
+		597AAB48769720817D13DC46A956AE52 /* VerticalTreeIndexView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeIndexView.swift; path = class/ui/VerticalTreeIndexView.swift; sourceTree = "<group>"; };
 		5E5BA448B30777CDACAB4E19E724D0B6 /* Pods-Demo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Demo-frameworks.sh"; sourceTree = "<group>"; };
-		5E66B9D44FEC499E2726E15BAF26E5E5 /* VerticalTreeView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VerticalTreeView.xcconfig; sourceTree = "<group>"; };
 		5EC5A058C46DF0208E0AB3460D1E45A6 /* Pods-DemoTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DemoTests-frameworks.sh"; sourceTree = "<group>"; };
 		60656C41F13462A0584A0EC924AE3B93 /* Pods-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		6769A6750FB9D8CE749D8BF1A9B0890C /* Pods-Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Demo-dummy.m"; sourceTree = "<group>"; };
-		6792A7649E31B553D0851C834F3883F9 /* VerticalTreeIndexView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeIndexView.swift; path = class/VerticalTreeIndexView.swift; sourceTree = "<group>"; };
 		6BC7A288325666D148AD70B2D8CB0976 /* Pods-DemoTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DemoTests-umbrella.h"; sourceTree = "<group>"; };
 		79DF453269EA372F6382E702702F4E38 /* Pods-DemoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DemoTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8030D91BAF81D40039DCB4BF70BD64A2 /* Pods-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		831C6CEBCAE63DE448431396B71B4435 /* VerticalTreeView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VerticalTreeView-umbrella.h"; sourceTree = "<group>"; };
+		83C8D77BE6836BA4157A53A4AB584AE9 /* VerticalTreePrettyPrint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreePrettyPrint.swift; path = class/pretty/VerticalTreePrettyPrint.swift; sourceTree = "<group>"; };
 		86241DC0734C70672B0484E034C923F6 /* Pods-DemoUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DemoUITests.modulemap"; sourceTree = "<group>"; };
 		8B0D2E72371648C6A971969F4E37CF66 /* Pods-DemoUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DemoUITests-umbrella.h"; sourceTree = "<group>"; };
 		8D634C266DA0D7B6E8655FD1D72A9212 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		910E35DF60111ED1A8046614BC975FE9 /* VerticalTreeNodeProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeNodeProtocol.swift; path = class/main/VerticalTreeNodeProtocol.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9C51C160604CF6C4E6FBAAB080FF1141 /* Pods-DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9E940DD6A82102E665058C5BA0B72FF2 /* VerticalTreeNodeWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeNodeWrapper.swift; path = class/VerticalTreeNodeWrapper.swift; sourceTree = "<group>"; };
 		A80739A96D3A4F0243806AA56B9403C9 /* Pods-DemoUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DemoUITests-dummy.m"; sourceTree = "<group>"; };
-		AE10622B03D014565B71C99AA9302384 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B794613BDC9D1FD29C700F6BF7B427C8 /* Pods-DemoUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DemoUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B94929563C4336198098A88ACE632219 /* Pods-Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Demo-resources.sh"; sourceTree = "<group>"; };
-		BBF0352F7AA35B5469149B4764E3BB8B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		BD0636EBBE5F5984FE1B69BE898F9EB5 /* VerticalTreeView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VerticalTreeView-prefix.pch"; sourceTree = "<group>"; };
-		BE419EA76BB83411BC726625DAF4B36C /* VerticalTreeView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VerticalTreeView-umbrella.h"; sourceTree = "<group>"; };
 		BE93A5895FB6A3A577B90E7B8E82B0AC /* Pods-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C418157C82ED018E914B0DDDE0ABEF98 /* Pods-DemoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DemoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C7BCFECE6664AB4633A5DF8325B01579 /* VerticalTreeView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VerticalTreeView-dummy.m"; sourceTree = "<group>"; };
+		C926D5DF27140EEB9E2DB7E642ADCD9E /* VerticalTreeCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeCell.swift; path = class/ui/VerticalTreeCell.swift; sourceTree = "<group>"; };
+		D299F9AD83C3AAECBC288054948213F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D9446F8C9D9AE4BF0A4B067E9CF38F9F /* VerticalTreeView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = VerticalTreeView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DA439FEBD99E99D51FB21A2FAFD9A827 /* Pods-DemoTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DemoTests-resources.sh"; sourceTree = "<group>"; };
-		DD5DBBA69B93FD329A434FD42130E422 /* VerticalTreeListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeListController.swift; path = class/VerticalTreeListController.swift; sourceTree = "<group>"; };
-		E5466E320EB9FB8EC6264CB742DE2E1B /* VerticalTreeView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = VerticalTreeView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E8C16EAA86588BCE11DFA5022A231C13 /* Pods-DemoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DemoTests-dummy.m"; sourceTree = "<group>"; };
+		EA6F4016456E80250BB85F39AD92BE4C /* VerticalTreeListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeListView.swift; path = class/ui/VerticalTreeListView.swift; sourceTree = "<group>"; };
 		EAC056C7851170F45C15878634C7B684 /* Pods-Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Demo-acknowledgements.plist"; sourceTree = "<group>"; };
+		EB0F17D3EB1E45D6C0F313B5D2407399 /* VerticalTreeNodeWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalTreeNodeWrapper.swift; path = class/main/VerticalTreeNodeWrapper.swift; sourceTree = "<group>"; };
 		EBA52DD410E0A679BDEA81764C0CD78B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE7F4E1458F7255A9530ADBE12329DEC /* Pods-Demo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Demo-umbrella.h"; sourceTree = "<group>"; };
 		EE8876E3E80D834B6AC332F1163147BB /* Pods-Demo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Demo.modulemap"; sourceTree = "<group>"; };
-		FBA3D29E3D3679DB2C0CE2CBBAA238C9 /* Pods_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA3D29E3D3679DB2C0CE2CBBAA238C9 /* Pods_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DemoUITests.framework; path = "Pods-DemoUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF398E62C71912BEA5B3CC3B6FB97766 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03438D35B80C75326861CD0AB0735F15 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				910E35DF60111ED1A8046614BC975FE9 /* VerticalTreeNodeProtocol.swift */,
+				EB0F17D3EB1E45D6C0F313B5D2407399 /* VerticalTreeNodeWrapper.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		0CE1041C93AFED10A1162A72B114240C /* Pods-DemoUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,14 +170,47 @@
 			path = "Target Support Files/Pods-DemoUITests";
 			sourceTree = "<group>";
 		};
-		39210730805F5193470B08F979FFD1EB /* Pod */ = {
+		0DDEA63DB534E23F3835641B52935C14 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				BBF0352F7AA35B5469149B4764E3BB8B /* LICENSE */,
-				AE10622B03D014565B71C99AA9302384 /* README.md */,
-				E5466E320EB9FB8EC6264CB742DE2E1B /* VerticalTreeView.podspec */,
+				01A61A3317744E9E570DE9FC284489D2 /* LICENSE */,
+				18CE557C671580BDDA72E5E59BAF4898 /* README.md */,
+				D9446F8C9D9AE4BF0A4B067E9CF38F9F /* VerticalTreeView.podspec */,
 			);
 			name = Pod;
+			sourceTree = "<group>";
+		};
+		13F567BDA251E8795C7B53A5D73F34A2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D299F9AD83C3AAECBC288054948213F7 /* Info.plist */,
+				00FF0F9F4F352DE11DD168A1B549DA32 /* VerticalTreeView.modulemap */,
+				05BDA751A468A0D02AFEF4F37F5CD398 /* VerticalTreeView.xcconfig */,
+				C7BCFECE6664AB4633A5DF8325B01579 /* VerticalTreeView-dummy.m */,
+				4846F01D8A38C46691B3F01C5CCE593B /* VerticalTreeView-prefix.pch */,
+				831C6CEBCAE63DE448431396B71B4435 /* VerticalTreeView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "demo/Pods/Target Support Files/VerticalTreeView";
+			sourceTree = "<group>";
+		};
+		386EDDE35ABD682ECFF947C145416F83 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C926D5DF27140EEB9E2DB7E642ADCD9E /* VerticalTreeCell.swift */,
+				597AAB48769720817D13DC46A956AE52 /* VerticalTreeIndexView.swift */,
+				01E65C27DC2292EA6DFAF35F62DDFB87 /* VerticalTreeListController.swift */,
+				EA6F4016456E80250BB85F39AD92BE4C /* VerticalTreeListView.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		445E60B1955AA722633083A2C27DE1F8 /* Pretty */ = {
+			isa = PBXGroup;
+			children = (
+				83C8D77BE6836BA4157A53A4AB584AE9 /* VerticalTreePrettyPrint.swift */,
+			);
+			name = Pretty;
 			sourceTree = "<group>";
 		};
 		44D5347904CF754D6785B84253F2574A /* iOS */ = {
@@ -175,22 +219,6 @@
 				D6DFF15000AFE2A371BF499E7AFDA808 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		5390A89D0623BB91F992A75B76E0F716 /* VerticalTreeView */ = {
-			isa = PBXGroup;
-			children = (
-				23B559FC0E813F6C09FB53D67D0F029B /* VerticalTreeCell.swift */,
-				6792A7649E31B553D0851C834F3883F9 /* VerticalTreeIndexView.swift */,
-				DD5DBBA69B93FD329A434FD42130E422 /* VerticalTreeListController.swift */,
-				342EEB3C6E12312D784AAA19A016BFD5 /* VerticalTreeListView.swift */,
-				4BD43DAC24FAA3267A7141ADD106AB78 /* VerticalTreeNodeProtocol.swift */,
-				9E940DD6A82102E665058C5BA0B72FF2 /* VerticalTreeNodeWrapper.swift */,
-				39210730805F5193470B08F979FFD1EB /* Pod */,
-				9E3BA7EE6E0A91391AD1481669F159C0 /* Support Files */,
-			);
-			name = VerticalTreeView;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		76A1E3B812C2E79DF0A4B0E391521FFD /* Targets Support Files */ = {
@@ -207,25 +235,11 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				EBD291D4FD47B1AE8734E36E3B45B673 /* Development Pods */,
+				F91C43E10387A3459A50A73C3B233572 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				A17AAD00ECB16433DE542E483422D3DA /* Products */,
 				76A1E3B812C2E79DF0A4B0E391521FFD /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		9E3BA7EE6E0A91391AD1481669F159C0 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				5309A470A0D072B298EAEEC2B817A63E /* Info.plist */,
-				5BAC82930AA000B2EEC0E4CDE1CD329B /* VerticalTreeView.modulemap */,
-				5E66B9D44FEC499E2726E15BAF26E5E5 /* VerticalTreeView.xcconfig */,
-				241C40ADACD582237DECB380381D7115 /* VerticalTreeView-dummy.m */,
-				BD0636EBBE5F5984FE1B69BE898F9EB5 /* VerticalTreeView-prefix.pch */,
-				BE419EA76BB83411BC726625DAF4B36C /* VerticalTreeView-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "demo/Pods/Target Support Files/VerticalTreeView";
 			sourceTree = "<group>";
 		};
 		A17AAD00ECB16433DE542E483422D3DA /* Products */ = {
@@ -283,10 +297,23 @@
 			path = "Target Support Files/Pods-DemoTests";
 			sourceTree = "<group>";
 		};
-		EBD291D4FD47B1AE8734E36E3B45B673 /* Development Pods */ = {
+		EB5E46CEC2016431CBE56EBAC3FE776C /* VerticalTreeView */ = {
 			isa = PBXGroup;
 			children = (
-				5390A89D0623BB91F992A75B76E0F716 /* VerticalTreeView */,
+				03438D35B80C75326861CD0AB0735F15 /* Core */,
+				0DDEA63DB534E23F3835641B52935C14 /* Pod */,
+				445E60B1955AA722633083A2C27DE1F8 /* Pretty */,
+				13F567BDA251E8795C7B53A5D73F34A2 /* Support Files */,
+				386EDDE35ABD682ECFF947C145416F83 /* UI */,
+			);
+			name = VerticalTreeView;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		F91C43E10387A3459A50A73C3B233572 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB5E46CEC2016431CBE56EBAC3FE776C /* VerticalTreeView */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -372,7 +399,7 @@
 			buildConfigurationList = DD5E29DAC15F37E416CEB7B7B2D8B03B /* Build configuration list for PBXNativeTarget "VerticalTreeView" */;
 			buildPhases = (
 				1C366FDFE8A89FC432C0B1F37849CEAC /* Headers */,
-				6981C95929F05D5D616CCFDF686EC28B /* Sources */,
+				2D7E8D5505E0DFD1497B8D07D14FBD9F /* Sources */,
 				5A9EB1DC1D48778E968288370A6EE268 /* Frameworks */,
 				733CD7329098E6181E49140210263BCD /* Resources */,
 			);
@@ -411,15 +438,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
 			productRefGroup = A17AAD00ECB16433DE542E483422D3DA /* Products */;
@@ -466,25 +492,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2D7E8D5505E0DFD1497B8D07D14FBD9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13FB24B3697F8E2E60AEDF36090EB450 /* VerticalTreeCell.swift in Sources */,
+				F86C0357D516BDDD22A76D90669DF9A1 /* VerticalTreeIndexView.swift in Sources */,
+				18C8EA3E232457DEA6F96046A565D19C /* VerticalTreeListController.swift in Sources */,
+				C53083BF1AC5A4504395CC174EB42055 /* VerticalTreeListView.swift in Sources */,
+				31211E64E75D025D7DAF330CA476EF31 /* VerticalTreeNodeProtocol.swift in Sources */,
+				EEA05651D819B1AC87FEDDE191F752C4 /* VerticalTreeNodeWrapper.swift in Sources */,
+				32DBBE3F455F12E7AA3F0EC8EC1323A4 /* VerticalTreePrettyPrint.swift in Sources */,
+				2E7DCEE8F3114D4D37690515E0AE94DC /* VerticalTreeView-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BF5E9784C4651B5C8D661A415D40077 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D6D25E6B1D3E78F659D3EEB7894EB2C4 /* Pods-DemoTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6981C95929F05D5D616CCFDF686EC28B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B2531A7A4987637F2AA7B424B7288FD1 /* VerticalTreeCell.swift in Sources */,
-				DD5042C87B3E708374B7DFA19C5EDDB6 /* VerticalTreeIndexView.swift in Sources */,
-				E84BDDA39982331BDB901DA830169624 /* VerticalTreeListController.swift in Sources */,
-				E50D1DCBD8A6EC9C137D866086BC2107 /* VerticalTreeListView.swift in Sources */,
-				B64B41B775A1A5824C5F755C0DF1F8E1 /* VerticalTreeNodeProtocol.swift in Sources */,
-				0257E450ABC1F931B40D30EA8FBB8F33 /* VerticalTreeNodeWrapper.swift in Sources */,
-				F7F63B1990E2A4A14C0569850A12745F /* VerticalTreeView-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +559,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -613,7 +639,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Demo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Demo/Pods-Demo.modulemap";
 				OTHER_LDFLAGS = "";
@@ -632,7 +662,7 @@
 		};
 		2183C1FCB10DB3885C5A0FEEB8423487 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E66B9D44FEC499E2726E15BAF26E5E5 /* VerticalTreeView.xcconfig */;
+			baseConfigurationReference = 05BDA751A468A0D02AFEF4F37F5CD398 /* VerticalTreeView.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -648,7 +678,11 @@
 				INFOPLIST_FILE = "Target Support Files/VerticalTreeView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/VerticalTreeView/VerticalTreeView.modulemap";
 				PRODUCT_MODULE_NAME = VerticalTreeView;
 				PRODUCT_NAME = VerticalTreeView;
@@ -681,7 +715,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-DemoTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-DemoTests/Pods-DemoTests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -716,7 +754,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Demo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Demo/Pods-Demo.modulemap";
 				OTHER_LDFLAGS = "";
@@ -750,7 +792,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-DemoUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-DemoUITests/Pods-DemoUITests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -769,7 +815,7 @@
 		};
 		6A0F568F07507DE40294117667B638C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E66B9D44FEC499E2726E15BAF26E5E5 /* VerticalTreeView.xcconfig */;
+			baseConfigurationReference = 05BDA751A468A0D02AFEF4F37F5CD398 /* VerticalTreeView.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -785,7 +831,11 @@
 				INFOPLIST_FILE = "Target Support Files/VerticalTreeView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "Target Support Files/VerticalTreeView/VerticalTreeView.modulemap";
 				PRODUCT_MODULE_NAME = VerticalTreeView;
 				PRODUCT_NAME = VerticalTreeView;
@@ -803,7 +853,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -855,7 +904,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -879,7 +929,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-DemoTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-DemoTests/Pods-DemoTests.modulemap";
 				OTHER_LDFLAGS = "";
@@ -913,7 +967,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-DemoUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-DemoUITests/Pods-DemoUITests.modulemap";
 				OTHER_LDFLAGS = "";

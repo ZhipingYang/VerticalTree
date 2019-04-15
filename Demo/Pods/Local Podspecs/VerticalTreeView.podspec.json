@@ -20,5 +20,33 @@
   },
   "requires_arc": true,
   "swift_version": "5.0",
-  "source_files": "class/*.swift"
+  "default_subspecs": [
+    "Core",
+    "UI",
+    "Pretty"
+  ],
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "class/main/*.swift"
+    },
+    {
+      "name": "UI",
+      "source_files": "class/ui/*.swift",
+      "dependencies": {
+        "VerticalTreeView/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Pretty",
+      "source_files": "class/pretty/*.swift",
+      "dependencies": {
+        "VerticalTreeView/Core": [
+
+        ]
+      }
+    }
+  ]
 }

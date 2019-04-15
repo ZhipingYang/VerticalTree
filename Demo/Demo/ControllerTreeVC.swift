@@ -24,20 +24,11 @@ class ControllerTreeVC: UIViewController {
         addChild(vc1)
         addChild(vc2)        
     }
-}
-
-extension UIViewController: BaseTree {
-    public var parent: UIViewController? {
-        return self.parentVC
-    }
-    public var childs: [UIViewController] {
-        return children
-    }
-}
-
-extension UIResponder {
-    var parentVC: UIViewController? {
-        let seq = sequence(first: self.next) { $0?.next }
-        return seq.first { $0 is UIViewController } as? UIViewController
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // tabbarViewController
+        toVC.getRoot.prettyPrint()
     }
 }

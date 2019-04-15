@@ -13,7 +13,8 @@ class ViewTreeVC: UITableViewController {
     
     @IBAction func showViewTreeAction(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view
-        let tvc = VerticalTreeListController(source: NodeWrapper(obj: _view))
+        let wrapper = NodeWrapper(obj: _view)//.changeProperties({ $0.length = .eachLength(5) })
+        let tvc = VerticalTreeListController(source: wrapper)
         tvc.startViewTree()
     }
     
@@ -30,31 +31,17 @@ class ViewTreeVC: UITableViewController {
         let wrapper = NodeWrapper(obj: cell!)
         let vc = VerticalTreeListController(source: wrapper)
         vc.startViewTree()
+        
+        cell?.toView.getRoot.prettyPrint()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        NodeWrapper(obj: self.view).allSubnodes().forEach { node in
-            print(node.prettyPrint())
-        }
-    }
-}
-
-extension CALayer: BaseTree {
-    public var parent: CALayer? {
-        return superlayer
-    }
-    public var childs: [CALayer] {
-        return sublayers ?? []
-    }
-}
-
-extension UIView: BaseTree {
-    public var parent: UIView? {
-        return superview
-    }
-    public var childs: [UIView] {
-        return subviews
+        // windows
+        view.getRoot.prettyPrint()
+        
+        // view layer
+        tableView.layer.prettyPrint()
     }
 }

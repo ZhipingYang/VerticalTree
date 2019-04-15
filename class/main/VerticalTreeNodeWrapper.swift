@@ -54,4 +54,12 @@ public final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation w
         self.nodeTitle = obj.nodeTitle
         self.childs.forEach { $0.parent = self }
     }
+    
+    //TODO: whywhy cannot call this method??? 😤
+    @discardableResult
+    public func changeProperties(_ config: (NodeWrapper<Obj>) -> Void, inChild: Bool = true) -> Self {
+        config(self)
+        if inChild { childs.forEach { $0.changeProperties(config, inChild: inChild) } }
+        return self
+    }
 }

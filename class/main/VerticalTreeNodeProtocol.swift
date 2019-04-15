@@ -117,12 +117,4 @@ extension TreeNode {
     public var haveNext: Bool {
         return self.index < (self.parent?.childs.count ?? 1) - 1
     }
-    
-    public func prettyPrint(_ moreInfoIfHave: Bool = false) -> String {
-        let nodeChain = sequence(first: parent) { $0?.parent }
-        let preSpace = nodeChain.map { ($0?.parent?.haveNext ?? false) ? " |" : "" }.joined()
-        let firstPre = (haveParent ? " |" : "") + "——— "
-        let keyText = moreInfoIfHave ? (info.nodeDescription ?? info.nodeTitle) : info.nodeTitle
-        return preSpace + firstPre + keyText
-    }
 }

@@ -12,6 +12,7 @@
 		CB1291F7A947DC90A72A2E4D /* Pods_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D79AE41393F0F05BBED9C40E /* Pods_DemoTests.framework */; };
 		DB39F33F225A52AF0004D2FA /* ControllerTreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F33E225A52AF0004D2FA /* ControllerTreeVC.swift */; };
 		DB39F341225A52BA0004D2FA /* CustomTreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB39F340225A52BA0004D2FA /* CustomTreeVC.swift */; };
+		DB7D1F7E22646E7B00D81918 /* VerticalTreeView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DB7D1F7D22646E7B00D81918 /* VerticalTreeView.podspec */; };
 		DBA85A34225AD07000581C94 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DBA85A33225AD07000581C94 /* README.md */; };
 		DBFB212321F6E6CB004ED785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212221F6E6CB004ED785 /* AppDelegate.swift */; };
 		DBFB212521F6E6CB004ED785 /* ViewTreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB212421F6E6CB004ED785 /* ViewTreeVC.swift */; };
@@ -48,6 +49,7 @@
 		D79AE41393F0F05BBED9C40E /* Pods_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB39F33E225A52AF0004D2FA /* ControllerTreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerTreeVC.swift; sourceTree = "<group>"; };
 		DB39F340225A52BA0004D2FA /* CustomTreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTreeVC.swift; sourceTree = "<group>"; };
+		DB7D1F7D22646E7B00D81918 /* VerticalTreeView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = VerticalTreeView.podspec; path = ../VerticalTreeView.podspec; sourceTree = "<group>"; };
 		DBA85A33225AD07000581C94 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DBFB211F21F6E6CB004ED785 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFB212221F6E6CB004ED785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		DBFB211621F6E6CB004ED785 = {
 			isa = PBXGroup;
 			children = (
+				DB7D1F7D22646E7B00D81918 /* VerticalTreeView.podspec */,
 				DBA85A33225AD07000581C94 /* README.md */,
 				DBFB212121F6E6CB004ED785 /* Demo */,
 				DBFB213621F6E6CD004ED785 /* DemoTests */,
@@ -185,7 +188,7 @@
 				DBFB211B21F6E6CB004ED785 /* Sources */,
 				DBFB211C21F6E6CB004ED785 /* Frameworks */,
 				DBFB211D21F6E6CB004ED785 /* Resources */,
-				E2B8D1CE87D56D2F5B0FE033 /* [CP] Embed Pods Frameworks */,
+				A9D1E72BD1EBCF87AFF33253 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBFB212D21F6E6CD004ED785 /* LaunchScreen.storyboard in Resources */,
+				DB7D1F7E22646E7B00D81918 /* VerticalTreeView.podspec in Resources */,
 				DBFB212A21F6E6CD004ED785 /* Assets.xcassets in Resources */,
 				DBA85A34225AD07000581C94 /* README.md in Resources */,
 				DBFB212821F6E6CB004ED785 /* Main.storyboard in Resources */,
@@ -353,6 +357,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A9D1E72BD1EBCF87AFF33253 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/VerticalTreeView/VerticalTreeView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VerticalTreeView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AB280C107A81EAEEA66E903E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,28 +399,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E2B8D1CE87D56D2F5B0FE033 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/VerticalTreeView/VerticalTreeView.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VerticalTreeView.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
