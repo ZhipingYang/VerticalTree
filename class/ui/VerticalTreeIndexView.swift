@@ -13,18 +13,14 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
     var labelLeading: NSLayoutConstraint?
     
     lazy var label: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        UILabel().then {
+            $0.textColor = UIColor.black
+            $0.font = UIFont.systemFont(ofSize: 12)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }()
     
-    lazy var horizonLine: CALayer = {
-        let horizonLine = CALayer()
-        return horizonLine
-    }()
-    
+    var horizonLine = CALayer()
     var verticalLines = [CALayer]()
     
     var node: T? {
@@ -38,13 +34,12 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
             horizonLine.backgroundColor = UIColor.treeDeep(nodeDeep, treeDeep).cgColor
             
             verticalLines.flexibleReuse(targetCount: node.currentDeep+1, map: { () -> CALayer in
-                let layer = CALayer()
-                self.layer.addSublayer(layer)
-                return layer
-            }) { $0.removeFromSuperlayer() }
+                return CALayer().then { self.layer.addSublayer($0) }
+            }, handle: {
+                $0.removeFromSuperlayer()
+            })
             verticalLines.enumerated().forEach { $1.backgroundColor = UIColor.treeDeep($0, treeDeep).cgColor }
             labelLeading?.constant = indexWidth
-            label.updateConstraintsIfNeeded()
             self.setNeedsLayout()
         }
     }
@@ -75,12 +70,10 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
         addSubview(label)
         layer.addSublayer(horizonLine)
         
-        let leading = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100)
-        labelLeading = leading
+        labelLeading = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100).then { $0.isActive = true }
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            leading,
             label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor)
         ])
         
@@ -89,9 +82,9 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
     }
     
     override func layoutSubviews() {
-        
         super.layoutSubviews()
         guard let node = node else { return }
+        
         let width =  self.frame.width
         let height =  self.frame.height
         var eachW: CGFloat = 0;

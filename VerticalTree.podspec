@@ -14,7 +14,8 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
   s.swift_version = '5.0'
   s.ios.deployment_target = '10.0'
-  
+  s.dependency "Then"
+
   s.default_subspecs = 'Core', 'UI', 'PrettyText'
   s.subspec 'Core' do |tree|
       tree.source_files = 'class/main/*.swift'

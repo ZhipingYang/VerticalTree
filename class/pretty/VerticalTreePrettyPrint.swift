@@ -17,8 +17,7 @@ extension String {
 extension UIResponder {
     // get vc by the responder chain
     fileprivate var parentVC: UIViewController? {
-        let seq = sequence(first: self.next) { $0?.next }
-        return seq.first { $0 is UIViewController } as? UIViewController
+        return sequence(first: self.next) { $0?.next }.first { $0 is UIViewController } as? UIViewController
     }
 }
 
@@ -32,9 +31,7 @@ extension TreeNode {
     /// get treeNode pretty description
     public func nodePrettyText(_ moreInfoIfHave: Bool = false) -> String {
         let nodeChain = sequence(first: parent) { $0?.parent }
-        let spaceStrings = nodeChain.map {
-            ($0 != nil) ? ($0?.haveNext ?? false ? " |" : ($0?.haveParent ?? false ? "  ":"")) : ""
-        }
+        let spaceStrings = nodeChain.map { ($0 != nil) ? ($0?.haveNext ?? false ? " |" : ($0?.haveParent ?? false ? "  ":"")) : "" }
         let firstPre = (haveParent ? " |" : "") + "——— "
         let keyText = moreInfoIfHave ? (info.nodeDescription ?? info.nodeTitle) : info.nodeTitle
         return spaceStrings.reversed().joined() + firstPre + keyText
@@ -42,8 +39,7 @@ extension TreeNode {
     
     /// as a subtree at current node
     public func subTreePrettyText(_ moreInfoIfHave: Bool = false) -> String {
-        return verticalTreeTitle
-            + self.allSubnodes().map { $0.nodePrettyText(moreInfoIfHave) + "\n" }.joined()
+        return verticalTreeTitle + self.allSubnodes().map { $0.nodePrettyText(moreInfoIfHave) + "\n" }.joined()
     }
     
     /// found rootNode then get the full tree

@@ -85,11 +85,8 @@ extension TreeNode {
 extension TreeNode {
 
     public func getRootNode() -> Self {
-        var node = self
-        while let parent = node.parent {
-            node = parent
-        }
-        return node
+        let seq = sequence(first: self) { $0.parent }
+        return seq.first(where: { $0.parent == nil })!
     }
     
     public func allSubnodes(_ includeSelf: Bool = true) -> [Self] {

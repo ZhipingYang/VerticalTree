@@ -1,23 +1,33 @@
 PODS:
+  - Then (2.4.0)
   - VerticalTree (0.1.0):
+    - Then
     - VerticalTree/Core (= 0.1.0)
     - VerticalTree/PrettyText (= 0.1.0)
     - VerticalTree/UI (= 0.1.0)
-  - VerticalTree/Core (0.1.0)
+  - VerticalTree/Core (0.1.0):
+    - Then
   - VerticalTree/PrettyText (0.1.0):
+    - Then
     - VerticalTree/Core
   - VerticalTree/UI (0.1.0):
+    - Then
     - VerticalTree/Core
 
 DEPENDENCIES:
   - VerticalTree (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Then
 
 EXTERNAL SOURCES:
   VerticalTree:
     :path: "../"
 
 SPEC CHECKSUMS:
-  VerticalTree: e59930d40697efa81f08260db83ff868153acb0a
+  Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
+  VerticalTree: 0dcb7aa8ff3855e2015218b2a0eb072044192805
 
 PODFILE CHECKSUM: 856d40aff1f52f003cdf63ae1cfd15d34f92ef08
 

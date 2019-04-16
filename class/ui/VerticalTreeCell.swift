@@ -7,28 +7,33 @@
 //
 
 import UIKit
+import Then
 
 class VerticalTreeCell<T: TreeNode>: UITableViewCell {
     
-    var indexView: VerticalTreeIndexView<T> = VerticalTreeIndexView<T>()
+    var descriptionHeightConstraint: NSLayoutConstraint?
+
+    lazy var indexView: VerticalTreeIndexView<T> = {
+        VerticalTreeIndexView<T>().then {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }()
     
+    lazy var descriptionLabel: UILabel = {
+        UILabel().then {
+            $0.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.font = UIFont.systemFont(ofSize: 10)
+            $0.textColor = UIColor.lightGray
+            $0.numberOfLines = 0
+        }
+    }()
+
     var fold: Bool = true {
         didSet {
             descriptionHeightConstraint?.isActive = fold
         }
     }
-    
-    var descriptionHeightConstraint: NSLayoutConstraint?
-    
-    var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.textColor = UIColor.lightGray
-        label.numberOfLines = 0
-        return label
-    }()
     
     var node: T? {
         didSet {
@@ -53,11 +58,11 @@ class VerticalTreeCell<T: TreeNode>: UITableViewCell {
         
         contentView.addSubview(indexView)
         contentView.addSubview(descriptionLabel)
-        indexView.translatesAutoresizingMaskIntoConstraints = false
         
-        let height = descriptionLabel.heightAnchor.constraint(equalToConstant: 0)
-        height.priority = UILayoutPriority.required
-        descriptionHeightConstraint = height
+        descriptionHeightConstraint = descriptionLabel.heightAnchor.constraint(equalToConstant: 0).then {
+            $0.priority = UILayoutPriority.required
+            $0.isActive = fold
+        }
         NSLayoutConstraint.activate([
             indexView.topAnchor.constraint(equalTo: contentView.topAnchor),
             indexView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -68,9 +73,6 @@ class VerticalTreeCell<T: TreeNode>: UITableViewCell {
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            height
         ])
-        
-        descriptionHeightConstraint?.isActive = fold
     }
 }

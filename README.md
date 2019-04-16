@@ -70,7 +70,7 @@ public protocol TreeNode: BaseTree {
 
 <p align="center">
 <img width=30% src="https://user-images.githubusercontent.com/9360037/56127886-c07fe200-5fb0-11e9-9c8a-ce677ea0b7e5.PNG"> <img width=30% src="https://user-images.githubusercontent.com/9360037/56130707-3e93b700-5fb8-11e9-914b-08abd4335eb0.PNG">
-<img width=38% src="https://user-images.githubusercontent.com/9360037/56126323-8234f380-5fad-11e9-9d2b-ed08856cd1e3.png">
+<img width=36% src="https://user-images.githubusercontent.com/9360037/56188383-f330e580-6057-11e9-94f7-b74bed4ebd23.png">
 </p>
 
 #### 用法
@@ -93,7 +93,7 @@ extension UIView: BaseTree {
 // in ViewController
 let rootNode = NodeWrapper(obj: view)
 // 打印node结构
-print(rootNode.currentTreePrettyPrintString())
+print(rootNode.subTreePrettyText())
 ```
 
 使用 `VerticalTree/PrettyText`的UIView扩展更简单
@@ -102,7 +102,7 @@ print(rootNode.currentTreePrettyPrintString())
 extension BaseTree where Self: NSObject, Self == Self.T {
     // debug 可以查看更多信息
     @discardableResult public func prettyPrint(_ inDebug: Bool = false) -> String {
-        return NodeWrapper(obj: self).currentTreePrettyPrintString().printIt()
+        return NodeWrapper(obj: self).subTreePrettyText(inDebug).printIt()
     }
     public var getRoot: Self {
         let chain = sequence(first: self) { $0.parent }
@@ -112,15 +112,15 @@ extension BaseTree where Self: NSObject, Self == Self.T {
 ```
 - 打印当前View树结构
 
-> `view.prettyPrint()` 输入文本树如上：UIView示范
+> `view.treePrettyPrint()` 输入文本树如上：UIView示范
 
 - 打印当前Windows树结构
 
-> `view.getRoot.prettyPrint()` 
+> `view.getTreeRoot.treePrettyPrint()` 
 
 - 打印当前View树结构(查看更多debug信息)
 
-> `view.prettyPrint(true)`![image](https://user-images.githubusercontent.com/9360037/56130480-97168480-5fb7-11e9-932f-f127454845e3.png)
+> `view.treePrettyPrint(true)`![image](https://user-images.githubusercontent.com/9360037/56188507-46a33380-6058-11e9-8f98-37646a2cbfe0.png)
 
 ## Author
 
@@ -128,5 +128,5 @@ XcodeYang, xcodeyang@gmail.com
 
 ## License
 
-XYDebugView is available under the MIT license. See the LICENSE file for more info.
+VerticalTree is available under the MIT license. See the LICENSE file for more info.
 

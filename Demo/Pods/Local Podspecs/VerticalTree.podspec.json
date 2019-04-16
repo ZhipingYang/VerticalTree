@@ -20,6 +20,11 @@
   },
   "requires_arc": true,
   "swift_version": "5.0",
+  "dependencies": {
+    "Then": [
+
+    ]
+  },
   "default_subspecs": [
     "Core",
     "UI",
