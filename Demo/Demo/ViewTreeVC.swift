@@ -32,16 +32,16 @@ class ViewTreeVC: UITableViewController {
         let vc = VerticalTreeListController(source: wrapper)
         vc.startViewTree()
         
-        cell?.toView.prettyPrint(true)
+        cell?.toView.treePrettyPrint(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // windows
-        view.getRoot.prettyPrint()
+        view.getTreeRoot.treePrettyPrint()
         
         // view layer
-        tableView.layer.prettyPrint()
+        tableView.layer.treePrettyPrint()
     }
 }

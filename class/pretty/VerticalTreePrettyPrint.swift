@@ -15,6 +15,7 @@ extension String {
     }
 }
 extension UIResponder {
+    // get vc by the responder chain
     fileprivate var parentVC: UIViewController? {
         let seq = sequence(first: self.next) { $0?.next }
         return seq.first { $0 is UIViewController } as? UIViewController
@@ -28,21 +29,26 @@ extension TreeNode {
         return "\n======>> Vertical Tree <<======\n\n"
     }
     
-    public func nodePrettyPrintString(_ moreInfoIfHave: Bool = false) -> String {
+    /// get treeNode pretty description
+    public func nodePrettyText(_ moreInfoIfHave: Bool = false) -> String {
         let nodeChain = sequence(first: parent) { $0?.parent }
-        let preSpace = nodeChain.map { ($0?.parent?.haveNext ?? false) ? " |" : "" }.joined()
+        let spaceStrings = nodeChain.map {
+            ($0 != nil) ? ($0?.haveNext ?? false ? " |" : ($0?.haveParent ?? false ? "  ":"")) : ""
+        }
         let firstPre = (haveParent ? " |" : "") + "——— "
         let keyText = moreInfoIfHave ? (info.nodeDescription ?? info.nodeTitle) : info.nodeTitle
-        return preSpace + firstPre + keyText
+        return spaceStrings.reversed().joined() + firstPre + keyText
     }
     
-    public func currentTreePrettyPrintString(_ moreInfoIfHave: Bool = false) -> String {
+    /// as a subtree at current node
+    public func subTreePrettyText(_ moreInfoIfHave: Bool = false) -> String {
         return verticalTreeTitle
-            + self.allSubnodes().map { $0.nodePrettyPrintString(moreInfoIfHave) + "\n" }.joined()
+            + self.allSubnodes().map { $0.nodePrettyText(moreInfoIfHave) + "\n" }.joined()
     }
     
-    public func allTreePrettyPrintString(_ moreInfoIfHave: Bool = false) -> String {
-        return getRootNode().currentTreePrettyPrintString(moreInfoIfHave)
+    /// found rootNode then get the full tree
+    public func treePrettyText(_ moreInfoIfHave: Bool = false) -> String {
+        return getRootNode().subTreePrettyText(moreInfoIfHave)
     }
 }
 
@@ -53,6 +59,7 @@ extension CALayer: BaseTree {
     public var childs: [CALayer] {
         return sublayers ?? []
     }
+    // helper
     public var toLayer: CALayer {
         return self
     }
@@ -65,6 +72,7 @@ extension UIView: BaseTree {
     public var childs: [UIView] {
         return subviews
     }
+    // helper
     public var toView: UIView {
         return self
     }
@@ -77,16 +85,22 @@ extension UIViewController: BaseTree {
     public var childs: [UIViewController] {
         return children
     }
+    // helper
     public var toVC: UIViewController {
         return self
     }
 }
 
 extension BaseTree where Self: NSObject, Self == Self.T {
-    @discardableResult public func prettyPrint(_ inDebug: Bool = false) -> String {
-        return NodeWrapper(obj: self).currentTreePrettyPrintString(inDebug).printIt()
+    
+    /// print baseTree‘s structure
+    @discardableResult
+    public func treePrettyPrint(_ inDebug: Bool = false) -> String {
+        return NodeWrapper(obj: self).subTreePrettyText(inDebug).printIt()
     }
-    public var getRoot: Self {
+    
+    // get the baseTree of rootNode
+    public var getTreeRoot: Self {
         let seq = sequence(first: self) { $0.parent }
         return seq.first { $0.parent == nil }!
     }

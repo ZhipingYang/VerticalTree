@@ -51,19 +51,16 @@ class CustomTreeVC: UIViewController {
         deep = 0
         let node3 = CustomNode()
         rootNodes = [node1, node2, node3]
-
     }
+    
     @IBAction func treeAction(_ sender: Any) {
         let tvc = VerticalTreeListController<CustomNode>(style: UITableView.Style.plain)
         tvc.rootNodes = rootNodes
         tvc.startViewTree()
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        rootNodes.forEach { print($0.currentTreePrettyPrintString(true)) }
+        rootNodes.forEach { print($0.subTreePrettyText(true)) }
     }
-
 }

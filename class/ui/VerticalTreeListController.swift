@@ -10,7 +10,8 @@ import UIKit
 
 public class VerticalTreeListController<T: TreeNode>: UITableViewController {
     
-    var rootNodeDataList = [[T]]()
+    /// dataSource
+    private var rootNodeDataList = [[T]]()
 
     public convenience init(source: T) {
         self.init(style: .plain)

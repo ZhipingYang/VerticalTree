@@ -30,16 +30,20 @@ extension UIViewController {
     
     func startViewTree() {
         guard let w = (UIApplication.shared.delegate as? AppDelegate)?.treeWindows else { return }
-        w.rootViewController = UINavigationController(rootViewController: self)
+        w.rootViewController = UINavigationController()
+        w.rootViewController?.view.backgroundColor = UIColor.clear
         w.isHidden = false
         w.makeKeyAndVisible()
         
+        w.rootViewController?.present(UINavigationController(rootViewController: self), animated: true, completion: nil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target:self, action: #selector(endViewTree))
     }
     
     @objc func endViewTree() {
         guard let w = (UIApplication.shared.delegate as? AppDelegate)?.treeWindows else { return }
-        w.isHidden = true
-        UIApplication.shared.delegate?.window??.makeKeyAndVisible()
+        self.dismiss(animated: true) {
+            w.isHidden = true
+            UIApplication.shared.delegate?.window??.makeKeyAndVisible()
+        }
     }
 }

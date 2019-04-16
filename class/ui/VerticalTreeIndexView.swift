@@ -37,7 +37,7 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
             label.textColor = (node.info.nodeDescription ?? "").isEmpty ? UIColor.red : UIColor.treeDeep(nodeDeep, treeDeep)
             horizonLine.backgroundColor = UIColor.treeDeep(nodeDeep, treeDeep).cgColor
             
-            verticalLines.getNewArray(needSpace: node.currentDeep+1, map: { () -> CALayer in
+            verticalLines.flexibleReuse(targetCount: node.currentDeep+1, map: { () -> CALayer in
                 let layer = CALayer()
                 self.layer.addSublayer(layer)
                 return layer
@@ -147,14 +147,14 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
 }
 
 extension Array {
-    fileprivate mutating func getNewArray(needSpace: Int, map: () -> Element, handle: ((Element) -> Void)?) -> Void {
-        if needSpace > count {
-            let new = (0 ..< needSpace-count).map { _ in map() }
+    fileprivate mutating func flexibleReuse(targetCount: Int, map: () -> Element, handle: ((Element) -> Void)?) -> Void {
+        if targetCount > count {
+            let new = (0 ..< targetCount-count).map { _ in map() }
             self.append(contentsOf: new)
-        } else if needSpace < count {
-            let removeArr = self.prefix(count-needSpace)
+        } else if targetCount < count {
+            let removeArr = self.prefix(count-targetCount)
             removeArr.forEach { handle?($0) }
-            self.removeSubrange(0..<(count-needSpace))
+            self.removeSubrange(0..<(count-targetCount))
         }
     }
 }

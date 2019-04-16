@@ -29,6 +29,6 @@ class ControllerTreeVC: UIViewController {
         super.viewDidAppear(animated)
         
         // tabbarViewController
-        toVC.getRoot.prettyPrint()
+        toVC.getTreeRoot.treePrettyPrint()
     }
 }
