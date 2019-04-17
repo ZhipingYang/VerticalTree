@@ -61,6 +61,6 @@ class CustomTreeVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        rootNodes.forEach { print($0.subTreePrettyText(true)) }
+        rootNodes.forEach { print($0.subTreePrettyText()) }
     }
 }

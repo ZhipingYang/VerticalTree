@@ -8,12 +8,11 @@
 import UIKit
 
 //MARK: - helper
-extension String {
-    fileprivate func printIt() -> String {
-        print(self)
-        return self
-    }
+
+fileprivate var verticalTreeTitle: String {
+    return "\n======>> Vertical Tree <<======\n\n"
 }
+
 extension UIResponder {
     // get vc by the responder chain
     fileprivate var parentVC: UIViewController? {
@@ -23,10 +22,6 @@ extension UIResponder {
 
 //MARK: - Pretty Print
 extension TreeNode {
-    
-    private var verticalTreeTitle: String {
-        return "\n======>> Vertical Tree <<======\n\n"
-    }
     
     /// get treeNode pretty description
     public func nodePrettyText(_ moreInfoIfHave: Bool = false) -> String {
@@ -38,13 +33,13 @@ extension TreeNode {
     }
     
     /// as a subtree at current node
-    public func subTreePrettyText(_ moreInfoIfHave: Bool = false) -> String {
+    public func subTreePrettyText(moreInfoIfHave: Bool = false, highlighted: Self? = nil) -> String {
         return verticalTreeTitle + self.allSubnodes().map { $0.nodePrettyText(moreInfoIfHave) + "\n" }.joined()
     }
     
     /// found rootNode then get the full tree
     public func treePrettyText(_ moreInfoIfHave: Bool = false) -> String {
-        return getRootNode().subTreePrettyText(moreInfoIfHave)
+        return getRootNode().subTreePrettyText(moreInfoIfHave: moreInfoIfHave)
     }
 }
 
@@ -89,12 +84,37 @@ extension UIViewController: BaseTree {
 
 extension BaseTree where Self: NSObject, Self == Self.T {
     
-    /// print baseTree‘s structure
-    @discardableResult
-    public func treePrettyPrint(_ inDebug: Bool = false) -> String {
-        return NodeWrapper(obj: self).subTreePrettyText(inDebug).printIt()
+    /// print
+    public func treePrettyPrint(inDebug: Bool = false) {
+        print(treePrettyText(inDebug: inDebug))
     }
     
+    /// baseTree‘s structure
+    public func treePrettyText(inDebug: Bool = false) -> String {
+        return NodeWrapper(obj: self).subTreePrettyText(moreInfoIfHave: inDebug, highlighted: nil)
+    }
+    
+    /// get ofTop‘s structure & highlight position of self
+    public func treePrettyText(ofTop: Self, inDebug: Bool = false) {
+        let parentChain = sequence(first: self) { $0.parent }
+        if !parentChain.contains(ofTop) {
+            print("ofTop:\"\(String(describing: type(of: ofTop)))\" is invalid, not a node on top current:\"\(String(describing: type(of: self)))\"")
+            return
+        }
+        let rootNode = NodeWrapper(obj: ofTop)
+        let selfNode = rootNode.allSubnodes().first { $0.obj == self }!
+        let rootString = rootNode.allSubnodes().map { $0.nodePrettyText(inDebug) + "\n" }.joined()
+        let selfString = selfNode.allSubnodes().map { $0.nodePrettyText(inDebug) + "\n" }.joined()
+        let nodeFirstLength = selfNode.allSubnodes().first!.nodePrettyText(inDebug).count
+        let nodeLastLength = selfNode.allSubnodes().last!.nodePrettyText(inDebug).count
+        let separateChain = sequence(first: "= ") { _ in "= " }
+        let prefix = separateChain.prefix(nodeFirstLength/2).joined()
+        let sufix = separateChain.prefix(nodeLastLength/2).joined()
+        let newSelfString = "\(prefix)\n\(selfString)\(sufix)\n"
+        let result = rootString.replacingOccurrences(of: selfString, with: newSelfString)
+        print(verticalTreeTitle + result)
+    }
+
     // get the baseTree of rootNode
     public var getTreeRoot: Self {
         let seq = sequence(first: self) { $0.parent }

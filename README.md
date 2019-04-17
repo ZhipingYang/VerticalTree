@@ -1,6 +1,6 @@
 ## Vertical Tree
 
-> Provides a vertical drawing of the tree structure and view information about the tree‘s nodes
+> Provides a vertical drawing of the tree structure which can view information about the tree‘s nodes and supports console debug views & layers and so on
 
 #### 安装
 
@@ -14,20 +14,24 @@ pod 'VerticalTree/Core'
 pod 'VerticalTree/PrettyText'
 ```
 
+临时方案 😂
+
+`pod 'VerticalTree', :git => 'https://github.com/ZhipingYang/VerticalTree.git'`
+
 #### 代码结构
 
 ```
-——— VerticalTree
-|——— Core 核心功能
-| |——— VerticalTreeNodeProtocol
-| |——— VerticalTreeNodeWrapper
-|——— UI 绘制图形树（可折叠）
-| |——— VerticalTreeCell
-| |——— VerticalTreeIndexView
-| |——— VerticalTreeListController
-| |——— VerticalTreeListView
-|——— PrettyText 终端文本树
-| |——— VerticalTreePrettyPrint
+——— "VerticalTree"
+ |——— "Core" 核心功能
+ | |——— VerticalTreeNodeProtocol
+ | |——— VerticalTreeNodeWrapper
+ |——— "UI" 绘制图形树（可折叠）
+ | |——— VerticalTreeCell
+ | |——— VerticalTreeIndexView
+ | |——— VerticalTreeListController
+ | |——— VerticalTreeListView
+ |——— "PrettyText" 终端文本树
+ | |——— VerticalTreePrettyPrint
 ```
 
 #### 主要协议
@@ -96,18 +100,18 @@ let rootNode = NodeWrapper(obj: view)
 print(rootNode.subTreePrettyText())
 ```
 
-使用 `VerticalTree/PrettyText`的UIView扩展更简单
+使用 [VerticalTree/PrettyText](https://github.com/ZhipingYang/VerticalTree/blob/master/class/pretty/VerticalTreePrettyPrint.swift#L85) 的UIView扩展更简单
 
 ```swift
 extension BaseTree where Self: NSObject, Self == Self.T {
-    // debug 可以查看更多信息
-    @discardableResult public func prettyPrint(_ inDebug: Bool = false) -> String {
-        return NodeWrapper(obj: self).subTreePrettyText(inDebug).printIt()
-    }
-    public var getRoot: Self {
-        let chain = sequence(first: self) { $0.parent }
-        return chain.first { $0.parent == nil }!
-    }
+    /// print
+    public func treePrettyPrint(inDebug: Bool = false) {...}
+    /// baseTree‘s structure
+    public func treePrettyText(inDebug: Bool = false) -> String {...}
+    /// get ofTop‘s structure & highlight position of self
+    public func treePrettyText(ofTop: Self, inDebug: Bool = false) { ... }
+    // get the baseTree of rootNode
+    public var getTreeRoot: Self { ... }
 }
 ```
 - 打印当前View树结构
@@ -121,6 +125,18 @@ extension BaseTree where Self: NSObject, Self == Self.T {
 - 打印当前View树结构(查看更多debug信息)
 
 > `view.treePrettyPrint(true)`![image](https://user-images.githubusercontent.com/9360037/56188507-46a33380-6058-11e9-8f98-37646a2cbfe0.png)
+
+### 顺便提一下
+
+- LLDB 调试 view & layer & controller 的层级
+    -  view & layer
+        - `po yourObj.value(forKey: "recursiveDescription")!`
+        - `expression -l objc -O -- [`yourObj` recursiveDescription]`
+    - controller
+        - `po yourController.value(forKey: "_printHierarchy")!`
+        - `expression -l objc -O -- [`yourController` _printHierarchy]`
+
+![image](https://user-images.githubusercontent.com/9360037/56284463-16868e00-6147-11e9-834e-306c10c0926d.png)
 
 ## Author
 
