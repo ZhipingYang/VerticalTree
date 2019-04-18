@@ -33,16 +33,18 @@ class ViewTreeVC: UITableViewController {
         vc.startViewTree()
         
         // console log, mark cell struct in the tableview struct
-        cell?.toView.treePrettyText(ofTop: view, inDebug: false)
+        cell?.treePrettyText(ofTop: view, inDebug: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        let cell = tableView.visibleCells.first
+        
         // windows
-        view.getTreeRoot.treePrettyPrint()
+        cell?.treePrettyPrint(inDebug: true)
         
         // view layer
-        tableView.layer.treePrettyPrint()
+        cell?.layer.treePrettyPrint()
     }
 }

@@ -22,13 +22,13 @@ class ControllerTreeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addChild(vc1)
-        addChild(vc2)        
+        addChild(vc2)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        wrapper = NodeWrapper(obj: toVC.getTreeRoot).changeProperties {
+        wrapper = NodeWrapper(obj: getTreeRoot).changeProperties {
             $0.length = .eachLength(20)
             guard let targetVC = $0.obj else { return }
             var nodeDescription = targetVC.description
@@ -43,7 +43,7 @@ class ControllerTreeVC: UIViewController {
         print(wrapper!.treePrettyText(true))
         
         // VC extension
-        toVC.getTreeRoot.treePrettyPrint(inDebug: true)
+        getTreeRoot.treePrettyPrint(inDebug: true)
         
         // LLDB's way
         print(tabBarController!.value(forKey: "_printHierarchy")!)

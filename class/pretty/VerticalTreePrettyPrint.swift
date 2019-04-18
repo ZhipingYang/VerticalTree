@@ -20,6 +20,38 @@ extension UIResponder {
     }
 }
 
+private class VerticalTreeSolution<Obj: NSObject & BaseTree> where Obj.T == Obj {
+    /// baseTree‘s structure
+    static func treePrettyText(obj: Obj, inDebug: Bool = false) -> String {
+        return NodeWrapper(obj: obj).subTreePrettyText(moreInfoIfHave: inDebug, highlighted: nil)
+    }
+    /// get ofTop‘s structure & highlight position of self
+    static func treePrettyText(obj: Obj, ofTop: Obj, inDebug: Bool = false) {
+        let parentChain = sequence(first: obj) { $0.parent }
+        if !parentChain.contains(ofTop) {
+            print("ofTop:\"\(String(describing: type(of: ofTop)))\" is invalid, not a node on top current:\"\(String(describing: type(of: self)))\"")
+            return
+        }
+        let rootNode = NodeWrapper(obj: ofTop)
+        let selfNode = rootNode.allSubnodes().first { $0.obj == obj }!
+        let rootString = rootNode.allSubnodes().map { $0.nodePrettyText(inDebug) + "\n" }.joined()
+        let selfString = selfNode.allSubnodes().map { $0.nodePrettyText(inDebug) + "\n" }.joined()
+        let nodeFirstLength = selfNode.allSubnodes().first!.nodePrettyText(inDebug).count
+        let nodeLastLength = selfNode.allSubnodes().last!.nodePrettyText(inDebug).count
+        let separateChain = sequence(first: "= ") { _ in "= " }
+        let prefix = separateChain.prefix(nodeFirstLength/2).joined()
+        let sufix = separateChain.prefix(nodeLastLength/2).joined()
+        let newSelfString = "\(prefix)\n\(selfString)\(sufix)\n"
+        let result = rootString.replacingOccurrences(of: selfString, with: newSelfString)
+        print(verticalTreeTitle + result)
+    }
+    // get the baseTree of rootNode
+    static func getTreeRoot(_ obj: Obj) -> Obj {
+        let seq = sequence(first: obj) { $0.parent }
+        return seq.first { $0.parent == nil }!
+    }
+}
+
 //MARK: - Pretty Print
 extension TreeNode {
     
@@ -44,80 +76,64 @@ extension TreeNode {
 }
 
 extension CALayer: BaseTree {
-    public var parent: CALayer? {
-        return superlayer
-    }
-    public var childs: [CALayer] {
-        return sublayers ?? []
-    }
     // helper
-    public var toLayer: CALayer {
-        return self
+    private var treeBaseClass: CALayer { return self }
+    // BaseTree
+    public var parent: CALayer? { return superlayer }
+    public var childs: [CALayer] { return sublayers ?? [] }
+    // extension
+    public func treePrettyPrint(inDebug: Bool = false) {
+        print(self.treePrettyText(inDebug: inDebug))
+    }
+    public func treePrettyText(inDebug: Bool = false) -> String {
+        return VerticalTreeSolution.treePrettyText(obj: treeBaseClass, inDebug: inDebug)
+    }
+    public func treePrettyText(ofTop: CALayer, inDebug: Bool = false) {
+        VerticalTreeSolution.treePrettyText(obj: treeBaseClass,ofTop: ofTop, inDebug: inDebug)
+    }
+    public var getTreeRoot: CALayer {
+        return VerticalTreeSolution.getTreeRoot(treeBaseClass)
     }
 }
 
 extension UIView: BaseTree {
-    public var parent: UIView? {
-        return superview
-    }
-    public var childs: [UIView] {
-        return subviews
-    }
     // helper
-    public var toView: UIView {
-        return self
+    private var treeBaseClass: UIView { return self }
+    // BaseTree
+    public var parent: UIView? { return superview }
+    public var childs: [UIView] { return subviews }
+    // extension
+    public func treePrettyPrint(inDebug: Bool = false) {
+        print(self.treePrettyText(inDebug: inDebug))
+    }
+    public func treePrettyText(inDebug: Bool = false) -> String {
+        return VerticalTreeSolution.treePrettyText(obj: treeBaseClass, inDebug: inDebug)
+    }
+    public func treePrettyText(ofTop: UIView, inDebug: Bool = false) {
+        VerticalTreeSolution.treePrettyText(obj: treeBaseClass,ofTop: ofTop, inDebug: inDebug)
+    }
+    public var getTreeRoot: UIView {
+        return VerticalTreeSolution.getTreeRoot(treeBaseClass)
     }
 }
 
 extension UIViewController: BaseTree {
-    public var parent: UIViewController? {
-        return self.parentVC
-    }
-    public var childs: [UIViewController] {
-        return children
-    }
     // helper
-    public var toVC: UIViewController {
-        return self
-    }
-}
-
-extension BaseTree where Self: NSObject, Self == Self.T {
-    
-    /// print
+    private var treeBaseClass: UIViewController { return self }
+    // BaseTree
+    public var parent: UIViewController? { return self.parentVC }
+    public var childs: [UIViewController] { return children }
+    // extension
     public func treePrettyPrint(inDebug: Bool = false) {
-        print(treePrettyText(inDebug: inDebug))
+        print(self.treePrettyText(inDebug: inDebug))
     }
-    
-    /// baseTree‘s structure
     public func treePrettyText(inDebug: Bool = false) -> String {
-        return NodeWrapper(obj: self).subTreePrettyText(moreInfoIfHave: inDebug, highlighted: nil)
+        return VerticalTreeSolution.treePrettyText(obj: treeBaseClass, inDebug: inDebug)
     }
-    
-    /// get ofTop‘s structure & highlight position of self
-    public func treePrettyText(ofTop: Self, inDebug: Bool = false) {
-        let parentChain = sequence(first: self) { $0.parent }
-        if !parentChain.contains(ofTop) {
-            print("ofTop:\"\(String(describing: type(of: ofTop)))\" is invalid, not a node on top current:\"\(String(describing: type(of: self)))\"")
-            return
-        }
-        let rootNode = NodeWrapper(obj: ofTop)
-        let selfNode = rootNode.allSubnodes().first { $0.obj == self }!
-        let rootString = rootNode.allSubnodes().map { $0.nodePrettyText(inDebug) + "\n" }.joined()
-        let selfString = selfNode.allSubnodes().map { $0.nodePrettyText(inDebug) + "\n" }.joined()
-        let nodeFirstLength = selfNode.allSubnodes().first!.nodePrettyText(inDebug).count
-        let nodeLastLength = selfNode.allSubnodes().last!.nodePrettyText(inDebug).count
-        let separateChain = sequence(first: "= ") { _ in "= " }
-        let prefix = separateChain.prefix(nodeFirstLength/2).joined()
-        let sufix = separateChain.prefix(nodeLastLength/2).joined()
-        let newSelfString = "\(prefix)\n\(selfString)\(sufix)\n"
-        let result = rootString.replacingOccurrences(of: selfString, with: newSelfString)
-        print(verticalTreeTitle + result)
+    public func treePrettyText(ofTop: UIViewController, inDebug: Bool = false) {
+        VerticalTreeSolution.treePrettyText(obj: treeBaseClass,ofTop: ofTop, inDebug: inDebug)
     }
-
-    // get the baseTree of rootNode
-    public var getTreeRoot: Self {
-        let seq = sequence(first: self) { $0.parent }
-        return seq.first { $0.parent == nil }!
+    public var getTreeRoot: UIViewController {
+        return VerticalTreeSolution.getTreeRoot(treeBaseClass)
     }
 }

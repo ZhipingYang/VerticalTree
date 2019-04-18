@@ -2,10 +2,7 @@
 
 > Provides a vertical drawing of the tree structure which can view information about the tree‘s nodes and supports console debug views & layers and so on
 
-### Apply in UIView
-
-
-#### 安装
+### 安装
 
 Podfile 添加
 
@@ -91,12 +88,12 @@ let treeVC = VerticalTreeListController(source: NodeWrapper(obj: view))
 // then show the treeVC
 ```
 > **Tip:**
-> 
 > wrapper对泛型`obj`是弱引用，因此不能直接present treeVC。(obj及子节点会被释放，因此无法折叠查看更多debug的信息)
 
-in VerticalTreeNodeWrapper.swift
 
-```
+```swift
+// in VerticalTreeNodeWrapper.swift
+
 /// config current node’s property value and recurrence apply the same rule in childNodes if you want
 ///
 /// - Parameters:
@@ -113,7 +110,7 @@ public func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) ->
 
 比如：全部节点自定义折叠中的文本信息 & 展开
 
-![IMG_0154](https://user-images.githubusercontent.com/9360037/56355927-1c917300-620a-11e9-9281-6658245cd321.jpg)
+<img width=50% src="https://user-images.githubusercontent.com/9360037/56355927-1c917300-620a-11e9-9281-6658245cd321.jpg">
 
 ```swift
 let wrapper = NodeWrapper(obj: view).changeProperties {
@@ -173,7 +170,9 @@ extension BaseTree where Self: NSObject, Self == Self.T {
 
 - 打印当前View树结构(查看更多debug信息)
 
-> `view.treePrettyPrint(true)`![image](https://user-images.githubusercontent.com/9360037/56188507-46a33380-6058-11e9-8f98-37646a2cbfe0.png)
+> `view.treePrettyPrint(true)`
+
+![image](https://user-images.githubusercontent.com/9360037/56188507-46a33380-6058-11e9-8f98-37646a2cbfe0.png)
 
 ### 顺便提一下
 
