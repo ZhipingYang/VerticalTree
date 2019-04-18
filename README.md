@@ -87,37 +87,33 @@ public protocol TreeNode: BaseTree {
 let treeVC = VerticalTreeListController(source: NodeWrapper(obj: view))
 // then show the treeVC
 ```
-> **Tip:**
-> wrapper对泛型`obj`是弱引用，因此不能直接present treeVC。(obj及子节点会被释放，因此无法折叠查看更多debug的信息)
+> **Tip:** <br>
+> NodeWrapper对泛型`obj`是弱引用，obj或其某个子节点被释放后，Node会保留着基础信息，但是TreeNode.Infomation.nodeDescription（折叠里的信息）是nil的，故当前node是无法张开查看
 
+
+#### 自定义配置节点属性
+
+使用如下 NodeWrapper 的方法
 
 ```swift
-// in VerticalTreeNodeWrapper.swift
-
 /// config current node’s property value and recurrence apply the same rule in childNodes if you want
 ///
 /// - Parameters:
 ///   - inChild: recurrence config in child or just config current
 ///   - config: rules
-/// - Returns: self
-@discardableResult
-public func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) -> Void) -> Self {
-    config(self)
-    if inChild { childs.forEach { $0.changeProperties(inChild: inChild, config: config) } }
-    return self
-}
+func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) -> Void) -> Self
 ```
 
-比如：全部节点自定义折叠中的文本信息 & 展开
+如图：修改 UIViewController 的 Wrapper
 
 <img width=50% src="https://user-images.githubusercontent.com/9360037/56355927-1c917300-620a-11e9-9281-6658245cd321.jpg">
 
 ```swift
-let wrapper = NodeWrapper(obj: view).changeProperties {
+// default to change all subnode in the same rules unless inChild set false
+let wrapper = NodeWrapper(obj: keyWindow.rootController).changeProperties {
     $0.isFold = false	// 默认全部Node展开
     $0.nodeDescription = "more infomation that you see now"
 }
-
 ```
 
 ### 2. 文本树
