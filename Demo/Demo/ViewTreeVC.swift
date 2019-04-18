@@ -13,7 +13,7 @@ class ViewTreeVC: UITableViewController {
     
     @IBAction func showViewTreeAction(_ sender: Any) {
         let _view: UIView = view.window ?? navigationController?.view ?? view
-        let wrapper = NodeWrapper(obj: _view)//.changeProperties({ $0.length = .eachLength(5) })
+        let wrapper = NodeWrapper(obj: _view)
         let tvc = VerticalTreeListController(source: wrapper)
         tvc.startViewTree()
     }

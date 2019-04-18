@@ -12,7 +12,7 @@
     "Daniel Yang": "xcodeyang@gmail.com"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "9.0"
   },
   "source": {
     "git": "https://github.com/ZhipingYang/VerticalTree.git",

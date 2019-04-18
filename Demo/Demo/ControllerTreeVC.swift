@@ -13,10 +13,10 @@ class ControllerTreeVC: UIViewController {
     
     let vc1 = UIViewController()
     let vc2 = UIInputViewController()
+    var wrapper: NodeWrapper<UIViewController>?
     
     @IBAction func treeAction(_ sender: Any) {
-        let tvc = VerticalTreeListController(source: NodeWrapper(obj: self.tabBarController!))
-        tvc.startViewTree()
+        VerticalTreeListController(source: wrapper!).startViewTree()
     }
     
     override func viewDidLoad() {
@@ -28,7 +28,24 @@ class ControllerTreeVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // tabbarViewController
-        toVC.getTreeRoot.treePrettyPrint()
+        wrapper = NodeWrapper(obj: toVC.getTreeRoot).changeProperties {
+            $0.length = .eachLength(20)
+            guard let targetVC = $0.obj else { return }
+            var nodeDescription = targetVC.description
+            let viewState = " viewState: \(targetVC.isViewLoaded ? ( targetVC.view.window != nil ? "appeared" : "disappeared_but_loaded") : "unloaded")"
+            let view = " view: \(targetVC.isViewLoaded ? String(describing: targetVC.self) : "(view not load)")"
+            let lastIndex = nodeDescription.index(nodeDescription.startIndex, offsetBy: nodeDescription.count-1)
+            nodeDescription.insert(contentsOf: viewState + view, at: lastIndex)
+            $0.nodeDescription = nodeDescription
+        }
+
+        // wrapper's way
+        print(wrapper!.treePrettyText(true))
+        
+        // VC extension
+        toVC.getTreeRoot.treePrettyPrint(inDebug: true)
+        
+        // LLDB's way
+        print(tabBarController!.value(forKey: "_printHierarchy")!)
     }
 }

@@ -36,10 +36,14 @@ public final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation w
     public var index: Int
     public var length: TreeNodeLength = .indexLength(80)
     public var isFold: Bool
-    public var nodeTitle: String
     public var info: Infomation { return self }
-    public var nodeDescription: String? { return obj?.nodeDescription }
-    weak var obj: Obj?
+    public var nodeTitle: String
+    public var nodeDescription: String? {
+        set { _nodeDescription = newValue }
+        get { return _nodeDescription ?? obj?.nodeDescription }
+    }
+    public weak var obj: Obj?
+    private var _nodeDescription: String?
 
     public convenience init(obj: Obj) {
         self.init(obj)!
@@ -55,11 +59,16 @@ public final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation w
         self.childs.forEach { $0.parent = self }
     }
     
-    //TODO: why cannot call this method??? 😤
-    @discardableResult
-    public func changeProperties(_ config: (NodeWrapper<Obj>) -> Void, inChild: Bool = true) -> Self {
-        config(self)
-        if inChild { childs.forEach { $0.changeProperties(config, inChild: inChild) } }
-        return self
-    }
+/// config current node’s property value and recurrence apply the same rule in childNodes if you want
+///
+/// - Parameters:
+///   - inChild: recurrence config in child or just config current
+///   - config: rules
+/// - Returns: self
+@discardableResult
+public func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) -> Void) -> Self {
+    config(self)
+    if inChild { childs.forEach { $0.changeProperties(inChild: inChild, config: config) } }
+    return self
+}
 }

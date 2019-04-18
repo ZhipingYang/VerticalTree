@@ -2,6 +2,9 @@
 
 > Provides a vertical drawing of the tree structure which can view information about the tree‘s nodes and supports console debug views & layers and so on
 
+### Apply in UIView
+
+
 #### 安装
 
 Podfile 添加
@@ -69,15 +72,61 @@ public protocol TreeNode: BaseTree {
 #### UIView 示范
 
 > `UIView` 的层级就是树状结构
-> - 图形树绘制 (可折叠)
-> - 文本树生成
+>
+- 图形树绘制 (可折叠)
+- 文本树生成
 
 <p align="center">
 <img width=30% src="https://user-images.githubusercontent.com/9360037/56127886-c07fe200-5fb0-11e9-9c8a-ce677ea0b7e5.PNG"> <img width=30% src="https://user-images.githubusercontent.com/9360037/56130707-3e93b700-5fb8-11e9-914b-08abd4335eb0.PNG">
 <img width=36% src="https://user-images.githubusercontent.com/9360037/56188383-f330e580-6057-11e9-94f7-b74bed4ebd23.png">
 </p>
 
-#### 用法
+## 用法
+### 1. 图形树
+> 以UIView示范: [如上图2](https://github.com/ZhipingYang/VerticalTree#uiview-%E7%A4%BA%E8%8C%83)
+
+```swift
+// in ViewController
+let treeVC = VerticalTreeListController(source: NodeWrapper(obj: view))
+// then show the treeVC
+```
+> **Tip:**
+> 
+> wrapper对泛型`obj`是弱引用，因此不能直接present treeVC。(obj及子节点会被释放，因此无法折叠查看更多debug的信息)
+
+in VerticalTreeNodeWrapper.swift
+
+```
+/// config current node’s property value and recurrence apply the same rule in childNodes if you want
+///
+/// - Parameters:
+///   - inChild: recurrence config in child or just config current
+///   - config: rules
+/// - Returns: self
+@discardableResult
+public func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) -> Void) -> Self {
+    config(self)
+    if inChild { childs.forEach { $0.changeProperties(inChild: inChild, config: config) } }
+    return self
+}
+```
+
+比如：全部节点自定义折叠中的文本信息 & 展开
+
+![IMG_0154](https://user-images.githubusercontent.com/9360037/56355927-1c917300-620a-11e9-9281-6658245cd321.jpg)
+
+```swift
+let wrapper = NodeWrapper(obj: view).changeProperties {
+    $0.isFold = false	// 默认全部Node展开
+    $0.nodeDescription = "more infomation that you see now"
+}
+
+```
+
+### 2. 文本树
+
+文本树 [如上图3](https://github.com/ZhipingYang/VerticalTree#uiview-%E7%A4%BA%E8%8C%83)
+
 > 以UIView示范，让 UIView 遵守协议；
 > 更多详见Demo（UIView，CALayer，UIViewController，自定义Node）
 
@@ -116,7 +165,7 @@ extension BaseTree where Self: NSObject, Self == Self.T {
 ```
 - 打印当前View树结构
 
-> `view.treePrettyPrint()` 输入文本树如上：UIView示范
+> `view.treePrettyPrint()`
 
 - 打印当前Windows树结构
 
