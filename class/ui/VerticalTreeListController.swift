@@ -9,7 +9,7 @@
 import UIKit
 
 public class VerticalTreeListController<T: TreeNode>: UITableViewController {
-    
+    var didSelectedHandle: ((T)->Void)?
     /// dataSource
     private var rootNodeDataList = [[T]]()
 
@@ -72,8 +72,14 @@ public class VerticalTreeListController<T: TreeNode>: UITableViewController {
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath) as? VerticalTreeCell<T> else { return }
         var node = rootNodeDataList[indexPath.section][indexPath.row]
+
+        if let handle = didSelectedHandle {
+            handle(node)
+            return
+        }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? VerticalTreeCell<T> else { return }
         node.isFold = !node.isFold
         rootNodeDataList[indexPath.section][indexPath.row] = node
         

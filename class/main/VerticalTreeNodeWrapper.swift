@@ -59,16 +59,16 @@ public final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation w
         self.childs.forEach { $0.parent = self }
     }
     
-/// config current node’s property value and recurrence apply the same rule in childNodes if you want
-///
-/// - Parameters:
-///   - inChild: recurrence config in child or just config current
-///   - config: rules
-/// - Returns: self
-@discardableResult
-public func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) -> Void) -> Self {
-    config(self)
-    if inChild { childs.forEach { $0.changeProperties(inChild: inChild, config: config) } }
-    return self
-}
+    /// config current node’s property value and recurrence apply the same rule in childNodes if you want
+    ///
+    /// - Parameters:
+    ///   - inChild: recurrence config in child or just config current
+    ///   - config: rules
+    /// - Returns: self
+    @discardableResult
+    public func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) -> Void) -> Self {
+        config(self)
+        if inChild { childs.forEach { $0.changeProperties(inChild: inChild, config: config) } }
+        return self
+    }
 }
