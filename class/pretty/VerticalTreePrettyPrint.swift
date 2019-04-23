@@ -67,12 +67,12 @@ private class VerticalTreeSolution<Obj: NSObject & IndexPathNode> where Obj.T ==
 
 //MARK: - Pretty Print
 extension VerticalTreeNode {
-    
+    /// Box-drawing character https://en.wikipedia.org/wiki/Box-drawing_character
     /// get treeNode pretty description
     public func nodePrettyText(_ moreInfoIfHave: Bool = false) -> String {
         let nodeChain = sequence(first: parent) { $0?.parent }
-        let spaceStrings = nodeChain.map { ($0 != nil) ? ($0?.haveNext ?? false ? " |" : ($0?.haveParent ?? false ? "  ":"")) : "" }
-        let firstPre = (haveParent ? " |" : "") + "——— "
+        let spaceStrings = nodeChain.map { ($0 != nil) ? ($0?.haveNext ?? false ? " │" : ($0?.haveParent ?? false ? "  ":"")) : "" }
+        let firstPre = (haveParent ? (haveNext ? " ├" : " └") : "") + (haveChild ? "─┬─ ":"─── ")
         let keyText = moreInfoIfHave ? (info.nodeDescription ?? info.nodeTitle) : info.nodeTitle
         return spaceStrings.reversed().joined() + firstPre + keyText
     }

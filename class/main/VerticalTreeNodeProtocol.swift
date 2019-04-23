@@ -35,7 +35,7 @@ extension Infomation where Self: NSObjectProtocol {
 
 // MARK: - IndexPathNode
 
-/// base tree structure and position
+/// base treeNode structure and position
 public protocol IndexPathNode {
     associatedtype T: IndexPathNode
     var parent: T? { get }

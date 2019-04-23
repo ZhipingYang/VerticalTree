@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'VerticalTree'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Vertical drawing the TreeView'
   s.description      = <<-DESC
   Provides a vertical drawing of the tree structure and view information about the tree‘s nodes

@@ -39,7 +39,7 @@ class VerticalTreeIndexView<T: VerticalTreeNode>: UIView {
                 $0.removeFromSuperlayer()
             })
             verticalLines.enumerated().forEach { $1.backgroundColor = UIColor.treeDeep($0, treeDeep).cgColor }
-            labelLeading?.constant = indexLeading
+            labelLeading?.constant = indexLeading + 4
             self.setNeedsLayout()
         }
     }
