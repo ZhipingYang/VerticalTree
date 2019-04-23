@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class VerticalTreeListController<T: TreeNode>: UITableViewController {
+public class VerticalTreeListController<T: VerticalTreeNode>: UITableViewController {
     var didSelectedHandle: ((T)->Void)?
     /// dataSource
     private var rootNodeDataList = [[T]]()

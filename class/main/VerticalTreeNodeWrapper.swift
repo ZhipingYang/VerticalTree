@@ -28,12 +28,12 @@ extension NSObject: Infomation {
     }
 }
 
-public final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation where Obj.T == Obj {
+public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode, Infomation where Obj.T == Obj {
     
     public typealias U = NodeWrapper<Obj>
-    public var parent: U?
+    public var parent: U? = nil
     public var childs: [U]
-    public var index: Int
+    public var indexPath: IndexPath // do not modify
     public var length: TreeNodeLength = .indexLength(80)
     public var isFold: Bool
     public var info: Infomation { return self }
@@ -43,19 +43,24 @@ public final class NodeWrapper<Obj: NSObject & BaseTree>: TreeNode, Infomation w
         get { return _nodeDescription ?? obj?.nodeDescription }
     }
     public weak var obj: Obj?
+    
     private var _nodeDescription: String?
 
-    public convenience init(obj: Obj) {
-        self.init(obj)!
+    public convenience init(obj: Obj, _ indexPath: IndexPath = IndexPath(index: 0)) {
+        self.init(obj, indexPath)!
     }
     
-    public required init?(_ obj: Obj?) {
+    public required init?(_ obj: Obj?, _ indexPath: IndexPath? = nil) {
         guard let obj = obj else { return nil }
+        let indexPath = indexPath ?? IndexPath(index: 0)
+        
         self.obj = obj
         self.isFold = obj.isFold
-        self.childs = obj.childs.map{ NodeWrapper(obj: $0) }
-        self.index = obj.parent?.childs.firstIndex{ $0 == obj } ?? 0
         self.nodeTitle = obj.nodeTitle
+        self.indexPath = indexPath
+        
+        self.childs = obj.childs.enumerated().map { NodeWrapper(obj: $0.element, indexPath.appending($0.offset)) }
+        
         self.childs.forEach { $0.parent = self }
     }
     

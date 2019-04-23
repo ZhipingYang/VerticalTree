@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VerticalTreeIndexView<T: TreeNode>: UIView {
+class VerticalTreeIndexView<T: VerticalTreeNode>: UIView {
     
     var labelLeading: NSLayoutConstraint?
     
@@ -39,21 +39,9 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
                 $0.removeFromSuperlayer()
             })
             verticalLines.enumerated().forEach { $1.backgroundColor = UIColor.treeDeep($0, treeDeep).cgColor }
-            labelLeading?.constant = indexWidth
+            labelLeading?.constant = indexLeading
             self.setNeedsLayout()
         }
-    }
-    
-    var indexWidth: CGFloat {
-        guard let node = node else { return -40 }
-        let width =  self.frame.width
-        var eachW: CGFloat = 0;
-        if case .eachLength(let lengthValue) = node.length {
-            eachW = lengthValue
-        } else if case .indexLength(let lengthValue) = node.length {
-            eachW = lengthValue / CGFloat(max(node.treeDeep, 1))
-        }
-        return eachW * CGFloat(node.currentDeep-1) + min(2*eachW, width-(eachW * CGFloat(node.currentDeep-1)))
     }
     
     override init(frame: CGRect) {
@@ -85,18 +73,10 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
         super.layoutSubviews()
         guard let node = node else { return }
         
-        let width =  self.frame.width
         let height =  self.frame.height
-        var eachW: CGFloat = 0;
-        if case .eachLength(let lengthValue) = node.length {
-            eachW = lengthValue
-        } else if case .indexLength(let lengthValue) = node.length {
-            eachW = lengthValue / CGFloat(max(node.treeDeep, 1))
-        }
-        horizonLine.frame = CGRect(x: eachW * CGFloat(node.currentDeep-1),
-                                   y: height/2.0,
-                                   width: min(2*eachW, width-(eachW * CGFloat(node.currentDeep-1))),
-                                   height: 1)
+        let eachW = eachWidth
+        let indexLeading = eachW * CGFloat(node.currentDeep-1)
+        horizonLine.frame = CGRect(x: indexLeading, y: height/2.0, width: 2*eachW, height: 1)
                 
         let line1 = verticalLines[node.currentDeep-1]
         line1.isHidden = false
@@ -136,6 +116,26 @@ class VerticalTreeIndexView<T: TreeNode>: UIView {
     
     @objc private func copyText(_ sender: Any?) {
         UIPasteboard.general.string = node?.info.nodeDescription ?? node?.info.nodeTitle
+    }
+}
+
+fileprivate extension VerticalTreeIndexView {
+    
+    var eachWidth: CGFloat {
+        guard let node = node else { return 0 }
+        if case .eachLength(let lengthValue) = node.length {
+            return lengthValue
+        } else if case .indexLength(let lengthValue) = node.length {
+            return lengthValue / CGFloat(max(node.treeDeep, 1))
+        }
+        return 0
+    }
+    
+    var indexLeading: CGFloat {
+        guard let node = node else { return 0 }
+        let eachW = eachWidth
+        let length = eachW * CGFloat(node.currentDeep-1);
+        return length + 2*eachW
     }
 }
 

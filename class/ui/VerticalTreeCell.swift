@@ -9,7 +9,7 @@
 import UIKit
 import Then
 
-class VerticalTreeCell<T: TreeNode>: UITableViewCell {
+class VerticalTreeCell<T: VerticalTreeNode>: UITableViewCell {
     
     var descriptionHeightConstraint: NSLayoutConstraint?
 

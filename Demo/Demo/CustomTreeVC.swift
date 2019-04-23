@@ -8,32 +8,31 @@
 
 import UIKit
 import VerticalTree
+import Then
 
 var deep = 0
 
-final class CustomNode: TreeNode, Infomation {
-    
-    typealias U = CustomNode
+final class CustomNode: NSObject, VerticalTreeNode {
     var parent: CustomNode?
     var childs: [CustomNode] = []
-    var index: Int = 0
+    var indexPath: IndexPath
     var length: TreeNodeLength = .eachLength(10)
     var info: Infomation { return self }
     var isFold: Bool = true
-    var nodeTitle: String { return "deep:\(currentDeep) - index:\(index)" }
+    var nodeTitle: String { return "indexPath:\(indexPath)" }
     var nodeDescription: String? {
         return String(describing: self.self)
     }
 
-    init() {
+    init(indexPath: IndexPath = IndexPath(index: 0)) {
+        self.indexPath = indexPath
+        super.init()
+        
         if deep > 20 { return }
         deep += 1
         
-        childs = (0..<Int.random(in: 0...3)).map { num in
-            let node = CustomNode()
-            node.index = num
-            node.parent = self
-            return node
+        childs = (0..<Int.random(in: 0...3)).map {
+            CustomNode(indexPath: indexPath.appending($0)).then { $0.parent = self }
         }
     }
 }
@@ -44,6 +43,10 @@ class CustomTreeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        update()
+    }
+    
+    private func update() {
         deep = 0
         let node1 = CustomNode()
         deep = 0
@@ -54,6 +57,8 @@ class CustomTreeVC: UIViewController {
     }
     
     @IBAction func treeAction(_ sender: Any) {
+        update()
+        
         let tvc = VerticalTreeListController<CustomNode>(style: UITableView.Style.plain)
         tvc.rootNodes = rootNodes
         tvc.startViewTree()

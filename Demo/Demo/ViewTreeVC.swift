@@ -32,11 +32,11 @@ class ViewTreeVC: UITableViewController {
         let vc = VerticalTreeListController(source: wrapper)
         vc.startViewTree()
         
+        // console log, mark cell struct in the tableview struct
+        cell?.treePrettyText(ofTop: view, inDebug: false)
+        
         // wrapper log
         print(wrapper.treePrettyText())
-        
-        // console log, mark cell struct in the tableview struct
-        cell?.treePrettyText(ofTop: view, inDebug: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,7 +46,7 @@ class ViewTreeVC: UITableViewController {
         
         // windows
         cell?.treePrettyPrint(inDebug: true)
-        
+
         // view layer
         cell?.layer.treePrettyPrint()
     }

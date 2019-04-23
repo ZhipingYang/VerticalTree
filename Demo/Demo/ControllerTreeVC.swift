@@ -38,12 +38,12 @@ class ControllerTreeVC: UIViewController {
             nodeDescription.insert(contentsOf: viewState + view, at: lastIndex)
             $0.nodeDescription = nodeDescription
         }
-
-        // wrapper's way
-        print(wrapper!.treePrettyText(true))
         
         // VC extension
         getTreeRoot.treePrettyPrint(inDebug: true)
+
+        // wrapper's way
+        print(wrapper!.treePrettyText(true))
         
         // LLDB's way
         print(tabBarController!.value(forKey: "_printHierarchy")!)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VerticalTreeListView<T: TreeNode>: UITableView, UITableViewDelegate, UITableViewDataSource {
+class VerticalTreeListView<T: VerticalTreeNode>: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var rootNodeDataList = [[T]]()
     
