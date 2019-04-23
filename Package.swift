@@ -9,9 +9,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "VerticalTreeView",
+    name: "VerticalTree",
     products: [
-        .library(name: "VerticalTreeView", targets: ["Demo"]),
+        .library(name: "VerticalTree", targets: ["Demo"]),
     ],
     targets: [
         .target(name: "Demo"),
