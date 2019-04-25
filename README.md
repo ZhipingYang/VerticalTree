@@ -151,7 +151,7 @@ print(rootNode.subTreePrettyText())
 使用 [VerticalTree/PrettyText](https://github.com/ZhipingYang/VerticalTree/blob/master/class/pretty/VerticalTreePrettyPrint.swift#L85) 的UIView扩展更简单
 
 ```swift
-extension BaseTree where Self: NSObject, Self == Self.T {
+extension IndexPathNode where Self: NSObject, Self == Self.T {
     /// print
     public func treePrettyPrint(inDebug: Bool = false) {...}
     /// baseTree‘s structure

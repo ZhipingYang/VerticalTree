@@ -6,27 +6,9 @@
 //  Copyright © 2019 Daniel Yang. All rights reserved.
 //
 
-import UIKit
-import ObjectiveC
+import Foundation
 
-private struct UIViewTreeAssociateKey {
-    static var isFold = 0
-}
-
-extension NSObject: Infomation {
-    fileprivate var isFold: Bool {
-        get {
-            guard let number = objc_getAssociatedObject(self, &UIViewTreeAssociateKey.isFold) as? NSNumber else {
-                self.isFold = true
-                return self.isFold
-            }
-            return number.boolValue
-        }
-        set {
-            objc_setAssociatedObject(self, &UIViewTreeAssociateKey.isFold, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-}
+extension NSObject: Infomation {}
 
 public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode, Infomation where Obj.T == Obj {
     
@@ -35,7 +17,7 @@ public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode,
     public var childs: [U]
     public var indexPath: IndexPath // do not modify
     public var length: TreeNodeLength = .indexLength(80)
-    public var isFold: Bool
+    public var isFold: Bool = true
     public var info: Infomation { return self }
     public var nodeTitle: String
     public var nodeDescription: String? {
@@ -55,12 +37,9 @@ public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode,
         let indexPath = indexPath ?? IndexPath(index: 0)
         
         self.obj = obj
-        self.isFold = obj.isFold
         self.nodeTitle = obj.nodeTitle
         self.indexPath = indexPath
-        
         self.childs = obj.childs.enumerated().map { NodeWrapper(obj: $0.element, indexPath.appending($0.offset)) }
-        
         self.childs.forEach { $0.parent = self }
     }
     
