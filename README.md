@@ -19,10 +19,6 @@ pod 'VerticalTree/Core'
 pod 'VerticalTree/PrettyText'
 ```
 
-临时方案 😂
-
-`pod 'VerticalTree', :git => 'https://github.com/ZhipingYang/VerticalTree.git'`
-
 #### 代码结构
 
 ```

@@ -17,16 +17,16 @@ Pod::Spec.new do |s|
   s.dependency "Then"
 
   s.default_subspecs = 'Core', 'UI', 'PrettyText'
-  s.subspec 'Core' do |tree|
-      tree.source_files = 'class/main/*.swift'
+  s.subspec 'Core' do |c|
+      c.source_files = 'class/main/*.swift'
   end
-  s.subspec 'UI' do |tree|
-      tree.source_files = 'class/ui/*.swift'
-      tree.dependency 'VerticalTree/Core'
+  s.subspec 'UI' do |ui|
+      ui.source_files = 'class/ui/*.swift'
+      ui.dependency 'VerticalTree/Core'
   end
-  s.subspec 'PrettyText' do |tree|
-      tree.source_files = 'class/pretty/*.swift'
-      tree.dependency 'VerticalTree/Core'
+  s.subspec 'PrettyText' do |pt|
+      pt.source_files = 'class/pretty/*.swift'
+      pt.dependency 'VerticalTree/Core'
   end
 
 end
