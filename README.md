@@ -3,18 +3,18 @@
 </p>
 
 <p align="center">
-	<a href="http://cocoapods.org/pods/XYDebugView">
+	<a href="http://cocoapods.org/pods/VerticalTree">
 		<image alt="Version" src="https://img.shields.io/cocoapods/v/VerticalTree.svg?style=flat">
 	</a>
 	<image alt="CI Status" src="https://img.shields.io/badge/Swift-5.0-orange.svg">
-	<a href="http://cocoapods.org/pods/XYDebugView">
-		<image alt="License" src="https://img.shields.io/cocoapods/l/XYDebugView.svg?style=flat">
+	<a href="http://cocoapods.org/pods/VerticalTree">
+		<image alt="License" src="https://img.shields.io/cocoapods/l/VerticalTree.svg?style=flat">
 	</a>
-	<a href="http://cocoapods.org/pods/XYDebugView">
-		<image alt="Platform" src="https://img.shields.io/cocoapods/p/XYDebugView.svg?style=flat">
+	<a href="http://cocoapods.org/pods/VerticalTree">
+		<image alt="Platform" src="https://img.shields.io/cocoapods/p/VerticalTree.svg?style=flat">
 	</a>
 	<a href="https://travis-ci.org/ZhipingYang/VerticalTree">
-		<image alt="CI Status" src="http://img.shields.io/travis/ZhipingYang/FORScrollViewEmptyAssistant.svg?style=flat">
+		<image alt="CI Status" src="http://img.shields.io/travis/ZhipingYang/VerticalTree.svg?style=flat">
 	</a>
 </p>
 
