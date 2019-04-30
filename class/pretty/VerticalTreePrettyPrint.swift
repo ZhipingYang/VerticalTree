@@ -8,34 +8,6 @@
 import UIKit
 
 //MARK: - helper
-
-fileprivate var verticalTreeTitle: String {
-    return "\n======>> Vertical Tree <<======\n\n"
-}
-
-//MARK: - Pretty Print
-extension VerticalTreeNode {
-    /// Box-drawing character https://en.wikipedia.org/wiki/Box-drawing_character
-    /// get treeNode pretty description
-    public func nodePrettyText(_ moreInfoIfHave: Bool = false) -> String {
-        let nodeChain = sequence(first: parent) { $0?.parent }
-        let spaceStrings = nodeChain.map { ($0 != nil) ? ($0?.haveNext ?? false ? " │" : ($0?.haveParent ?? false ? "  ":"")) : "" }
-        let firstPre = (haveParent ? (haveNext ? " ├" : " └") : "") + (haveChild ? "─┬─ ":"─── ")
-        let keyText = moreInfoIfHave ? (info.nodeDescription ?? info.nodeTitle) : info.nodeTitle
-        return spaceStrings.reversed().joined() + firstPre + keyText
-    }
-    
-    /// as a subtree at current node
-    public func subTreePrettyText(moreInfoIfHave: Bool = false, highlighted: Self? = nil) -> String {
-        return verticalTreeTitle + self.allSubnodes().map { $0.nodePrettyText(moreInfoIfHave) + "\n" }.joined()
-    }
-    
-    /// found rootNode then get the full tree
-    public func treePrettyText(_ moreInfoIfHave: Bool = false) -> String {
-        return getRootNode().subTreePrettyText(moreInfoIfHave: moreInfoIfHave)
-    }
-}
-
 extension UIResponder {
     // get vc by the responder chain
     fileprivate var parentVC: UIViewController? {
@@ -51,7 +23,7 @@ private class VerticalTreeSolution<Obj: NSObject & IndexPathNode> where Obj.T ==
     }
     
     /// get ofTop‘s structure & highlight position of self
-    static func treePrettyText(obj: Obj, ofTop: Obj, inDebug: Bool = false) {
+    static func treePrettyPrint(obj: Obj, ofTop: Obj, inDebug: Bool = false) {
         let parentChain = sequence(first: obj) { $0.parent }
         if !parentChain.contains(ofTop) {
             print("ofTop:\"\(String(describing: type(of: ofTop)))\" is invalid, not a node on top current:\"\(String(describing: type(of: self)))\"")
@@ -73,7 +45,7 @@ private class VerticalTreeSolution<Obj: NSObject & IndexPathNode> where Obj.T ==
         
         let newSelfString = "\(prefix)\n\(selfString)\(sufix)\n"
         let result = rootString.replacingOccurrences(of: selfString, with: newSelfString)
-        print(verticalTreeTitle + result)
+        print(VerticalTreeHeaderTitle + result)
     }
     
     // get the baseTree of rootNode
@@ -102,8 +74,8 @@ extension CALayer: IndexPathNode {
     public func treePrettyText(inDebug: Bool = false) -> String {
         return VerticalTreeSolution.treePrettyText(obj: treeBaseClass, inDebug: inDebug)
     }
-    public func treePrettyText(ofTop: CALayer, inDebug: Bool = false) {
-        VerticalTreeSolution.treePrettyText(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
+    public func treePrettyPrint(ofTop: CALayer, inDebug: Bool = false) {
+        VerticalTreeSolution.treePrettyPrint(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
     }
     public var getTreeRoot: CALayer {
         return VerticalTreeSolution.getTreeRoot(treeBaseClass)
@@ -127,8 +99,8 @@ extension UIView: IndexPathNode {
     public func treePrettyText(inDebug: Bool = false) -> String {
         return VerticalTreeSolution.treePrettyText(obj: treeBaseClass, inDebug: inDebug)
     }
-    public func treePrettyText(ofTop: UIView, inDebug: Bool = false) {
-        VerticalTreeSolution.treePrettyText(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
+    public func treePrettyPrint(ofTop: UIView, inDebug: Bool = false) {
+        VerticalTreeSolution.treePrettyPrint(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
     }
     public var getTreeRoot: UIView {
         return VerticalTreeSolution.getTreeRoot(treeBaseClass)
@@ -151,8 +123,8 @@ extension UIViewController: IndexPathNode {
     public func treePrettyText(inDebug: Bool = false) -> String {
         return VerticalTreeSolution.treePrettyText(obj: treeBaseClass, inDebug: inDebug)
     }
-    public func treePrettyText(ofTop: UIViewController, inDebug: Bool = false) {
-        VerticalTreeSolution.treePrettyText(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
+    public func treePrettyPrint(ofTop: UIViewController, inDebug: Bool = false) {
+        VerticalTreeSolution.treePrettyPrint(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
     }
     public var getTreeRoot: UIViewController {
         return VerticalTreeSolution.getTreeRoot(treeBaseClass)

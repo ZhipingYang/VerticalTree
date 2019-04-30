@@ -33,7 +33,7 @@ class ViewTreeVC: UITableViewController {
         vc.startViewTree()
         
         // console log, mark cell struct in the tableview struct
-        cell?.treePrettyText(ofTop: view, inDebug: false)
+        cell?.treePrettyPrint(ofTop: view, inDebug: false)
         
         // wrapper log
         print(wrapper.treePrettyText())
