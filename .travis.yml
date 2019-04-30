@@ -3,5 +3,5 @@ language: swift
 
 # Build with tests
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace demo/Demo.xcworkspace -scheme Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone SE,OS=12.1' ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
+- pod repo update
+- pod lib lint --verbose --allow-warnings
