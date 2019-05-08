@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'VerticalTree'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = 'Vertical drawing the TreeView'
   s.description      = <<-DESC
   Provides a vertical drawing of the tree structure and view information about the tree‘s nodes
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |c|
       c.source_files = 'class/core/*.swift'
-	  s.framework = "Foundation"
+      c.framework = "Foundation"
   end
 
   s.subspec 'UI' do |ui|

@@ -15,9 +15,11 @@ public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode,
     public typealias U = NodeWrapper<Obj>
     public var parent: U? = nil
     public var childs: [U]
-    public var indexPath: IndexPath // do not modify
+    
+    public var indexPath: IndexPath { return _indexPath }
     public var length: TreeNodeLength = .indexLength(80)
     public var isFold: Bool = true
+    
     public var info: Infomation { return self }
     public var nodeTitle: String
     public var nodeDescription: String? {
@@ -27,6 +29,7 @@ public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode,
     public weak var obj: Obj?
     
     private var _nodeDescription: String?
+    private var _indexPath: IndexPath
 
     public convenience init(obj: Obj, _ indexPath: IndexPath = IndexPath(index: 0)) {
         self.init(obj, indexPath)!
@@ -35,10 +38,10 @@ public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode,
     public required init?(_ obj: Obj?, _ indexPath: IndexPath? = nil) {
         guard let obj = obj else { return nil }
         let indexPath = indexPath ?? IndexPath(index: 0)
+        _indexPath = indexPath
         
         self.obj = obj
         self.nodeTitle = obj.nodeTitle
-        self.indexPath = indexPath
         self.childs = obj.childs.enumerated().map { NodeWrapper(obj: $0.element, indexPath.appending($0.offset)) }
         self.childs.forEach { $0.parent = self }
     }

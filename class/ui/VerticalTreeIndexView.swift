@@ -13,11 +13,11 @@ class VerticalTreeIndexView<T: VerticalTreeNode>: UIView {
     var labelLeading: NSLayoutConstraint?
     
     lazy var label: UILabel = {
-        UILabel().then {
-            $0.textColor = UIColor.black
-            $0.font = UIFont.systemFont(ofSize: 12)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
+        let label = UILabel()
+        label.textColor = UIColor.black
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     var horizonLine = CALayer()

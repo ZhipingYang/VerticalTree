@@ -56,8 +56,8 @@ extension IndexPathNode where Self.T == Self {
     /// - Returns: array of all subnodes
     public func allSubnodes(_ includeSelf: Bool = true) -> [T] {
         // good way but no suit, should in preorder traversal
-        //        let seq = sequence(first: includeSelf ? [self] : self.childs) { $0.count<=0 ? nil : $0.map({ $0.childs }).flatMap({ $0 }) }
-        //        return seq.flatMap{ $0 }
+//        let seq = sequence(first: includeSelf ? [self] : self.childs) { $0.count<=0 ? nil : $0.map({ $0.childs }).flatMap({ $0 }) }
+//        return seq.flatMap{ $0 }
         var arr = self.childs.reduce([T]()) { $0 + [$1] + $1.allSubnodes(false) }
         if includeSelf { arr.insert(self, at: 0) }
         return arr

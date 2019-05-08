@@ -14,19 +14,17 @@ class VerticalTreeCell<T: VerticalTreeNode>: UITableViewCell {
     var descriptionHeightConstraint: NSLayoutConstraint?
 
     lazy var indexView: VerticalTreeIndexView<T> = {
-        VerticalTreeIndexView<T>().then {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
+        return VerticalTreeIndexView<T>().then { $0.translatesAutoresizingMaskIntoConstraints = false }
     }()
     
     lazy var descriptionLabel: UILabel = {
-        UILabel().then {
-            $0.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.font = UIFont.systemFont(ofSize: 10)
-            $0.textColor = UIColor.lightGray
-            $0.numberOfLines = 0
-        }
+        let label = UILabel()
+        label.backgroundColor = UIColor.yellow.withAlphaComponent(0.2)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = UIColor.lightGray
+        label.numberOfLines = 0
+        return label
     }()
 
     var fold: Bool = true {
