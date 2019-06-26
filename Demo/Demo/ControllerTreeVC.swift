@@ -28,8 +28,8 @@ class ControllerTreeVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        wrapper = NodeWrapper(obj: getTreeRoot).changeProperties {
-            $0.length = .eachLength(20)
+        wrapper = NodeWrapper(obj: rootNode).changeProperties {
+            $0.length = .each(20)
             guard let targetVC = $0.obj else { return }
             var nodeDescription = targetVC.description
             let viewState = " viewState: \(targetVC.isViewLoaded ? ( targetVC.view.window != nil ? "appeared" : "disappeared_but_loaded") : "unloaded")"
@@ -40,7 +40,7 @@ class ControllerTreeVC: UIViewController {
         }
         
         // VC extension
-        getTreeRoot.treePrettyPrint(inDebug: true)
+        rootNode.treePrettyPrint(inDebug: true)
 
         // wrapper's way
         print(wrapper!.treePrettyText(true))

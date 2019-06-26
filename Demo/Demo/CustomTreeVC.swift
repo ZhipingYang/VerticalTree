@@ -16,7 +16,7 @@ final class CustomNode: NSObject, VerticalTreeNode {
     var parent: CustomNode?
     var childs: [CustomNode] = []
     var indexPath: IndexPath
-    var length: TreeNodeLength = .eachLength(10)
+    var length: TreeNodeLength = .each(10)
     var info: Infomation { return self }
     var isFold: Bool = true
     var nodeTitle: String { return "indexPath:\(indexPath)" }

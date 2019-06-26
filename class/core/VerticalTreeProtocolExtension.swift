@@ -17,6 +17,37 @@ extension Infomation where Self: NSObjectProtocol {
     }
 }
 
+// MARK: - BaseNode
+extension BaseNode {
+    
+    public var haveChild: Bool {
+        return self.childs.count > 0
+    }
+    
+    public var haveParent: Bool {
+        return self.parent != nil
+    }
+}
+
+extension BaseNode where Self.T == Self {
+    
+    internal var rootNode: T {
+        let seq = sequence(first: self) { $0.parent }
+        return seq.first(where: { $0.parent == nil })!
+    }
+    
+    /// get allsubnodes by recurrence way
+    ///
+    /// - Parameter includeSelf: the allsubnodes include self or not
+    /// - Returns: array of all subnodes
+    public func allSubnodes(_ includeSelf: Bool = true) -> [T] {
+        // should in preorder traversal
+        var arr = self.childs.reduce([T]()) { $0 + [$1] + $1.allSubnodes(false) }
+        if includeSelf { arr.insert(self, at: 0) }
+        return arr
+    }
+}
+
 // MARK: - IndexPathNode
 extension IndexPathNode {
     
@@ -30,14 +61,6 @@ extension IndexPathNode {
         return index[index.count-1]
     }
     
-    public var haveChild: Bool {
-        return self.childs.count > 0
-    }
-    
-    public var haveParent: Bool {
-        return self.parent != nil
-    }
-    
     public var haveNext: Bool {
         return self.index < (self.parent?.childs.count ?? 1) - 1
     }
@@ -45,28 +68,10 @@ extension IndexPathNode {
 
 extension IndexPathNode where Self.T == Self {
     
-    public func getRootNode() -> T {
-        let seq = sequence(first: self) { $0.parent }
-        return seq.first(where: { $0.parent == nil })!
-    }
-    
-    /// get allsubnodes by recurrence way
-    ///
-    /// - Parameter includeSelf: the allsubnodes include self or not
-    /// - Returns: array of all subnodes
-    public func allSubnodes(_ includeSelf: Bool = true) -> [T] {
-        // good way but no suit, should in preorder traversal
-//        let seq = sequence(first: includeSelf ? [self] : self.childs) { $0.count<=0 ? nil : $0.map({ $0.childs }).flatMap({ $0 }) }
-//        return seq.flatMap{ $0 }
-        var arr = self.childs.reduce([T]()) { $0 + [$1] + $1.allSubnodes(false) }
-        if includeSelf { arr.insert(self, at: 0) }
-        return arr
-    }
-    
     /// the deepest of node tree
     /// note: minimum deep start from 1
     public var treeDeep: Int {
-        return getRootNode().allSubnodes().max { $0.currentDeep < $1.currentDeep }?.currentDeep ?? 1
+        return rootNode.allSubnodes().max { $0.currentDeep < $1.currentDeep }?.currentDeep ?? 1
     }
 }
 
@@ -95,6 +100,6 @@ extension VerticalTreeNode {
     
     /// found rootNode then get the full tree
     public func treePrettyText(_ moreInfoIfHave: Bool = false) -> String {
-        return getRootNode().subTreePrettyText(moreInfoIfHave: moreInfoIfHave)
+        return rootNode.subTreePrettyText(moreInfoIfHave: moreInfoIfHave)
     }
 }

@@ -123,9 +123,9 @@ fileprivate extension VerticalTreeIndexView {
     
     var eachWidth: CGFloat {
         guard let node = node else { return 0 }
-        if case .eachLength(let lengthValue) = node.length {
+        if case .each(let lengthValue) = node.length {
             return lengthValue
-        } else if case .indexLength(let lengthValue) = node.length {
+        } else if case .index(let lengthValue) = node.length {
             return lengthValue / CGFloat(max(node.treeDeep, 1))
         }
         return 0

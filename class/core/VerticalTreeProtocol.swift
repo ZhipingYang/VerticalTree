@@ -13,8 +13,8 @@ import Foundation
 /// - eachWidth: eachWidth of the next node
 /// - IndexWidth: whole width of indexView
 public enum TreeNodeLength {
-    case eachLength(_ length: CGFloat)
-    case indexLength(_ length: CGFloat)
+    case each(_ length: CGFloat)
+    case index(_ length: CGFloat)
 }
 
 /// show the node info
@@ -23,11 +23,15 @@ public protocol Infomation {
     var nodeDescription: String? { get }
 }
 
-/// base treeNode structure and position
-public protocol IndexPathNode {
-    associatedtype T: IndexPathNode
+/// base node
+public protocol BaseNode {
+    associatedtype T: BaseNode
     var parent: T? { get }
     var childs: [T] { get }
+}
+
+/// base treeNode structure and position
+public protocol IndexPathNode: BaseNode {
     var indexPath: IndexPath { get }
 }
 

@@ -10,14 +10,14 @@ import Foundation
 
 extension NSObject: Infomation {}
 
-public final class NodeWrapper<Obj: NSObject & IndexPathNode>: VerticalTreeNode, Infomation where Obj.T == Obj {
+public final class NodeWrapper<Obj: NSObject & BaseNode>: VerticalTreeNode, Infomation where Obj.T == Obj {
     
     public typealias U = NodeWrapper<Obj>
     public var parent: U? = nil
     public var childs: [U]
     
     public var indexPath: IndexPath { return _indexPath }
-    public var length: TreeNodeLength = .indexLength(80)
+    public var length: TreeNodeLength = .index(80)
     public var isFold: Bool = true
     
     public var info: Infomation { return self }

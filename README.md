@@ -58,17 +58,15 @@ pod 'VerticalTree/PrettyExtension'
 #### core protocols
 
 ```swift
-/// show the node info
-public protocol Infomation {
-    var nodeTitle: String { get }
-    var nodeDescription: String? { get }
+/// base node
+public protocol BaseNode {
+    associatedtype T: BaseNode
+    var parent: T? { get }
+    var childs: [T] { get }
 }
 
 /// base treeNode structure and position
-public protocol IndexPathNode {
-    associatedtype T: IndexPathNode
-    var parent: T? { get }
-    var childs: [T] { get }
+public protocol IndexPathNode: BaseNode {
     var indexPath: IndexPath { get }
 }
 
@@ -142,7 +140,7 @@ let wrapper = NodeWrapper(obj: keyWindow.rootController).changeProperties {
 > see more others extension like CALayer，UIViewController in the demo
 
 ```swift
-extension UIView: IndexPathNode {
+extension UIView: BaseNode {
     public var parent: UIView? {
         return superview
     }
@@ -163,7 +161,7 @@ print(rootNode.subTreePrettyText())
 Using UIView's Extension as an easier way, check here [VerticalTree/PrettyText](https://github.com/ZhipingYang/VerticalTree/blob/master/class/pretty/VerticalTreePrettyPrint.swift#L19)
 
 ```swift
-extension IndexPathNode where Self: NSObject, Self == Self.T {
+extension BaseNode where Self: NSObject, Self == Self.T {
     /// print
     public func treePrettyPrint(inDebug: Bool = false) {...}
     /// baseTree‘s structure
@@ -180,7 +178,7 @@ extension IndexPathNode where Self: NSObject, Self == Self.T {
 
 - print view's Window structure
 
-> `view.getTreeRoot.treePrettyPrint()` 
+> `view.rootNode.treePrettyPrint()` 
 
 - show more infomation
 

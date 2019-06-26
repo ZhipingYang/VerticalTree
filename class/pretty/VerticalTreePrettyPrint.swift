@@ -16,7 +16,7 @@ extension UIResponder {
 }
 
 //MARK: - VerticalTreeSolution
-private class VerticalTreeSolution<Obj: NSObject & IndexPathNode> where Obj.T == Obj {
+private class VerticalTreeSolution<Obj: NSObject & BaseNode> where Obj.T == Obj {
     /// baseTree‘s structure
     static func treePrettyText(obj: Obj, inDebug: Bool = false) -> String {
         return NodeWrapper(obj: obj).subTreePrettyText(moreInfoIfHave: inDebug, highlighted: nil)
@@ -50,17 +50,12 @@ private class VerticalTreeSolution<Obj: NSObject & IndexPathNode> where Obj.T ==
     
     // get the baseTree of rootNode
     static func getTreeRoot(_ obj: Obj) -> Obj {
-        return obj.getRootNode()
-    }
-    
-    static func indexPath(_ obj: Obj) -> IndexPath {
-        let seq = sequence(first: obj) { $0.parent }.reversed()
-        let indexs = seq.map { $0.parent?.childs.firstIndex(of: $0) ?? 0 }
-        return IndexPath(indexes: indexs)
+        let seq = sequence(first: obj) { $0.parent }
+        return seq.first(where: { $0.parent == nil })!
     }
 }
 
-extension CALayer: IndexPathNode {
+extension CALayer: BaseNode {
     
     // helper
     private var treeBaseClass: CALayer { return self }
@@ -77,15 +72,13 @@ extension CALayer: IndexPathNode {
     public func treePrettyPrint(ofTop: CALayer, inDebug: Bool = false) {
         VerticalTreeSolution.treePrettyPrint(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
     }
-    public var getTreeRoot: CALayer {
+    public var rootNode: CALayer {
         return VerticalTreeSolution.getTreeRoot(treeBaseClass)
-    }
-    public var indexPath: IndexPath {
-        return VerticalTreeSolution.indexPath(treeBaseClass)
     }
 }
 
-extension UIView: IndexPathNode {
+extension UIView: BaseNode {
+    
     // helper
     private var treeBaseClass: UIView { return self }
     // BaseTree
@@ -102,15 +95,12 @@ extension UIView: IndexPathNode {
     public func treePrettyPrint(ofTop: UIView, inDebug: Bool = false) {
         VerticalTreeSolution.treePrettyPrint(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
     }
-    public var getTreeRoot: UIView {
+    public var rootNode: UIView {
         return VerticalTreeSolution.getTreeRoot(treeBaseClass)
-    }
-    public var indexPath: IndexPath {
-        return VerticalTreeSolution.indexPath(treeBaseClass)
     }
 }
 
-extension UIViewController: IndexPathNode {
+extension UIViewController: BaseNode {
     // helper
     private var treeBaseClass: UIViewController { return self }
     // BaseTree
@@ -126,10 +116,7 @@ extension UIViewController: IndexPathNode {
     public func treePrettyPrint(ofTop: UIViewController, inDebug: Bool = false) {
         VerticalTreeSolution.treePrettyPrint(obj: treeBaseClass, ofTop: ofTop, inDebug: inDebug)
     }
-    public var getTreeRoot: UIViewController {
+    public var rootNode: UIViewController {
         return VerticalTreeSolution.getTreeRoot(treeBaseClass)
-    }
-    public var indexPath: IndexPath {
-        return VerticalTreeSolution.indexPath(treeBaseClass)
     }
 }
