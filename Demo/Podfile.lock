@@ -1,13 +1,13 @@
 PODS:
   - Then (2.4.0)
-  - VerticalTree (0.2.1):
-    - VerticalTree/Core (= 0.2.1)
-    - VerticalTree/PrettyExtension (= 0.2.1)
-    - VerticalTree/UI (= 0.2.1)
-  - VerticalTree/Core (0.2.1)
-  - VerticalTree/PrettyExtension (0.2.1):
+  - VerticalTree (0.3.0):
+    - VerticalTree/Core (= 0.3.0)
+    - VerticalTree/PrettyExtension (= 0.3.0)
+    - VerticalTree/UI (= 0.3.0)
+  - VerticalTree/Core (0.3.0)
+  - VerticalTree/PrettyExtension (0.3.0):
     - VerticalTree/Core
-  - VerticalTree/UI (0.2.1):
+  - VerticalTree/UI (0.3.0):
     - Then
     - VerticalTree/Core
 
@@ -24,8 +24,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
-  VerticalTree: 73f803000c315220b5919bd07136ce0b8c4715fe
+  VerticalTree: 4adc194d02aafc10f7e779aa6a4622512acd4678
 
 PODFILE CHECKSUM: 856d40aff1f52f003cdf63ae1cfd15d34f92ef08
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.2

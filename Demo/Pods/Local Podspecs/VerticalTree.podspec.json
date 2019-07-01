@@ -1,6 +1,6 @@
 {
   "name": "VerticalTree",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "summary": "Vertical drawing the TreeView",
   "description": "Provides a vertical drawing of the tree structure and view information about the tree‘s nodes",
   "homepage": "https://github.com/ZhipingYang/VerticalTree",
@@ -16,20 +16,20 @@
   },
   "source": {
     "git": "https://github.com/ZhipingYang/VerticalTree.git",
-    "tag": "0.2.1"
+    "tag": "0.3.0"
   },
   "requires_arc": true,
-  "swift_version": "5.0",
+  "swift_versions": "5.0",
   "default_subspecs": [
     "Core",
     "UI",
     "PrettyExtension"
   ],
-  "frameworks": "Foundation",
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "class/core/*.swift"
+      "source_files": "class/core/*.swift",
+      "frameworks": "Foundation"
     },
     {
       "name": "UI",
@@ -55,5 +55,6 @@
         ]
       }
     }
-  ]
+  ],
+  "swift_version": "5.0"
 }
