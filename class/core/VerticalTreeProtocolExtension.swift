@@ -31,7 +31,7 @@ extension BaseNode {
 
 extension BaseNode where Self.T == Self {
     
-    internal var rootNode: T {
+    public var rootNode: T {
         let seq = sequence(first: self) { $0.parent }
         return seq.first(where: { $0.parent == nil })!
     }
