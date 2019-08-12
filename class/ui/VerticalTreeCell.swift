@@ -13,9 +13,9 @@ class VerticalTreeCell<T: VerticalTreeNode>: UITableViewCell {
     
     var descriptionHeightConstraint: NSLayoutConstraint?
 
-    lazy var indexView: VerticalTreeIndexView<T> = {
-        return VerticalTreeIndexView<T>().then { $0.translatesAutoresizingMaskIntoConstraints = false }
-    }()
+    lazy var indexView = VerticalTreeIndexView<T>().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()

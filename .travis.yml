@@ -1,6 +1,25 @@
 osx_image: xcode10.2
 language: objective-c
 
+notifications:
+  email: false
+
+branches:
+  only:
+  - master
+
+cache: cocoapods
+podfile: Podfile
+
+before_install:
+  - gem install cocoapods -v '~> 1.7.0' --no-document --quiet
+  - gem install xcpretty --no-document --quiet
+  - pod --version
+  - pod repo update --silent
+  - xcpretty --version
+  - xcodebuild -version
+  - xcodebuild -showsdks
+
 # Build with tests
 script:
 - pod repo update
