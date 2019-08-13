@@ -10,7 +10,6 @@ branches:
   - /^\d+\.\d+\.\d+$/
 
 cache: cocoapods
-podfile: Podfile
 
 before_install:
   - gem install cocoapods -v '~> 1.7.0' --no-document --quiet
@@ -21,26 +20,20 @@ before_install:
   - xcodebuild -version
   - xcodebuild -showsdks
 
-# Build with tests
-# script:
-# - pod repo update
-# - pod lib lint --allow-warnings
-# - xcodebuild clean test -workspace Demo/Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
-
 jobs:
   include:
-    - stage: lint
-      before_install: mv .github/VerticalTree.podspec .
-      script:
-        - pod lib lint --allow-warnings
+    # - stage: lint
+    #   script:
+    #     - pod lib lint --allow-warnings
 
-    - stage: test
-      before_install: mv .github/VerticalTree.podspec .
-      script:
-        - rm -rf ~/Library/Developer/Xcode/DerivedData/
-        - cd Demo
-        - pod install
-        - xcodebuild clean test -workspace Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
+    # - stage: test
+    #   before_install: mv .github/VerticalTree.podspec .
+    #   script:
+    #     - rm -rf ~/Library/Developer/Xcode/DerivedData/
+    #     - cd Demo
+    #     - pod install
+    #     - xcodebuild clean build -workspace Demo.xcworkspace -scheme Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
+    #     - xcodebuild clean test -workspace Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
 
     - stage: deploy
       if: tag IS present
