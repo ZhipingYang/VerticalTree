@@ -27,7 +27,6 @@ jobs:
         - pod lib lint --allow-warnings
 
     - stage: test
-      before_install: mv .github/VerticalTree.podspec .
       script:
         - rm -rf ~/Library/Developer/Xcode/DerivedData/
         - cd Demo
