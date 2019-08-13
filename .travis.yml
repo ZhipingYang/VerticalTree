@@ -44,11 +44,10 @@ jobs:
 
     - stage: deploy
       if: tag IS present
-      before_script: |
-        - mv .github/VerticalTree.podspec .
-        - echo tag: $TRAVIS_TAG
+      before_script:
+        - echo 'current tag -> $TRAVIS_TAG'
         - sed -i '' "s/s.version = '0.0.1'/s.version = '$TRAVIS_TAG'/g" VerticalTree.podspec
-      script: |
+      script:
         - set -eo pipefail
         - pod trunk push --verbose --allow-warnings | ruby -e 'ARGF.each{ print "." }'
         
