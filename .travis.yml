@@ -51,5 +51,4 @@ jobs:
       script: |
         set -eo pipefail
         pod trunk push --verbose --allow-warnings | ruby -e 'ARGF.each{ print "." }'
-      on:
-        tags: true
+        
