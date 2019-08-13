@@ -35,7 +35,7 @@ jobs:
         - xcodebuild clean test -workspace Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
 
     - stage: deploy
-      if: tag IS present AND branch = master
+      if: tag IS present
       before_script:
         - echo 'current tag -> $TRAVIS_TAG'
         - sed -i '' "s/s.version = '0.0.1'/s.version = '$TRAVIS_TAG'/g" VerticalTree.podspec
