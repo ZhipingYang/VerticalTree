@@ -42,10 +42,12 @@ jobs:
         - xcodebuild clean test -workspace Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
 
     - stage: deploy
+      if: tag IS present
       before_script: |
-        mv .github/VerticalTree.podspec .
-        sed -i '' "s/s.version = '0.0.1'/s.version = '$TRAVIS_TAG'/g" VerticalTree.podspec
+        - mv .github/VerticalTree.podspec .
+        - echo tag: $TRAVIS_TAG
+        - sed -i '' "s/s.version = '0.0.1'/s.version = '$TRAVIS_TAG'/g" VerticalTree.podspec
       script: |
-        set -eo pipefail
-        pod trunk push --verbose --allow-warnings | ruby -e 'ARGF.each{ print "." }'
+        - set -eo pipefail
+        - pod trunk push --verbose --allow-warnings | ruby -e 'ARGF.each{ print "." }'
         
