@@ -34,15 +34,12 @@ jobs:
         - pod lib lint --allow-warnings
 
     - stage: test
-      name: "clean"
       before_install: mv .github/VerticalTree.podspec .
       script:
         - rm -rf ~/Library/Developer/Xcode/DerivedData/
-      - script:
         - cd Demo
         - pod install
         - xcodebuild clean test -workspace Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
-        name: "test on iOS"
 
     - stage: deploy
       before_script: |
