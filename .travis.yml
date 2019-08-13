@@ -22,21 +22,21 @@ before_install:
 
 jobs:
   include:
-    # - stage: lint
-    #   script:
-    #     - pod lib lint --allow-warnings
+    - stage: lint
+      script:
+        - pod lib lint --allow-warnings
 
-    # - stage: test
-    #   before_install: mv .github/VerticalTree.podspec .
-    #   script:
-    #     - rm -rf ~/Library/Developer/Xcode/DerivedData/
-    #     - cd Demo
-    #     - pod install
-    #     - xcodebuild clean build -workspace Demo.xcworkspace -scheme Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
-    #     - xcodebuild clean test -workspace Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
+    - stage: test
+      before_install: mv .github/VerticalTree.podspec .
+      script:
+        - rm -rf ~/Library/Developer/Xcode/DerivedData/
+        - cd Demo
+        - pod install
+        - xcodebuild clean build -workspace Demo.xcworkspace -scheme Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
+        - xcodebuild clean test -workspace Demo.xcworkspace -scheme DemoTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone XS' -configuration Debug | xcpretty -c
 
     - stage: deploy
-      if: tag IS present
+      if: tag IS present AND branch = master
       before_script:
         - echo 'current tag -> $TRAVIS_TAG'
         - sed -i '' "s/s.version = '0.0.1'/s.version = '$TRAVIS_TAG'/g" VerticalTree.podspec
