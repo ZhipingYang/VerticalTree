@@ -13,8 +13,8 @@
 	<a href="http://cocoapods.org/pods/VerticalTree">
 		<image alt="Platform" src="https://img.shields.io/cocoapods/p/VerticalTree.svg?style=flat">
 	</a>
-	<a href="https://travis-ci.org/ZhipingYang/VerticalTree">
-		<image alt="CI Status" src="http://img.shields.io/travis/ZhipingYang/VerticalTree.svg?style=flat">
+	<a href="https://travis-ci.com/ZhipingYang/VerticalTree">
+		<image alt="CI Status" src="https://travis-ci.com/ZhipingYang/VerticalTree.svg?branch=master">
 	</a>
 </p>
 
