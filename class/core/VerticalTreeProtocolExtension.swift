@@ -19,59 +19,71 @@ extension Infomation where Self: NSObjectProtocol {
 
 // MARK: - BaseNode
 extension BaseNode {
-    
+
     public var haveChild: Bool {
         return self.childs.count > 0
     }
-    
+
+    public var children: [T] {
+        return childs
+    }
+
     public var haveParent: Bool {
         return self.parent != nil
     }
 }
 
 extension BaseNode where Self.T == Self {
-    
+
     public var rootNode: T {
         let seq = sequence(first: self) { $0.parent }
         return seq.first(where: { $0.parent == nil })!
     }
-    
+
     /// get allsubnodes by recurrence way
     ///
     /// - Parameter includeSelf: the allsubnodes include self or not
     /// - Returns: array of all subnodes
     public func allSubnodes(_ includeSelf: Bool = true) -> [T] {
-        // should in preorder traversal
-        var arr = self.childs.reduce([T]()) { $0 + [$1] + $1.allSubnodes(false) }
-        if includeSelf { arr.insert(self, at: 0) }
-        return arr
+        var nodes = [T]()
+
+        func append(_ node: T, includeSelf: Bool) {
+            if includeSelf { nodes.append(node) }
+            node.childs.forEach { append($0, includeSelf: true) }
+        }
+
+        append(self, includeSelf: includeSelf)
+        return nodes
     }
 }
 
 // MARK: - IndexPathNode
 extension IndexPathNode {
-    
+
     /// node of deep, value >= 1
     public var currentDeep: Int {
-        return indexPath.count
+        return max(indexPath.count, 1)
     }
-    
+
     public var index: Int {
-        let index = indexPath
-        return index[index.count-1]
+        return indexPath.last ?? 0
     }
-    
+
     public var haveNext: Bool {
         return self.index < (self.parent?.childs.count ?? 1) - 1
     }
 }
 
 extension IndexPathNode where Self.T == Self {
-    
+
     /// the deepest of node tree
     /// note: minimum deep start from 1
     public var treeDeep: Int {
-        return rootNode.allSubnodes().max { $0.currentDeep < $1.currentDeep }?.currentDeep ?? 1
+        func maxDeep(_ node: T) -> Int {
+            return node.childs.reduce(node.currentDeep) { max($0, maxDeep($1)) }
+        }
+
+        return maxDeep(rootNode)
     }
 }
 
@@ -92,12 +104,12 @@ extension VerticalTreeNode {
         let keyText = moreInfoIfHave ? (info.nodeDescription ?? info.nodeTitle) : info.nodeTitle
         return spaceStrings.reversed().joined() + firstPre + keyText
     }
-    
+
     /// as a subtree at current node
     public func subTreePrettyText(moreInfoIfHave: Bool = false, highlighted: Self? = nil) -> String {
         return VerticalTreeHeaderTitle + self.allSubnodes().map { $0.nodePrettyText(moreInfoIfHave) + "\n" }.joined()
     }
-    
+
     /// found rootNode then get the full tree
     public func treePrettyText(_ moreInfoIfHave: Bool = false) -> String {
         return rootNode.subTreePrettyText(moreInfoIfHave: moreInfoIfHave)

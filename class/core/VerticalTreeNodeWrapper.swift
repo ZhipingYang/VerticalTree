@@ -13,7 +13,7 @@ extension NSObject: Infomation {}
 public final class NodeWrapper<Obj: NSObject & BaseNode>: VerticalTreeNode, Infomation where Obj.T == Obj {
     
     public typealias U = NodeWrapper<Obj>
-    public var parent: U? = nil
+    public weak var parent: U? = nil
     public var childs: [U]
     
     public var indexPath: IndexPath { return _indexPath }
