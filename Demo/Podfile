@@ -1,22 +1,55 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+source 'https://cdn.cocoapods.org/'
 
-target 'Demo' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+platform :ios, '26.2'
+project 'VerticalTreeDemo.xcodeproj'
+use_frameworks!
 
-  # Pods for Demo
-  pod 'VerticalTree', :path => '../'
+install! 'cocoapods',
+  deterministic_uuids: false,
+  warn_for_unused_master_specs_repo: false
 
+target 'VerticalTreeDemo' do
+  pod 'VerticalTree', path: '..'
+end
 
-  target 'DemoTests' do
-    inherit! :search_paths
-    # Pods for testing
+post_install do |installer|
+  deployment_target = '26.2'
+  swift_version = '6'
+
+  installer.generated_projects.each do |project|
+    project.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
+      config.build_settings['SWIFT_VERSION'] = swift_version
+    end
+
+    project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
+        config.build_settings['SWIFT_VERSION'] = swift_version
+      end
+    end
+
+    project.save
   end
 
-  target 'DemoUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  installer.aggregate_targets
+           .map(&:user_project)
+           .uniq
+           .each do |project|
+    project.root_object.attributes['LastUpgradeCheck'] = '2620'
 
+    project.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
+      config.build_settings['SWIFT_VERSION'] = swift_version
+    end
+
+    project.native_targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = deployment_target
+        config.build_settings['SWIFT_VERSION'] = swift_version
+      end
+    end
+
+    project.save
+  end
 end

@@ -23,6 +23,9 @@ public protocol Infomation {
     var nodeDescription: String? { get }
 }
 
+/// Correctly-spelled alias kept beside `Infomation` for source compatibility.
+public typealias Information = Infomation
+
 /// base node
 public protocol BaseNode {
     associatedtype T: BaseNode

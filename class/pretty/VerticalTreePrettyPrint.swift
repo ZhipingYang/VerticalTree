@@ -77,7 +77,7 @@ extension CALayer: BaseNode {
     }
 }
 
-extension UIView: BaseNode {
+extension UIView: @MainActor BaseNode {
     
     // helper
     private var treeBaseClass: UIView { return self }
@@ -100,7 +100,7 @@ extension UIView: BaseNode {
     }
 }
 
-extension UIViewController: BaseNode {
+extension UIViewController: @MainActor BaseNode {
     // helper
     private var treeBaseClass: UIViewController { return self }
     // BaseTree
