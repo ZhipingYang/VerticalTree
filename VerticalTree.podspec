@@ -7,33 +7,33 @@ Pod::Spec.new do |s|
     :tag => s.version.to_s
   }
 
-  s.summary = 'Vertical drawing the TreeView'
-  s.description = "Provides a vertical drawing of the tree structure and view information about the tree‘s nodes"
+  s.summary = 'A vertical tree view and console tree formatter for Swift.'
+  s.description = 'VerticalTree renders tree-structured data as a foldable vertical list and provides debug-friendly tree formatting for UIKit objects, layers, controllers, and custom node models.'
 
   s.homepage         = "https://github.com/ZhipingYang/#{s.name}"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Daniel Yang' => 'xcodeyang@gmail.com' }
-  s.platform         = :ios, '9.0'
+  s.ios.deployment_target = '26.2'
   s.requires_arc     = true
-  s.swift_version = '5.0'
+  s.swift_versions   = ['6']
 
   s.default_subspecs = 'Core', 'UI', 'PrettyExtension'
 
   s.subspec 'Core' do |c|
-      c.source_files = 'class/core/*.swift'
-      c.framework = "Foundation"
+    c.source_files = 'class/core/*.swift'
+    c.frameworks = 'Foundation'
   end
 
   s.subspec 'UI' do |ui|
-      ui.source_files = 'class/ui/*.swift'
-      ui.ios.framework = "UIKit"
-      ui.dependency 'VerticalTree/Core'
-      ui.dependency 'Then'
+    ui.source_files = 'class/ui/*.swift'
+    ui.frameworks = 'UIKit'
+    ui.dependency 'VerticalTree/Core'
+    ui.dependency 'Then'
   end
 
   s.subspec 'PrettyExtension' do |pt|
-      pt.source_files = 'class/pretty/*.swift'
-      pt.dependency 'VerticalTree/Core'
+    pt.source_files = 'class/pretty/*.swift'
+    pt.dependency 'VerticalTree/Core'
   end
 
 end

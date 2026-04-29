@@ -3,200 +3,253 @@
 </p>
 
 <p align="center">
-	<a href="http://cocoapods.org/pods/VerticalTree">
-		<image alt="Version" src="https://img.shields.io/cocoapods/v/VerticalTree.svg?style=flat">
-	</a>
-	<image alt="CI Status" src="https://img.shields.io/badge/Swift-5.0-orange.svg">
-	<a href="http://cocoapods.org/pods/VerticalTree">
-		<image alt="License" src="https://img.shields.io/cocoapods/l/VerticalTree.svg?style=flat">
-	</a>
-	<a href="http://cocoapods.org/pods/VerticalTree">
-		<image alt="Platform" src="https://img.shields.io/cocoapods/p/VerticalTree.svg?style=flat">
-	</a>
-	<a href="https://travis-ci.org/ZhipingYang/VerticalTree">
-		<image alt="CI Status" src="http://img.shields.io/travis/ZhipingYang/VerticalTree.svg?style=flat">
-	</a>
+    <a href="http://cocoapods.org/pods/VerticalTree">
+        <image alt="Version" src="https://img.shields.io/cocoapods/v/VerticalTree.svg?style=flat">
+    </a>
+    <image alt="Swift" src="https://img.shields.io/badge/Swift-6-orange.svg">
+    <image alt="iOS" src="https://img.shields.io/badge/iOS-26.2%2B-blue.svg">
+    <a href="http://cocoapods.org/pods/VerticalTree">
+        <image alt="License" src="https://img.shields.io/cocoapods/l/VerticalTree.svg?style=flat">
+    </a>
+    <a href="http://cocoapods.org/pods/VerticalTree">
+        <image alt="Platform" src="https://img.shields.io/cocoapods/p/VerticalTree.svg?style=flat">
+    </a>
 </p>
 
-> Provides a vertical drawing of the tree structure which can view information about the tree‘s nodes and supports console debug views & layers and so on
+VerticalTree renders tree-structured data as a vertical, foldable UIKit list. It also provides console-friendly tree formatting for custom models, views, layers, and view controllers.
 
-### Install
+## Requirements
 
-required `iOS >= 9.0` `Swift5.0` with [Cocoapods](https://cocoapods.org/)
+- Xcode 26.2
+- Swift 6 language mode
+- iOS 26.2+
+- CocoaPods
+
+## Installation
+
+Install the default package, which includes Core, UI, and PrettyExtension:
 
 ```ruby
 pod 'VerticalTree'
 ```
 
-only install core functions
+Install only the data model and pretty-printing core:
 
 ```ruby
 pod 'VerticalTree/Core'
 ```
-install prettyPrint extension for view、layer、viewController
+
+Install the UIKit/CALayer/UIViewController pretty-print extensions:
 
 ```ruby
 pod 'VerticalTree/PrettyExtension'
 ```
 
-#### file structures
+## Demo
 
-```
-─┬─ "VerticalTree"
- ├─┬─ "Core": basic functions
- │ ├─── VerticalTreeProtocol
- │ ├─── VerticalTreeProtocolExtension
- │ └─── VerticalTreeNodeWrapper
- ├─┬─ "UI": draw a graph of VerticalTree which is foldable
- │ ├─── VerticalTreeCell
- │ ├─── VerticalTreeIndexView
- │ └─── VerticalTreeListController
- └─┬─ "PrettyExtension": pretty print in xcode console
-   └─── VerticalTreePrettyPrint
+The old checked-in Xcode demo has been replaced by a source-only demo generated on demand with XcodeGen and CocoaPods.
+
+```sh
+./GenerateDemo.command
 ```
 
-#### core protocols
+The command rebuilds `Demo/VerticalTreeDemo.xcworkspace` from `Demo/project.yml`, runs `pod install`, and opens the workspace. Generated files such as `Demo/Pods`, `Demo/*.xcodeproj`, `Demo/*.xcworkspace`, and `Demo/Podfile.lock` are intentionally ignored by Git.
+
+The demo includes:
+
+- custom structured data trees
+- a deterministic sample forest
+- UIView, UIWindow, and CALayer hierarchy inspection
+- console pretty-print examples
+
+## Screenshots
+
+### UIKit Hierarchy
+
+<p align="center">
+    <img width="30%" alt="UIView hierarchy tree" src="https://user-images.githubusercontent.com/9360037/56594927-48ed2b00-6620-11e9-980e-3bcfef3556a8.jpg">
+    <img width="30%" alt="Foldable vertical tree" src="https://user-images.githubusercontent.com/9360037/56594688-dc722c00-661f-11e9-83f0-3990d13f0947.jpg">
+    <img width="36%" alt="Console tree output" src="https://user-images.githubusercontent.com/9360037/56591555-8bf8cf80-661b-11e9-93f8-f2bb374415eb.png">
+</p>
+
+### Fold And Inspect
+
+<p align="center">
+    <img width="72%" alt="VerticalTree fold and unfold demo" src="https://user-images.githubusercontent.com/9360037/56594078-d891da00-661e-11e9-8403-25178464905e.gif">
+</p>
+
+### Console Output
+
+<p align="center">
+    <img width="78%" alt="Pretty printed tree" src="https://user-images.githubusercontent.com/9360037/56596664-8a330a00-6623-11e9-8e0d-58c2ef7cb9bb.jpg">
+</p>
+
+<p align="center">
+    <img width="78%" alt="Pretty printed tree with debug information" src="https://user-images.githubusercontent.com/9360037/56597052-47256680-6624-11e9-90ed-e78181eba479.png">
+</p>
+
+### Node Configuration
+
+<p align="center">
+    <img width="70%" alt="NodeWrapper property configuration" src="https://user-images.githubusercontent.com/9360037/56355927-1c917300-620a-11e9-9281-6658245cd321.jpg">
+</p>
+
+### LLDB Reference
+
+<p align="center">
+    <img width="76%" alt="LLDB hierarchy debug output" src="https://user-images.githubusercontent.com/9360037/56284463-16868e00-6147-11e9-834e-306c10c0926d.png">
+</p>
+
+## Modules
+
+```text
+VerticalTree
+├── Core
+│   ├── VerticalTreeProtocol
+│   ├── VerticalTreeProtocolExtension
+│   └── VerticalTreeNodeWrapper
+├── UI
+│   ├── VerticalTreeCell
+│   ├── VerticalTreeIndexView
+│   └── VerticalTreeListController
+└── PrettyExtension
+    └── VerticalTreePrettyPrint
+```
+
+## Core Protocols
 
 ```swift
-/// base node
+public protocol Infomation {
+    var nodeTitle: String { get }
+    var nodeDescription: String? { get }
+}
+
+public typealias Information = Infomation
+
 public protocol BaseNode {
     associatedtype T: BaseNode
     var parent: T? { get }
     var childs: [T] { get }
 }
 
-/// base treeNode structure and position
 public protocol IndexPathNode: BaseNode {
     var indexPath: IndexPath { get }
 }
 
-/// Node protocol
 public protocol VerticalTreeNode: IndexPathNode where Self.T == Self {
-    /// indexViewLegnth
     var length: TreeNodeLength { get }
-    /// info description
     var info: Infomation { get }
-    var isFold: Bool { set get }
+    var isFold: Bool { get set }
 }
 ```
 
-### Example for UIView
+`Infomation` is kept for source compatibility. New code can use the correctly spelled `Information` alias when referring to the same protocol type.
 
-> `UIView` is a tree structure
-> 
-> - VerticalTree in tableview
-> - VerticalTree in console log
+## Custom Data
 
-<p align="center">
-<img width=30% src="https://user-images.githubusercontent.com/9360037/56594927-48ed2b00-6620-11e9-980e-3bcfef3556a8.jpg"> <img width=30% src="https://user-images.githubusercontent.com/9360037/56594688-dc722c00-661f-11e9-83f0-3990d13f0947.jpg">
-<img width=36.5% src="https://user-images.githubusercontent.com/9360037/56591555-8bf8cf80-661b-11e9-93f8-f2bb374415eb.png">
-</p>
-
-## Using
-### 1. draw the VerticalTree in tableview
-> for example a UITableViewCell structure:
-
-![vertical_tree](https://user-images.githubusercontent.com/9360037/56594078-d891da00-661e-11e9-8403-25178464905e.gif)
+Create a model that conforms to `VerticalTreeNode`. Keep `parent` weak for reference types to avoid retain cycles.
 
 ```swift
-// in ViewController
-let treeVC = VerticalTreeListController(source: NodeWrapper(obj: view))
-// then show the treeVC
-```
+final class DemoTreeNode: NSObject, VerticalTreeNode {
+    weak var parent: DemoTreeNode?
+    var childs: [DemoTreeNode]
+    var indexPath: IndexPath
+    var length: TreeNodeLength = .index(180)
+    var isFold = false
 
-#### Config Node's info
+    var info: Information { self }
+    var nodeTitle: String
+    var nodeDescription: String?
 
-in NodeWrapper's method
-
-```swift
-/// config current node’s property value and recurrence apply the same rule in childNodes if you want
-///
-/// - Parameters:
-///   - inChild: recurrence config in child or just config current
-///   - config: rules
-/// - Returns: self
-@discardableResult
-public func changeProperties(inChild: Bool = true, config: (NodeWrapper<Obj>) -> Void) -> Self {}
-```
-
-follow picture: modify UIViewController's Wrapper
-
-<img width=500 src="https://user-images.githubusercontent.com/9360037/56355927-1c917300-620a-11e9-9281-6658245cd321.jpg">
-
-```swift
-// default to change all subnode in the same rules unless inChild set false
-let wrapper = NodeWrapper(obj: keyWindow.rootController).changeProperties {
-    $0.isFold = false	// all node set unfold in default 
-    $0.nodeDescription = "more infomation that you see now"
-}
-```
-
-### 2. Text VerticalTree - in Console log
-
-![tree](https://user-images.githubusercontent.com/9360037/56596664-8a330a00-6623-11e9-8e0d-58c2ef7cb9bb.jpg)
-
-
-> UIView as the example to follow the IndexPathNode protocol <br>
-> see more others extension like CALayer，UIViewController in the demo
-
-```swift
-extension UIView: BaseNode {
-    public var parent: UIView? {
-        return superview
+    init(
+        title: String,
+        description: String? = nil,
+        children: [DemoTreeNode] = []
+    ) {
+        self.nodeTitle = title
+        self.nodeDescription = description
+        self.childs = []
+        self.indexPath = IndexPath(index: 0)
+        super.init()
+        setChildren(children)
     }
-    public var childs: [UIView] {
-        return subviews
+
+    private func setChildren(_ children: [DemoTreeNode]) {
+        childs = children
+        children.enumerated().forEach { offset, child in
+            child.parent = self
+            child.reindex(indexPath.appending(offset))
+        }
+    }
+
+    private func reindex(_ path: IndexPath) {
+        indexPath = path
+        childs.enumerated().forEach { offset, child in
+            child.parent = self
+            child.reindex(path.appending(offset))
+        }
     }
 }
 ```
-get a wrapper of the view as a root node
+
+Display one or more root nodes:
 
 ```swift
-// in ViewController
-let rootNode = NodeWrapper(obj: view)
-// print node structure in text
-print(rootNode.subTreePrettyText())
+let controller = VerticalTreeListController<DemoTreeNode>(style: .plain)
+controller.title = "Sample Forest"
+controller.rootNodes = DemoTreeNode.sampleForest()
+navigationController?.pushViewController(controller, animated: true)
 ```
 
-Using UIView's Extension as an easier way, check here [VerticalTree/PrettyText](https://github.com/ZhipingYang/VerticalTree/blob/master/class/pretty/VerticalTreePrettyPrint.swift#L19)
+Handle selection yourself instead of using the built-in fold/unfold behavior:
 
 ```swift
-extension BaseNode where Self: NSObject, Self == Self.T {
-    /// print
-    public func treePrettyPrint(inDebug: Bool = false) {...}
-    /// baseTree‘s structure
-    public func treePrettyText(inDebug: Bool = false) -> String {...}
-    /// get ofTop‘s structure & highlight position of self
-    public func treePrettyText(ofTop: Self, inDebug: Bool = false) { ... }
-    // get the baseTree of rootNode
-    public var getTreeRoot: Self { ... }
+controller.didSelectHandler = { node in
+    print(node.info.nodeTitle)
 }
 ```
-- print current view as root node
 
-> `view.treePrettyPrint()`
+`didSelectedHandle` is still available as a deprecated compatibility alias. Prefer `didSelectHandler` in new code.
 
-- print view's Window structure
+## UIKit Trees
 
-> `view.rootNode.treePrettyPrint()` 
+`NodeWrapper` can wrap any `NSObject & BaseNode` where the node type points back to itself. The PrettyExtension module already makes `UIView`, `CALayer`, and `UIViewController` usable as tree sources.
 
-- show more infomation
+```swift
+let wrapper = NodeWrapper(obj: view).changeProperties { node in
+    node.length = .index(180)
+    node.isFold = node.currentDeep > 2
+    if let view = node.obj {
+        node.nodeDescription = "\(type(of: view)) frame: \(view.frame)"
+    }
+}
 
-> `view.treePrettyPrint(inDebug: true)`
+let controller = VerticalTreeListController(source: wrapper)
+controller.title = "Preview View"
+navigationController?.pushViewController(controller, animated: true)
+```
 
-![image](https://user-images.githubusercontent.com/9360037/56597052-47256680-6624-11e9-90ed-e78181eba479.png)
+`NodeWrapper` keeps the wrapped object weakly. If the original object is released, the wrapper still keeps basic node structure, but object-derived debug text may become unavailable.
 
-### BTW
+## Console Pretty Print
 
-- LLDB debug view & layer & controller's hierarchy
-    -  view & layer
-        - method-1: `po yourObj.value(forKey: "recursiveDescription")!`
-        - method-2: `expression -l objc -O -- [`yourObj` recursiveDescription]`
-    - controller
-        - method-1: `po yourController.value(forKey: "_printHierarchy")!`
-        - method-2: `expression -l objc -O -- [`yourController` _printHierarchy]`
+```swift
+print(view.treePrettyText(inDebug: true))
+view.treePrettyPrint()
+view.rootNode.treePrettyPrint(inDebug: true)
+```
 
-![image](https://user-images.githubusercontent.com/9360037/56284463-16868e00-6147-11e9-834e-306c10c0926d.png)
+You can also print a custom `VerticalTreeNode`:
+
+```swift
+print(rootNode.subTreePrettyText(moreInfoIfHave: true))
+```
+
+## UIKit And Swift 6 Notes
+
+`UIView` and `UIViewController` conform to `BaseNode` through `@MainActor` isolated conformances. Access UI tree APIs from the main actor.
+
+The list cell copy menu uses `UIEditMenuInteraction`, replacing the deprecated `UIMenuController` APIs.
 
 ## Author
 
@@ -205,4 +258,3 @@ XcodeYang, xcodeyang@gmail.com
 ## License
 
 VerticalTree is available under the MIT license. See the LICENSE file for more info.
-

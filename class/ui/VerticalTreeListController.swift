@@ -43,7 +43,7 @@ public class VerticalTreeListController<T: VerticalTreeNode>: UITableViewControl
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        title = "Vertical Tree"
+        if title == nil { title = "Vertical Tree" }
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 10

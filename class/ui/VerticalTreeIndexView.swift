@@ -8,9 +8,10 @@
 
 import UIKit
 
-class VerticalTreeIndexView<T: VerticalTreeNode>: UIView {
+class VerticalTreeIndexView<T: VerticalTreeNode>: UIView, @MainActor UIEditMenuInteractionDelegate {
 
     var labelLeading: NSLayoutConstraint?
+    private lazy var editMenuInteraction = UIEditMenuInteraction(delegate: self)
 
     lazy var label: UILabel = {
         let label = UILabel()
@@ -55,6 +56,7 @@ class VerticalTreeIndexView<T: VerticalTreeNode>: UIView {
             label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor)
         ])
 
+        addInteraction(editMenuInteraction)
         let longG = UILongPressGestureRecognizer(target: self, action: #selector(longPressToShowCopyMenu(_:)))
         addGestureRecognizer(longG)
     }
@@ -85,27 +87,28 @@ class VerticalTreeIndexView<T: VerticalTreeNode>: UIView {
         }
     }
 
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(copyText(_:)) {
-            return true
-        }
-        return super.canPerformAction(action, withSender: sender)
-    }
-
     @objc private func longPressToShowCopyMenu(_ sender: UILongPressGestureRecognizer) {
-        let menu = UIMenuController.shared
-        if sender.state != .began, menu.isMenuVisible { return }
-        menu.menuItems = [UIMenuItem(title: "copy", action: #selector(copyText(_:)))]
-        menu.setTargetRect(label.bounds, in: self.label)
-        menu.setMenuVisible(true, animated: true)
-        becomeFirstResponder()
+        guard sender.state == .began else { return }
+        let configuration = UIEditMenuConfiguration(
+            identifier: nil,
+            sourcePoint: sender.location(in: self)
+        )
+        editMenuInteraction.presentEditMenu(with: configuration)
     }
 
-    @objc private func copyText(_ sender: Any?) {
+    func editMenuInteraction(
+        _ interaction: UIEditMenuInteraction,
+        menuFor configuration: UIEditMenuConfiguration,
+        suggestedActions: [UIMenuElement]
+    ) -> UIMenu? {
+        return UIMenu(children: [
+            UIAction(title: "Copy") { [weak self] _ in
+                self?.copyNodeText()
+            }
+        ])
+    }
+
+    private func copyNodeText() {
         UIPasteboard.general.string = node?.info.nodeDescription ?? node?.info.nodeTitle
     }
 
